@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================================ -->
+    <!-- Vue Formulaire pour l'Assistant d'Importation                -->
+    <!-- ============================================================ -->
+    <record id="view_campaign_import_wizard_form" model="ir.ui.view">
+        <field name="name">campaign.import.wizard.form</field>
+        <field name="model">campaign.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Importer et Mapper des Contacts via l'IA">
+                <sheet>
+                    <field name="state" invisible="1"/>
+
+                    <!-- ===================== STEP 1 : DRAFT ===================== -->
+                    <div invisible="state != 'draft'">
+                        <p class="alert alert-info" role="alert">
+                            Sélectionnez votre fichier de contacts (Excel
+                            <strong>.xlsx/.xls</strong> ou <strong>.csv</strong>).
+                            L'IA analysera automatiquement les colonnes non standard pour les
+                            mapper aux bons champs d'Odoo ou en proposer de nouveaux.
+                            <br/>
+                            <em>Vous pourrez ensuite valider chaque suggestion, désélectionner
+                            des colonnes et limiter le nombre de lignes importées.</em>
+                        </p>
+                        <group>
+                            <group>
+                                <field name="file_name" invisible="1"/>
+                                <field name="file_data" filename="file_name"
+                                       string="Fichier de Contacts"/>
+                            </group>
+                            <group>
+                                <field name="source_tag"/>
+                            </group>
+                        </group>
+                    </div>
+
+                    <!-- ===================== STEP 2 : REVIEW ==================== -->
+                    <div invisible="state != 'review'">
+                        <p class="alert alert-warning" role="alert">
+                            <strong>Vérification avant importation.</strong>
+                            <br/>
+                            • <strong>Décochez</strong> les colonnes que vous ne souhaitez pas importer.<br/>
+                            • Les colonnes marquées <em>« Nouveau »</em> n'existent pas encore dans Odoo :
+                              cochez <strong>« Créer le champ »</strong> et renseignez son libellé pour
+                              autoriser sa création.<br/>
+                            • Pour n'importer qu'une partie du fichier, indiquez le nombre de
+                              lignes ci-dessous.
+                        </p>
+
+                        <group>
+                            <group string="Statistiques">
+                                <field name="total_rows"/>
+                                <field name="selected_columns_count"/>
+                                <field name="new_fields_count"/>
+                            </group>
+                            <group string="Limitation de l'import">
+                                <field name="row_limit"/>
+                            </group>
+                        </group>
+
+                        <field name="column_line_ids" nolabel="1">
+                            <list editable="bottom" create="false" delete="false"
+                                  decoration-info="is_new" decoration-muted="not selected">
+                                <field name="selected" string="Importer"/>
+                                <field name="header" readonly="1"/>
+                                <field name="sample_preview" readonly="1" optional="show"/>
+                                <field name="suggested_field" readonly="1"/>
+                                <field name="is_new" widget="boolean_toggle" readonly="1"/>
+                                <field name="create_field"
+                                       readonly="not is_new"
+                                       invisible="not is_new"/>
+                                <field name="field_label"
+                                       readonly="not (is_new and create_field)"
+                                       required="is_new and create_field and selected"
+                                       invisible="not is_new"/>
+                                <field name="field_description"
+                                       readonly="not (is_new and create_field)"
+                                       invisible="not is_new"
+                                       optional="show"/>
+                            </list>
+                        </field>
+                    </div>
+
+                    <!-- ===================== STEP 3 : DONE ====================== -->
+                    <div invisible="state != 'done'">
+                        <h3 class="text-success">
+                            <i class="fa fa-check-circle"/> Importation Réussie !
+                        </h3>
+                        <field name="summary" widget="text" class="text-monospace"
+                               readonly="1"
+                               style="font-size: 13px; min-height: 250px;"/>
+                    </div>
+
+                    <!-- ===================== FOOTER ============================= -->
+                    <footer>
+                        <!-- Step 1 -->
+                        <button name="action_analyze_file"
+                                string="Analyser le fichier"
+                                type="object" class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button string="Annuler" class="btn-secondary"
+                                special="cancel" invisible="state != 'draft'"/>
+
+                        <!-- Step 2 -->
+                        <button name="action_confirm_import"
+                                string="Confirmer et importer"
+                                type="object" class="btn-primary"
+                                invisible="state != 'review'"
+                                confirm="Confirmer l'importation des contacts avec les paramètres affichés ?"/>
+                        <button name="action_back_to_draft"
+                                string="Retour"
+                                type="object" class="btn-secondary"
+                                invisible="state != 'review'"/>
+                        <button string="Annuler" class="btn-secondary"
+                                special="cancel" invisible="state != 'review'"/>
+
+                        <!-- Step 3 -->
+                        <button string="Fermer" class="btn-primary"
+                                special="cancel" invisible="state != 'done'"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action pour ouvrir l'Assistant d'Importation -->
+    <record id="action_campaign_import_wizard" model="ir.actions.act_window">
+        <field name="name">Importer des Contacts</field>
+        <field name="res_model">campaign.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

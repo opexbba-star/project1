@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_campaign_automation_user,campaign.automation.user,model_campaign_automation,base.group_user,1,1,1,1
+access_campaign_contact_line_user,campaign.contact.line.user,model_campaign_contact_line,base.group_user,1,1,1,1
+access_campaign_import_wizard_user,campaign.import.wizard.user,model_campaign_import_wizard,base.group_user,1,1,1,1
+access_campaign_import_wizard_line_user,campaign.import.wizard.line.user,model_campaign_import_wizard_line,base.group_user,1,1,1,1

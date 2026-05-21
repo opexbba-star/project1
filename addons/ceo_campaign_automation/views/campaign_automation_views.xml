@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue Formulaire : Campaign Automation -->
+    <record id="view_campaign_automation_form" model="ir.ui.view">
+        <field name="name">campaign.automation.form</field>
+        <field name="model">campaign.automation</field>
+        <field name="arch" type="xml">
+            <form string="Automatisation de Campagne">
+                <header>
+                    <button name="action_fetch_sample_contacts" string="1. Extraire Échantillon Contacts" type="object" class="oe_highlight" invisible="state not in ('draft', 'contacts_fetched')"/>
+                    <button name="action_generate_ai_emails" string="2. Générer Email par IA" type="object" class="oe_highlight" invisible="state not in ('contacts_fetched', 'ai_generated')"/>
+                    <button name="action_confirm_campaign" string="3. Valider la campagne" type="object" class="oe_highlight" invisible="state != 'ai_generated'"/>
+                    <button name="action_send_campaign" string="4. Envoyer la campagne" type="object" class="oe_highlight" invisible="state != 'ready'" confirm="Êtes-vous sûr de vouloir envoyer cet e-mail à tous les contacts de l'échantillon ?"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,contacts_fetched,ai_generated,ready,done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only" string="Titre de la campagne"/>
+                        <h1><field name="name" placeholder="Ex: Campagne d'été 2026"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="theme"/>
+                        </group>
+                        <group>
+                            <field name="description" placeholder="Objectifs, message principal, appel à l'action..."/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Ciblage &amp; Échantillon" name="targeting">
+                            <group>
+                                <group string="Critères de sélection (Base distante)">
+                                    <field name="target_region" placeholder="Ex: Alger, Oran..."/>
+                                    <field name="target_activity_domain" placeholder="Ex: Informatique, Industrie..."/>
+                                    <field name="sample_limit"/>
+                                </group>
+                                <div class="oe_grey" colspan="2">
+                                    <p>
+                                        <em>Astuce :</em> Les contacts seront extraits depuis la base de données distante configurée dans l'onglet 'Connexion &amp; API' via XML-RPC (limité à 25 contacts par défaut pour cet échantillon).
+                                    </p>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Contenu de l'E-mail IA" name="email_content">
+                            <group string="E-mail de la campagne">
+                                <field name="generated_subject"/>
+                                <field name="generated_body" widget="html" options="{'style-inline': true}"/>
+                            </group>
+                            <group string="Assistant de Reformulation IA">
+                                <label for="rephrase_prompt"/>
+                                <div class="o_row">
+                                    <field name="rephrase_prompt" placeholder="Ex: Rends le texte plus formel, plus court, ajoute une promotion..."/>
+                                    <button name="action_rephrase_email" string="Reformuler par IA" type="object" class="oe_highlight" icon="fa-magic"/>
+                                </div>
+                            </group>
+                        </page>
+                        <page string="Contacts de l'Échantillon" name="contacts">
+                            <field name="contact_line_ids" nolabel="1">
+                                <list string="Contacts" decoration-success="state=='sent'">
+                                    <field name="partner_name"/>
+                                    <field name="email"/>
+                                    <field name="region" optional="show"/>
+                                    <field name="activity_domain" optional="show"/>
+                                    <field name="state"/>
+                                </list>
+                                <form string="Détail du Contact">
+                                    <sheet>
+                                        <group>
+                                            <group string="Informations Contact">
+                                                <field name="partner_name"/>
+                                                <field name="email"/>
+                                                <field name="region"/>
+                                                <field name="activity_domain"/>
+                                            </group>
+                                            <group string="Contexte &amp; Préférences">
+                                                <field name="preferences"/>
+                                                <field name="state" readonly="1"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Connexion &amp; API" name="connection_api">
+                            <group>
+                                <group string="Connexion Odoo Distante (XML-RPC)">
+                                    <field name="external_odoo_url" placeholder="https://mon-odoo-distant.com"/>
+                                    <field name="external_odoo_db" placeholder="nom_de_la_base"/>
+                                    <field name="external_odoo_user" placeholder="identifiant_ou_email"/>
+                                    <field name="external_odoo_password" password="True" placeholder="Mot de passe ou Clé API"/>
+                                </group>
+                                <group string="Intelligence Artificielle (Google Gemini)">
+                                    <field name="gemini_api_key" password="True" placeholder="Clé API Gemini Flash"/>
+                                </group>
+                                <div class="oe_grey" colspan="2">
+                                    <p>
+                                        <i class="fa fa-info-circle"/> <em>Note :</em> Les informations saisies ici sont automatiquement mémorisées dans les paramètres système pour vous éviter de les retaper lors de la création de votre prochaine campagne !
+                                    </p>
+                                </div>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue Liste : Campaign Automation -->
+    <record id="view_campaign_automation_list" model="ir.ui.view">
+        <field name="name">campaign.automation.list</field>
+        <field name="model">campaign.automation</field>
+        <field name="arch" type="xml">
+            <list string="Campagnes d'Automatisation">
+                <field name="name"/>
+                <field name="theme"/>
+                <field name="target_region"/>
+                <field name="target_activity_domain"/>
+                <field name="state" widget="badge" decoration-info="state=='contacts_fetched'" decoration-success="state=='done'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action : Campaign Automation -->
+    <record id="action_campaign_automation" model="ir.actions.act_window">
+        <field name="name">Campagnes IA</field>
+        <field name="res_model">campaign.automation</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créez votre première campagne marketing automatisée par IA !
+            </p>
+            <p>
+                Définissez un thème, configurez l'accès à votre base externe et à Gemini dans l'onglet 'Connexion &amp; API', ciblez un échantillon de contacts, et laissez l'IA rédiger un e-mail unique et percutant pour tout le groupe.
+            </p>
+        </field>
+    </record>
+</odoo>

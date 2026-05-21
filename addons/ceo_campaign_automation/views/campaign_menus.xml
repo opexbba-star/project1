@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Menu Principal -->
+    <menuitem id="menu_campaign_automation_root"
+              name="Campagnes IA"
+              web_icon="ceo_campaign_automation,static/description/icon.png"
+              sequence="45"/>
+
+    <!-- Sous-menu Campagnes -->
+    <menuitem id="menu_campaign_automation_main"
+              name="Campagnes"
+              parent="menu_campaign_automation_root"
+              action="action_campaign_automation"
+              sequence="10"/>
+
+    <!-- Sous-menu Importer Contacts -->
+    <menuitem id="menu_campaign_import_wizard"
+              name="Importer Contacts"
+              parent="menu_campaign_automation_root"
+              action="action_campaign_import_wizard"
+              sequence="20"/>
+
+    <!-- Sous-menu Configuration -->
+    <menuitem id="menu_campaign_automation_config"
+              name="Configuration"
+              parent="menu_campaign_automation_root"
+              sequence="100"/>
+
+    <menuitem id="menu_campaign_automation_settings"
+              name="Paramètres"
+              parent="menu_campaign_automation_config"
+              action="action_campaign_config_settings"
+              sequence="10"/>
+</odoo>

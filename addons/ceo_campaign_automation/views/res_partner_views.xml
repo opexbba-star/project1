@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Vue Héritée Formulaire : res.partner pour accueillir les champs personnalisés créés dynamiquement -->
+    <record id="view_partner_form_dynamic_fields" model="ir.ui.view">
+        <field name="name">res.partner.form.dynamic.fields</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Champs IA Importés" name="ai_imported_fields">
+                    <group name="dynamic_fields_group" string="Champs personnalisés" col="4">
+                        <!-- Les champs créés dynamiquement par l'IA lors des imports de fichiers seront insérés ici automatiquement -->
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
