@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================================================ -->
+    <!-- Form view for the XLSX Template Download Wizard              -->
+    <!-- ============================================================ -->
+    <record id="view_contact_template_wizard_form" model="ir.ui.view">
+        <field name="name">contact.template.wizard.form</field>
+        <field name="model">contact.template.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Download Contacts Import Template">
+                <sheet>
+
+                    <!-- ── Title banner ─────────────────────────────── -->
+                    <div style="
+                        background: linear-gradient(135deg, #1F3864 0%, #2E6DA4 100%);
+                        border-radius: 8px;
+                        padding: 20px 24px;
+                        margin-bottom: 16px;
+                        color: #fff;
+                    ">
+                        <h2 style="margin:0 0 6px; font-size:18px; font-weight:700;">
+                            <i class="fa fa-file-excel-o" style="margin-right:8px;"/>
+                            Contacts Import XLSX Template
+                        </h2>
+                        <p style="margin:0; opacity:0.85; font-size:13px;">
+                            Generate a ready-to-use Excel file pre-configured for importing
+                            <strong>res.partner</strong> records into Odoo.
+                        </p>
+                    </div>
+
+                    <!-- ── What's inside info box ────────────────────── -->
+                    <div class="alert alert-info" role="alert" style="margin-bottom:12px;">
+                        <strong>
+                            <i class="fa fa-info-circle"/> The generated file contains:
+                        </strong>
+                        <ul style="margin:8px 0 0; padding-left:20px;">
+                            <li>
+                                <strong>22 standard columns</strong> — Name, Email, Phone,
+                                Company Type, Address Type, Title, Language, Tags, Tax ID,
+                                full address, and more.
+                            </li>
+                            <li>
+                                <strong>Row 1</strong>: Bold column headers (field labels).
+                            </li>
+                            <li>
+                                <strong>Row 2</strong>: Help / description text for each column.
+                            </li>
+                            <li>
+                                <strong>Row 3</strong>: Realistic example data row.
+                            </li>
+                            <li>
+                                <strong>Dropdown lists</strong> for selection fields
+                                (Company Type, Address Type, Active, Title, Language).
+                            </li>
+                            <li>
+                                <strong>Language</strong> and <strong>Title</strong> dropdowns
+                                loaded live from your Odoo system.
+                            </li>
+                            <li>
+                                All <strong>custom fields</strong> (x_*) added to Contacts
+                                appended automatically after the standard columns.
+                            </li>
+                            <li>Top 3 rows frozen for easy scrolling.</li>
+                        </ul>
+                    </div>
+
+                    <!-- ── Tag preview ───────────────────────────────── -->
+                    <group string="Existing Partner Tags (will be listed in the Tags help row)">
+                        <field name="tag_list_preview" readonly="1" nolabel="1"
+                               style="font-style:italic; color:#555;"/>
+                    </group>
+
+                </sheet>
+
+                <footer>
+                    <button name="action_download_template"
+                            string="⬇  Download XLSX Template"
+                            type="object"
+                            class="btn-primary"
+                            icon="fa-download"/>
+                    <button string="Close" special="cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open the template download wizard -->
+    <record id="action_contact_template_wizard" model="ir.actions.act_window">
+        <field name="name">Download Contacts XLSX Template</field>
+        <field name="res_model">contact.template.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

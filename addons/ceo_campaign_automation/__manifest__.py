@@ -21,6 +21,7 @@ Ce module gère l'automatisation de campagnes marketing intelligentes :
         'security/ir.model.access.csv',
         'views/res_partner_views.xml',
         'views/campaign_import_wizard_views.xml',
+        'views/contact_template_wizard_views.xml',
         'views/campaign_automation_views.xml',
         'views/res_config_settings_views.xml',
         'views/campaign_menus.xml',

@@ -13,6 +13,20 @@
 
                     <!-- ===================== STEP 1 : DRAFT ===================== -->
                     <div invisible="state != 'draft'">
+                        <div class="alert alert-warning o_import_template_hint" role="alert"
+                             style="display:flex; align-items:center; gap:12px;">
+                            <i class="fa fa-file-excel-o fa-2x" style="color:#1F6B3A; flex-shrink:0;"/>
+                            <span>
+                                <strong>Vous n'avez pas encore le fichier modèle ?</strong>
+                                Téléchargez le modèle XLSX pré-configuré (colonnes standard,
+                                listes déroulantes, champs personnalisés) avant d'importer.
+                            </span>
+                            <button name="action_open_template_wizard"
+                                    string="⬇ Télécharger le modèle"
+                                    type="object"
+                                    class="btn btn-sm btn-success ms-auto"
+                                    style="white-space:nowrap; flex-shrink:0;"/>
+                        </div>
                         <p class="alert alert-info" role="alert">
                             Sélectionnez votre fichier de contacts (Excel
                             <strong>.xlsx/.xls</strong> ou <strong>.csv</strong>).

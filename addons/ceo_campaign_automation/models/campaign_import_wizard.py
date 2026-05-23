@@ -215,8 +215,12 @@ Pour un nouveau champ :
                 'state': 'manual',
             })
             self._update_partner_form_view(field_name)
-            # Reload registry so the new field becomes usable in this transaction
-            self.env.registry.setup_models(self.env.cr)
+            # Odoo 19: setup_models() was removed from the public Registry API.
+            # clear_cache() + invalidate_all() is the correct replacement to
+            # flush ORM caches and make the new manual field available in
+            # subsequent ORM calls within the same transaction.
+            self.env.registry.clear_cache()
+            self.env.invalidate_all()
         return field_name
 
     def _update_partner_form_view(self, field_name):
@@ -323,6 +327,16 @@ Pour un nouveau champ :
             'res_model': 'campaign.import.wizard',
             'view_mode': 'form',
             'res_id': self.id,
+            'target': 'new',
+        }
+
+    def action_open_template_wizard(self):
+        """Open the XLSX template download wizard as a popup dialog."""
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Download Contacts XLSX Template',
+            'res_model': 'contact.template.wizard',
+            'view_mode': 'form',
             'target': 'new',
         }
 
