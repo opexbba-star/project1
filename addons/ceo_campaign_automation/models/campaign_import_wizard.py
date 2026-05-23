@@ -236,30 +236,45 @@ Pour un nouveau champ :
             self.env.invalidate_all()
         return field_name
 
-    def _update_partner_form_view(self, field_name):
-        """Inject the new <field/> tag into the inherited partner form."""
-        view = self.env.ref(
-            'ceo_campaign_automation.view_partner_form_dynamic_fields',
-            raise_if_not_found=False,
-        )
-        if not view:
+    def _update_partner_form_view(self, field_name=None):
+        """Inject the new <field/> tags into a purely dynamic inherited view."""
+        View = self.env['ir.ui.view']
+        
+        partner_model = self.env['ir.model']._get('res.partner')
+        custom_fields = self.env['ir.model.fields'].search([
+            ('model_id', '=', partner_model.id),
+            ('name', '=like', 'x_%'),
+            ('state', '=', 'manual'),
+        ])
+        if not custom_fields:
             return
-        from lxml import etree
-        arch_xml = view.arch
-        if isinstance(arch_xml, str):
-            parser = etree.XMLParser(remove_blank_text=True)
-            root = etree.fromstring(arch_xml.encode('utf-8'), parser)
+
+        dynamic_view = View.search([('name', '=', 'res.partner.dynamic.ai.fields')], limit=1)
+        
+        arch_body = ""
+        for cfield in custom_fields:
+            arch_body += f'<field name="{cfield.name}"/>\n'
+            
+        arch = f'''<xpath expr="//page[@name='ai_imported_fields']/group[@name='dynamic_fields_group']" position="inside">
+            {arch_body}
+        </xpath>'''
+        
+        parent_view = self.env.ref('ceo_campaign_automation.view_partner_form_dynamic_fields', raise_if_not_found=False)
+        if not parent_view:
+            return
+            
+        if dynamic_view:
+            dynamic_view.write({'arch': arch})
         else:
-            root = arch_xml
-        group_elements = root.xpath('//group[@name="dynamic_fields_group"]')
-        if group_elements:
-            group = group_elements[0]
-            if not group.xpath(f'.//field[@name="{field_name}"]'):
-                group.append(etree.Element('field', {'name': field_name}))
-                updated_arch = etree.tostring(
-                    root, pretty_print=True, encoding='utf-8').decode('utf-8')
-                view.write({'arch': updated_arch})
-                self.env.registry.clear_cache()
+            View.create({
+                'name': 'res.partner.dynamic.ai.fields',
+                'type': 'form',
+                'model': 'res.partner',
+                'inherit_id': parent_view.id,
+                'arch': arch,
+            })
+            
+        self.env.registry.clear_cache()
 
     # ------------------------------------------------------------------ #
     # File parsing
@@ -351,6 +366,11 @@ Pour un nouveau champ :
     def action_analyze_file(self):
         """Step 1 → 2: parse file, detect columns, propose mappings, show review."""
         self.ensure_one()
+        try:
+            self._update_partner_form_view()
+        except Exception as e:
+            import logging
+            logging.getLogger(__name__).error("Failed to restore dynamic view: %s", e)
         headers, rows = self._parse_uploaded_file()
 
         gemini_api_key = self.env['ir.config_parameter'].sudo().get_param(
