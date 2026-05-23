@@ -20,13 +20,6 @@
               action="action_campaign_import_wizard"
               sequence="20"/>
 
-    <!-- Sous-menu Télécharger le modèle XLSX -->
-    <menuitem id="menu_contact_template_wizard"
-              name="Télécharger le modèle XLSX"
-              parent="menu_campaign_automation_root"
-              action="action_contact_template_wizard"
-              sequence="25"/>
-
     <!-- Sous-menu Configuration -->
     <menuitem id="menu_campaign_automation_config"
               name="Configuration"

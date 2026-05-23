@@ -8,6 +8,12 @@
         <field name="model">campaign.import.wizard</field>
         <field name="arch" type="xml">
             <form string="Importer et Mapper des Contacts via l'IA">
+                <style>
+                    .modal-dialog {
+                        max-width: 95vw !important;
+                        width: 95vw !important;
+                    }
+                </style>
                 <sheet>
                     <field name="state" invisible="1"/>
 
@@ -77,7 +83,7 @@
                                   decoration-info="is_new" decoration-muted="not selected">
                                 <field name="selected" string="Importer"/>
                                 <field name="header" readonly="1"/>
-                                <field name="sample_preview" readonly="1" optional="show"/>
+                                <field name="sample_preview" readonly="1"/>
                                 <field name="suggested_field" readonly="1"/>
                                 <field name="is_new" widget="boolean_toggle" readonly="1"/>
                                 <field name="create_field"
@@ -89,8 +95,7 @@
                                        invisible="not is_new"/>
                                 <field name="field_description"
                                        readonly="not (is_new and create_field)"
-                                       invisible="not is_new"
-                                       optional="show"/>
+                                       invisible="not is_new"/>
                             </list>
                         </field>
                     </div>

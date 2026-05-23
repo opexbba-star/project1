@@ -19,7 +19,7 @@ class CampaignImportWizard(models.TransientModel):
     _name = 'campaign.import.wizard'
     _description = 'Assistant d\'importation et de mapping de contacts IA'
 
-    file_data = fields.Binary(string="Fichier Contacts (CSV ou Excel)", required=True)
+    file_data = fields.Binary(string="Fichier Contacts (CSV ou Excel)")
     file_name = fields.Char(string="Nom du fichier")
     source_tag = fields.Selection([
         ('excel', 'Import Excel/CSV'),
@@ -130,6 +130,19 @@ Pour un nouveau champ :
     def _detect_field_mapping(self, header, sample_values, partner_fields, gemini_api_key):
         """Detect target field for a column. Returns (field_name, label, is_new)."""
         header_lower = header.lower().strip()
+
+        # 1. Exact match with template standard columns
+        from .contact_template_wizard import STANDARD_COLUMNS
+        for col in STANDARD_COLUMNS:
+            if header_lower in (col['label'].lower(), col['field'].lower()):
+                if col['field'] in partner_fields:
+                    return col['field'], partner_fields[col['field']]['string'], False
+
+        # 2. Exact match with any existing field's string or name
+        for fname, finfo in partner_fields.items():
+            if header_lower in (fname.lower(), str(finfo.get('string', '')).lower()):
+                return fname, finfo.get('string', ''), False
+
         clean_header = "".join([c for c in header_lower if c.isalnum() or c.isspace()]).strip()
 
         mapping_patterns = {
@@ -331,14 +344,9 @@ Pour un nouveau champ :
         }
 
     def action_open_template_wizard(self):
-        """Open the XLSX template download wizard as a popup dialog."""
-        return {
-            'type': 'ir.actions.act_window',
-            'name': 'Download Contacts XLSX Template',
-            'res_model': 'contact.template.wizard',
-            'view_mode': 'form',
-            'target': 'new',
-        }
+        """Generate and download the XLSX template directly."""
+        template_wizard = self.env['contact.template.wizard'].create({})
+        return template_wizard.action_download_template()
 
     def action_analyze_file(self):
         """Step 1 → 2: parse file, detect columns, propose mappings, show review."""
@@ -426,6 +434,8 @@ Pour un nouveau champ :
 
         # Create partners
         Partner = self.env['res.partner']
+        partner_fields = Partner.fields_get(attributes=['type', 'relation', 'selection'])
+
         created = 0
         ignored = 0
         errors = []
@@ -435,7 +445,64 @@ Pour un nouveau champ :
                 fname = column_map.get(header)
                 if not fname or value in (None, ''):
                     continue
-                vals[fname] = value
+
+                # Handle relational and boolean fields
+                ftype = partner_fields.get(fname, {}).get('type')
+                if ftype == 'many2one':
+                    relation = partner_fields[fname].get('relation')
+                    if relation:
+                        record = self.env[relation].search([('name', 'ilike', str(value).strip())], limit=1)
+                        if record:
+                            vals[fname] = record.id
+                        else:
+                            continue  # Skip invalid many2one instead of crashing
+                elif ftype == 'many2many':
+                    relation = partner_fields[fname].get('relation')
+                    if relation:
+                        tag_names = [t.strip() for t in str(value).split(',')]
+                        tag_ids = []
+                        for tn in tag_names:
+                            if not tn:
+                                continue
+                            tag = self.env[relation].search([('name', 'ilike', tn)], limit=1)
+                            if not tag:
+                                try:
+                                    tag = self.env[relation].create({'name': tn})
+                                except Exception:
+                                    pass
+                            if tag:
+                                tag_ids.append(tag.id)
+                        vals[fname] = [(6, 0, tag_ids)]
+                elif ftype == 'boolean':
+                    vals[fname] = str(value).strip().lower() in ('true', '1', 'oui', 'yes', 'vrai')
+                elif ftype == 'selection':
+                    val_lower = str(value).strip().lower()
+                    matched_key = value
+                    
+                    # Fallbacks for the template's hardcoded English options
+                    hardcoded_map = {
+                        'type': {
+                            'contact': 'contact', 'invoice address': 'invoice', 
+                            'delivery address': 'delivery', 'other address': 'other',
+                            'private address': 'private'
+                        },
+                        'company_type': {
+                            'company': 'company', 'person': 'person'
+                        }
+                    }
+                    if fname in hardcoded_map and val_lower in hardcoded_map[fname]:
+                        matched_key = hardcoded_map[fname][val_lower]
+                    else:
+                        sel_options = partner_fields[fname].get('selection')
+                        if sel_options and isinstance(sel_options, list):
+                            for k, s in sel_options:
+                                if str(s).strip().lower() == val_lower or str(k).strip().lower() == val_lower:
+                                    matched_key = k
+                                    break
+                    vals[fname] = matched_key
+                else:
+                    vals[fname] = value
+
             if not vals.get('name'):
                 ignored += 1
                 continue
