@@ -392,8 +392,8 @@ Pour un nouveau champ :
                 'suggested_field': target_field,
                 'is_new': bool(is_new),
                 # Default behaviour: include the column.
-                # For NEW fields we DO NOT auto-create — the user must confirm.
-                'create_field': False,
+                # For NEW fields, check the create field box by default
+                'create_field': bool(is_new),
                 'field_label': label,
                 'field_description': '',
                 'selected': True,
@@ -461,7 +461,11 @@ Pour un nouveau champ :
         errors = []
         for row in rows:
             vals = {}
+            notes = []
             for header, value in row.items():
+                if header in skipped_new_fields and value not in (None, ''):
+                    notes.append(f"{header}: {value}")
+
                 fname = column_map.get(header)
                 if not fname or value in (None, ''):
                     continue
@@ -522,6 +526,14 @@ Pour un nouveau champ :
                     vals[fname] = matched_key
                 else:
                     vals[fname] = value
+
+            if notes:
+                existing_comment = vals.get('comment', '')
+                notes_text = "\n".join(notes)
+                if existing_comment:
+                    vals['comment'] = f"{existing_comment}\n\n---\nInformations Importées:\n{notes_text}"
+                else:
+                    vals['comment'] = f"Informations Importées:\n{notes_text}"
 
             if not vals.get('name'):
                 ignored += 1

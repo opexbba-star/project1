@@ -67,16 +67,23 @@
                               lignes ci-dessous.
                         </p>
 
-                        <group>
-                            <group string="Statistiques">
-                                <field name="total_rows"/>
-                                <field name="selected_columns_count"/>
-                                <field name="new_fields_count"/>
-                            </group>
-                            <group string="Limitation de l'import">
-                                <field name="row_limit"/>
-                            </group>
-                        </group>
+                        <details style="margin-bottom: 15px;">
+                            <summary style="font-weight: bold; cursor: pointer; color: #017e84; padding: 5px 0;">
+                                <i class="fa fa-cogs" style="margin-right: 5px;"/> Configuration Avancée &amp; Statistiques
+                            </summary>
+                            <div style="padding: 10px; border: 1px solid #e0e0e0; border-radius: 5px; margin-top: 10px; background-color: #f9f9f9;">
+                                <group>
+                                    <group string="Statistiques">
+                                        <field name="total_rows"/>
+                                        <field name="selected_columns_count"/>
+                                        <field name="new_fields_count"/>
+                                    </group>
+                                    <group string="Limitation de l'import">
+                                        <field name="row_limit"/>
+                                    </group>
+                                </group>
+                            </div>
+                        </details>
 
                         <field name="column_line_ids" nolabel="1">
                             <list editable="bottom" create="false" delete="false"
