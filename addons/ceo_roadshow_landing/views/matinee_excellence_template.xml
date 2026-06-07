@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="matinee_excellence_page" name="Matinée OpEx 2026">
+  <t t-call="website.layout">
+    <t t-set="additional_title">Matinée de l'Excellence Opérationnelle — Management à l'ère de l'IA</t>
+    <t t-set="meta_description">Matinée de l'Excellence Opérationnelle — 4 Juin 2026, Hôtel Eden, Sidi Bel Abbès.</t>
+    <t t-set="head">
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"/>
+    </t>
+
+    <div class="crs-wrap" id="matinee-excellence-wrapper">
+
+      <!-- ═══ HERO ═══ -->
+      <header class="crs-hero">
+        <div class="crs-hero-grid"/>
+        <div class="crs-hero-blob1"/>
+        <div class="crs-hero-blob2"/>
+        <div class="crs-container crs-hero-content">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <div style="font-size: 0.85rem; font-weight: 600; color: #475569; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px;">
+                Sous le parrainage du Ministère de l'Économie de la connaissance, des starts-up et des micro-entreprises
+              </div>
+              <span class="crs-badge">
+                <span class="crs-badge-dot"/>
+                Initiative lancée par CEO et DELTALOG
+              </span>
+              <p class="crs-eyebrow">Matinée OpEx</p>
+              <div class="mb-2">
+                <span class="text-white-50 small text-uppercase ls-2">Innovation Agile et Compétitivité</span>
+              </div>
+              <h1 class="mb-4">Management de l'excellence à l'ère de l'IA</h1>
+              <p class="crs-hero-sub">
+                Résolvez les problèmes et défis complexes de vos structures : protéger vos profits, maîtriser les opérations, réduire le gaspillage et gagner en part de marché.
+              </p>
+
+              <div class="crs-facts">
+                <div class="crs-fact-card"><p class="crs-fact-label">Date</p><p class="crs-fact-value">Le 4 Juin 2026</p></div>
+                <div class="crs-fact-card"><p class="crs-fact-label">Heure</p><p class="crs-fact-value">08h30 – 13h30</p></div>
+                <div class="crs-fact-card"><p class="crs-fact-label">Lieu</p><p class="crs-fact-value">Hôtel Eden – SBA</p></div>
+              </div>
+
+              <div class="crs-hero-cta mt-4">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2JwiM29IHOl_7IxScIREyeZUy2LnP7oMgW6MtVuJkhwDEIw/viewform"
+                   class="crs-btn crs-btn-primary crs-btn-lg" target="_blank" rel="noopener">
+                  S'inscrire à l'événement →
+                </a>
+                <a href="https://drive.google.com/file/d/12wQH89jry-ShA1nqm1YhV1JCGq3xwSUG/view?ts=6a145be1" 
+                   class="crs-btn crs-btn-outline crs-btn-lg" target="_blank" rel="noopener">
+                  <i class="fa fa-download me-2"></i> Présentation de l'événement
+                </a>
+                <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/06/3-CEO-OPEXIA-2030.pdf" 
+                   class="crs-btn crs-btn-outline crs-btn-lg" target="_blank" rel="noopener">
+                  <i class="fa fa-download me-2"></i> Représentation du CEO
+                </a>
+              </div>
+            </div>
+            
+            <div class="col-lg-4 text-center mt-5 mt-lg-0">
+                <div style="position: relative; display: inline-block;">
+                    <div style="position: absolute; top: -55px; right: 80px; text-align: left; transform: rotate(0deg);">
+                        <p class="mb-0 fw-bold" style="color: #fbbc05; font-family: 'Inter', sans-serif; font-size: 1.3rem; white-space: nowrap;">Partagez l'Excellence</p>
+                        <svg width="60" height="40" viewBox="0 0 100 50" fill="none" stroke="#fbbc05" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 100px; margin-top: 5px;">
+                            <path d="M10 30 Q 50 30 80 5"></path>
+                            <path d="M65 5 L 80 5 L 80 20"></path>
+                        </svg>
+                    </div>
+                    <div class="p-3 rounded-4 shadow-lg" style="background: white; border-radius: 1.5rem !important; margin-top: 20px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=256x256&amp;data=https://ceo2.deltalog.dz/matinee-excellence" alt="QR Code" class="img-fluid rounded" style="max-width: 220px;"/>
+                    </div>
+                    <p class="text-white mt-3 mb-0 fw-bold text-uppercase" style="letter-spacing: 2px; font-size: 0.85rem; color: #fbbc05 !important;">Scannez pour visiter</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ═══ PROBLEM / SOLUTION ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-ps-grid">
+            <div class="crs-ps-card crs-reveal">
+              <p class="crs-ps-label danger">Les défis actuels</p>
+              <p>Que vous soyez 'Manager' d'une PME, d'une grande entreprise, d'une EPIC ou d'un organisme public, vous êtes concernés par la protection de vos profits, la satisfaction client, la maitrise des opérations, la réduction des gaspillages et le gain de parts de marché. Les entreprises doivent optimiser leurs ressources tout en adaptant leur management.</p>
+            </div>
+            <div class="crs-ps-card crs-reveal delay-1">
+              <p class="crs-ps-label success">La nouvelle approche</p>
+              <p>La maîtrise totale des processus support et de la chaîne de valeur devient un levier vital. La performance et la pérennité de l'entreprise doivent être incarnées par une nouvelle approche stratégique de l'excellence opérationnelle, appuyée par les technologies du digital (IA, IoT, Cloud).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 4 PILLARS ═══ -->
+      <section class="crs-section crs-section-alt">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Le cadre de l'Excellence (GMECC)</h2>
+            <p class="crs-section-sub">Un cadre méthodologique solide qui tient compte du facteur humain, des contraintes et des objectifs de l'entreprise.</p>
+          </div>
+          <div class="crs-pillars">
+            <div class="crs-pillar purple crs-reveal"><p class="crs-pillar-num">01</p><p class="crs-pillar-title">Gouvernance</p><p class="crs-pillar-desc">Pilotage stratégique et prise de décision</p></div>
+            <div class="crs-pillar teal crs-reveal delay-1"><p class="crs-pillar-num">02</p><p class="crs-pillar-title">Management</p><p class="crs-pillar-desc">Des hommes et des projets</p></div>
+            <div class="crs-pillar coral crs-reveal delay-2"><p class="crs-pillar-num">03</p><p class="crs-pillar-title">Excellence Opérationnelle</p><p class="crs-pillar-desc">Outils, Méthodes, Technologie</p></div>
+            <div class="crs-pillar amber crs-reveal delay-3"><p class="crs-pillar-num">04</p><p class="crs-pillar-title">Gestion des Crises</p><p class="crs-pillar-desc">Gestion des crises et des conflits</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ MESSAGE CLEFS / BENEFITS ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Messages &amp; Concepts Clés</h2>
+            <p class="crs-section-sub">Pourquoi cette transformation est inévitable pour votre organisation.</p>
+          </div>
+          <div class="crs-benefits">
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">!</div>
+              <div><p class="crs-benefit-title">Échec des transformations</p><p class="crs-benefit-desc">70 % des projets de transformation échouent ou n'atteignent pas pleinement leurs objectifs.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">$</div>
+              <div><p class="crs-benefit-title">Coûts cachés</p><p class="crs-benefit-desc">20 % et 30 % des coûts opérationnels proviennent des gaspillages, non-qualités, et ruptures de flux.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">✓</div>
+              <div><p class="crs-benefit-title">Impact de l'approche GMECC</p><p class="crs-benefit-desc">Amélioration de productivité de 15 à 40 %, réduction des délais de 20 à 60 %.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num" style="background: rgba(59, 130, 246, 0.2); color: #3b82f6;">IA</div>
+              <div><p class="crs-benefit-title">Automatisation &amp; IA</p><p class="crs-benefit-desc">Plus de 50 % des métiers actuels seront fortement impactés par l'IA et l'automatisation.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ PROGRAMME ═══ -->
+      <section class="crs-section crs-section-alt" id="crs-programme">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Au Programme</h2>
+            <p class="crs-section-sub">Découvrez les concepts sous-jacents et identifiez les opportunités de développement.</p>
+          </div>
+          <div class="crs-day" id="crs-day1" style="display: block;">
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Axe 1 : Management de l'excellence à l'ère de l'IA</p></div><p class="crs-session-desc">Les 4 piliers (Gouvernance, Management, OpEx, Crises)</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Axe 2 : Écosystème entrepreneurial</p></div><p class="crs-session-desc">Facteurs clés de succès centrés sur l'innovation, rôle des startups, projet d'Observatoire.</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Axe 3 : Transformation HODA</p></div><p class="crs-session-desc">Humaine, Opérationnelle, Digitale et Agile. Cas pratiques : PME MINIROS et PME UVEDS.</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Concepts clés</p></div><p class="crs-session-desc">Normes &amp; Agilité (ISO 9001:2026), Innovation &amp; Décision (Innover ou mourir ?), Digitalisation (ERP -Odoo-, IOT, Système Décisionnel).</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ AUDIENCE ═══ -->
+      <section class="crs-section" id="crs-audience">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Cette matinée est pour vous</h2>
+            <p class="crs-section-sub">Avec plus de 20 ans d'accompagnement, le CEO vous invite à une rencontre restreinte.</p>
+          </div>
+          <div class="crs-audience-grid">
+            <div class="crs-audience-card crs-reveal">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
+              </div>
+              <h3>Grandes Entreprises &amp; EPIC</h3>
+              <p>Dirigeants et managers cherchant à structurer leur transformation.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-1">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>PME</h3>
+              <p>Managers de PME confrontés à la nécessité d'optimiser leurs ressources face aux facteurs exogènes.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-2">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>Startups &amp; Écosystème</h3>
+              <p>Acteurs de l'innovation utile souhaitant devenir des leviers stratégiques pour l'industrie.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-3">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <h3>Organismes Publics</h3>
+              <p>Responsables d'institutions pour accompagner la dynamique territoriale de création de valeur.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FINAL CTA ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-final-cta crs-reveal">
+            <p class="crs-eyebrow">Passez à l'action</p>
+            <h2>Prêt à transformer vos défis en succès ?</h2>
+            <p>Venez échanger, apprendre et repartir avec des leviers concrets de performance.</p>
+            <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd2JwiM29IHOl_7IxScIREyeZUy2LnP7oMgW6MtVuJkhwDEIw/viewform"
+                   class="crs-btn crs-btn-white crs-btn-lg" target="_blank" rel="noopener">
+                  Je m'inscris maintenant →
+                </a>
+                <a href="https://drive.google.com/file/d/12wQH89jry-ShA1nqm1YhV1JCGq3xwSUG/view?ts=6a145be1" 
+                   class="crs-btn crs-btn-outline crs-btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);" target="_blank" rel="noopener">
+                  <i class="fa fa-download me-2"></i> Présentation de l'événement
+                </a>
+                <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/06/3-CEO-OPEXIA-2030.pdf" 
+                   class="crs-btn crs-btn-outline crs-btn-lg" style="color: white; border-color: rgba(255,255,255,0.5);" target="_blank" rel="noopener">
+                  <i class="fa fa-download me-2"></i> Représentation du CEO
+                </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FOOTER ═══ -->
+      <footer class="crs-footer">
+        <div class="crs-container">
+          <div class="crs-footer-grid">
+            <div>
+              <div class="crs-footer-brand">Matinée OpEx <span>· 2026</span></div>
+              <p>Dr. Said Babaci, Président du CEO : Shaping Business.<br/>Cluster Excellence Opérationnelle (initiative lancée en 2016 par DELTALOG).</p>
+            </div>
+            <div>
+              <h4>Événement</h4>
+              <ul>
+                <li><a href="#crs-programme">Programme</a></li>
+                <li><a href="#crs-audience">Pour qui</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSd2JwiM29IHOl_7IxScIREyeZUy2LnP7oMgW6MtVuJkhwDEIw/viewform" target="_blank" rel="noopener">Inscription</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Contact</h4>
+              <ul>
+                <li><a href="mailto:contact@ceo-dz.com">contact@ceo-dz.com</a></li>
+                <li><a href="https://www.ceo-dz.com" target="_blank" rel="noopener">www.ceo-dz.com</a></li>
+                <li><a href="#">LinkedIn : Cluster de l'Excellence Opérationnelle</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="crs-footer-bottom">
+            <span>© 2026 CEO Roadshow — Tous droits réservés</span>
+            <span>Sidi Bel Abbès, Algérie</span>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- /crs-wrap -->
+  </t>
+</template>
+</odoo>

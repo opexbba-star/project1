@@ -1,0 +1,40 @@
+<odoo>
+    <record id="view_ceo_membership_application_tree" model="ir.ui.view">
+        <field name="name">ceo.membership.application.list</field><field name="model">ceo.membership.application</field>
+        <field name="arch" type="xml">
+            <list decoration-success="state == 'active'" decoration-warning="state in ('submitted','review','committee','waiting_payment')" decoration-danger="state == 'refused'">
+                <field name="name"/><field name="company_name"/><field name="member_profile"/><field name="plan_id"/><field name="score"/><field name="state"/><field name="create_date"/>
+            </list>
+        </field>
+    </record>
+    <record id="view_ceo_membership_application_form" model="ir.ui.view">
+        <field name="name">ceo.membership.application.form</field><field name="model">ceo.membership.application</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" type="object" string="Soumettre" class="btn-primary" invisible="state != 'draft'"/>
+                    <button name="action_review" type="object" string="Vérification" invisible="state not in ('submitted','need_more_info')"/>
+                    <button name="action_need_more_info" type="object" string="Demander complément" invisible="state not in ('submitted','review','committee')"/>
+                    <button name="action_committee" type="object" string="Comité" invisible="state != 'review'"/>
+                    <button name="action_accept" type="object" string="Accepter" class="btn-primary" invisible="state not in ('review','committee')"/>
+                    <button name="action_create_sale_order" type="object" string="Créer proforma" invisible="state != 'accepted'"/>
+                    <button name="action_activate_membership" type="object" string="Activer membre" class="btn-primary" invisible="state not in ('accepted','waiting_payment')"/>
+                    <button name="action_refuse" type="object" string="Refuser" invisible="state in ('active','refused','cancelled')"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,review,committee,accepted,waiting_payment,active"/>
+                </header>
+                <sheet>
+                    <div class="oe_title"><h1><field name="name"/></h1></div>
+                    <group><group><field name="company_name"/><field name="commercial_name"/><field name="partner_id"/><field name="legal_status"/><field name="rc_number"/><field name="nif"/><field name="nis"/></group><group><field name="member_profile"/><field name="plan_id"/><field name="expected_fee"/><field name="score"/><field name="sale_order_id"/><field name="member_id"/></group></group>
+                    <notebook>
+                        <page string="Contact"><group><group><field name="contact_name"/><field name="contact_function"/><field name="email"/><field name="phone"/><field name="whatsapp"/><field name="preferred_language"/></group><group><field name="creation_year"/><field name="wilaya"/><field name="commune"/><field name="address"/><field name="website"/><field name="social_url"/></group></group></page>
+                        <page string="Profil"><group><group><field name="sector"/><field name="employee_range"/><field name="market_scope"/></group><group><field name="digital_maturity"/><field name="opex_maturity"/><field name="certifications"/><field name="current_systems"/></group></group></page>
+                        <page string="Besoins"><group><field name="motivation"/><field name="pain_points"/><field name="interest_opex"/><field name="interest_ai"/><field name="interest_digital"/><field name="interest_maintenance"/><field name="interest_quality"/><field name="interest_training"/><field name="wants_project"/><field name="wants_support"/><field name="wants_sponsor"/></group></page>
+                    </notebook>
+                </sheet><chatter/>
+            </form>
+        </field>
+    </record>
+    <record id="action_ceo_membership_application" model="ir.actions.act_window">
+        <field name="name">Demandes d’adhésion</field><field name="res_model">ceo.membership.application</field><field name="view_mode">list,form</field>
+    </record>
+</odoo>

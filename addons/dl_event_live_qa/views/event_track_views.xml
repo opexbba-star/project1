@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Hérite de la vue formulaire standard de event.track (définie dans
+        website_event_track) pour ajouter :
+          * Un smart button "Q&A" avec le nombre de questions
+          * Un onglet "Q&A en direct" avec les contrôles d'état, les liens
+            publics et la liste embarquée des questions de cette session.
+    -->
+    <record id="view_event_track_form_inherit_qa" model="ir.ui.view">
+        <field name="name">event.track.form.inherit.qa</field>
+        <field name="model">event.track</field>
+        <field name="inherit_id" ref="website_event_track.view_event_track_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Smart button à droite de la button-box existante -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_qa_view_questions" type="object"
+                        class="oe_stat_button" icon="fa-question-circle"
+                        invisible="not qa_enabled">
+                    <field name="qa_question_count" widget="statinfo"
+                           string="Q&amp;A"/>
+                </button>
+            </xpath>
+
+            <!-- Nouvel onglet dans le notebook -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Q&amp;A en direct" name="live_qa">
+
+                    <!-- Indicateur d'auto-refresh (visible seulement quand Q&A actif) -->
+                    <widget name="qa_auto_refresh" invisible="not qa_enabled"/>
+
+                    <!-- Bandeau d'info si Q&A pas encore activé -->
+                    <div class="alert alert-info" role="alert"
+                         invisible="qa_enabled">
+                        <i class="fa fa-info-circle me-2"/>
+                        <strong>Le Q&amp;A en direct n'est pas activé sur cette session.</strong>
+                        Cochez la case <strong>"Activer le Q&amp;A en direct"</strong> ci-dessous,
+                        sauvegardez le formulaire, puis cliquez sur
+                        <strong>"Démarrer le Q&amp;A"</strong> pour commencer à
+                        recevoir des questions des participants.
+                    </div>
+
+                    <!-- Activation + statut -->
+                    <group>
+                        <group>
+                            <field name="qa_enabled" string="Activer le Q&amp;A en direct"/>
+                            <field name="qa_state"
+                                   invisible="not qa_enabled"
+                                   widget="badge"
+                                   decoration-info="qa_state == 'draft'"
+                                   decoration-success="qa_state == 'active'"
+                                   decoration-muted="qa_state == 'done'"/>
+                        </group>
+                        <group invisible="not qa_enabled">
+                            <field name="qa_question_count"/>
+                            <field name="qa_pending_count"/>
+                            <field name="qa_approved_count"/>
+                        </group>
+                    </group>
+
+                    <!-- Boutons d'action (rangée propre, pas dans un <group>) -->
+                    <div class="o_qa_actions mt-3 mb-3 d-flex flex-wrap gap-2"
+                         invisible="not qa_enabled">
+                        <button name="action_qa_activate" type="object"
+                                string="Démarrer le Q&amp;A"
+                                class="btn btn-primary"
+                                icon="fa-play"
+                                invisible="qa_state == 'active'"/>
+                        <button name="action_qa_close" type="object"
+                                string="Clôturer le Q&amp;A"
+                                class="btn btn-warning"
+                                icon="fa-stop"
+                                invisible="qa_state != 'active'"/>
+                        <button name="action_qa_draft" type="object"
+                                string="Remettre en brouillon"
+                                class="btn btn-light"
+                                icon="fa-undo"
+                                invisible="qa_state == 'draft'"/>
+                        <button name="action_qa_regenerate_token" type="object"
+                                string="Régénérer le lien"
+                                class="btn btn-light"
+                                icon="fa-refresh"
+                                confirm="Les liens publics actuels seront invalidés. Continuer ?"/>
+                        <button name="action_qa_view_public" type="object"
+                                string="Ouvrir la page publique"
+                                class="btn btn-light"
+                                icon="fa-globe"
+                                invisible="qa_state != 'active'"/>
+                        <button name="action_qa_view_presenter" type="object"
+                                string="Ouvrir la vue présentateur"
+                                class="btn btn-light"
+                                icon="fa-desktop"
+                                invisible="qa_state != 'active'"/>
+                    </div>
+
+                    <!-- Rappel si activé mais pas démarré -->
+                    <div class="alert alert-warning"
+                         invisible="qa_enabled == False or qa_state != 'draft'">
+                        <i class="fa fa-exclamation-triangle me-2"/>
+                        Le Q&amp;A est activé mais pas encore démarré. Cliquez sur
+                        <strong>"Démarrer le Q&amp;A"</strong> ci-dessus pour
+                        accepter les soumissions des participants et révéler le
+                        lien public.
+                    </div>
+
+                    <!-- Liens publics (uniquement après démarrage) -->
+                    <group string="Liens publics"
+                           invisible="qa_state == 'draft' or not qa_enabled">
+                        <group>
+                            <field name="qa_public_url" widget="CopyClipboardChar"
+                                   readonly="1"/>
+                            <field name="qa_presenter_url" widget="CopyClipboardChar"
+                                   readonly="1"/>
+                            <field name="qa_access_token" readonly="1"
+                                   groups="base.group_no_one"/>
+                        </group>
+                        <group string="QR code (lien public)">
+                            <field name="qa_public_qr_url"
+                                   widget="image_url"
+                                   options="{'size': [220, 220]}"
+                                   nolabel="1"
+                                   readonly="1"/>
+                            <div class="text-muted small">
+                                <i class="fa fa-mobile me-1"/>
+                                Scannez pour ouvrir la page publique du Q&amp;A,
+                                ou faites un clic droit sur l'image pour
+                                l'enregistrer / l'imprimer.
+                            </div>
+                        </group>
+                    </group>
+
+                    <separator string="Questions" invisible="not qa_enabled"/>
+                    <field name="qa_question_ids"
+                           invisible="not qa_enabled"
+                           context="{'default_track_id': id}">
+                        <list string="Questions"
+                              decoration-success="state == 'approved'"
+                              decoration-info="state == 'answered'"
+                              decoration-danger="state == 'rejected'"
+                              decoration-muted="state == 'pending'">
+                            <field name="create_date" string="Date"/>
+                            <field name="author_name"/>
+                            <field name="question_text"/>
+                            <field name="vote_count"/>
+                            <field name="state" widget="badge"/>
+                            <button name="action_approve" type="object"
+                                    string="Approuver" icon="fa-check"
+                                    invisible="state == 'approved'"/>
+                            <button name="action_mark_answered" type="object"
+                                    string="Marquer répondue" icon="fa-comment"
+                                    invisible="state == 'answered'"/>
+                            <button name="action_reject" type="object"
+                                    string="Rejeter" icon="fa-times"
+                                    invisible="state == 'rejected'"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

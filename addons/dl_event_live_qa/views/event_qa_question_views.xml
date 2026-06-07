@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ============================ LISTE ============================ -->
+    <record id="view_event_qa_question_list" model="ir.ui.view">
+        <field name="name">event.qa.question.list</field>
+        <field name="model">event.qa.question</field>
+        <field name="arch" type="xml">
+            <list string="Questions Q&amp;A"
+                  decoration-success="state == 'approved'"
+                  decoration-info="state == 'answered'"
+                  decoration-danger="state == 'rejected'"
+                  decoration-muted="state == 'pending'">
+                <field name="create_date" string="Date"/>
+                <field name="track_id"/>
+                <field name="event_id" optional="show"/>
+                <field name="author_name"/>
+                <field name="question_text"/>
+                <field name="vote_count"/>
+                <field name="state" widget="badge"/>
+                <button name="action_approve" type="object"
+                        icon="fa-check" title="Approuver"
+                        invisible="state == 'approved'"/>
+                <button name="action_mark_answered" type="object"
+                        icon="fa-comment" title="Marquer répondue"
+                        invisible="state == 'answered'"/>
+                <button name="action_reject" type="object"
+                        icon="fa-times" title="Rejeter"
+                        invisible="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- ============================ FORMULAIRE ============================ -->
+    <record id="view_event_qa_question_form" model="ir.ui.view">
+        <field name="name">event.qa.question.form</field>
+        <field name="model">event.qa.question</field>
+        <field name="arch" type="xml">
+            <form string="Question Q&amp;A">
+                <header>
+                    <button name="action_approve" type="object"
+                            string="Approuver" class="oe_highlight"
+                            invisible="state == 'approved'"/>
+                    <button name="action_mark_answered" type="object"
+                            string="Marquer répondue"
+                            invisible="state == 'answered'"/>
+                    <button name="action_reject" type="object"
+                            string="Rejeter"
+                            invisible="state == 'rejected'"/>
+                    <button name="action_reset_pending" type="object"
+                            string="Remettre en attente"
+                            invisible="state == 'pending'"/>
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="pending,approved,answered"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="track_id"/>
+                            <field name="event_id" readonly="1"/>
+                        </group>
+                        <group>
+                            <field name="author_name"/>
+                            <field name="vote_count"/>
+                            <field name="create_date" string="Date" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Question">
+                        <field name="question_text" nolabel="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ============================ KANBAN ============================ -->
+    <record id="view_event_qa_question_kanban" model="ir.ui.view">
+        <field name="name">event.qa.question.kanban</field>
+        <field name="model">event.qa.question</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state" sample="1">
+                <field name="state"/>
+                <field name="author_name"/>
+                <field name="question_text"/>
+                <field name="vote_count"/>
+                <field name="track_id"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click p-2">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <strong><field name="author_name"/></strong>
+                                <span class="badge text-bg-primary">
+                                    ▲ <field name="vote_count"/>
+                                </span>
+                            </div>
+                            <div class="mt-2"><field name="question_text"/></div>
+                            <div class="mt-2 text-muted small">
+                                <field name="track_id"/>
+                            </div>
+                            <div class="mt-2">
+                                <button name="action_approve" type="object"
+                                        class="btn btn-sm btn-success me-1"
+                                        invisible="state == 'approved'">
+                                    Approuver
+                                </button>
+                                <button name="action_mark_answered" type="object"
+                                        class="btn btn-sm btn-info me-1"
+                                        invisible="state == 'answered'">
+                                    Répondue
+                                </button>
+                                <button name="action_reject" type="object"
+                                        class="btn btn-sm btn-danger"
+                                        invisible="state == 'rejected'">
+                                    Rejeter
+                                </button>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- ============================ RECHERCHE ============================ -->
+    <record id="view_event_qa_question_search" model="ir.ui.view">
+        <field name="name">event.qa.question.search</field>
+        <field name="model">event.qa.question</field>
+        <field name="arch" type="xml">
+            <search string="Questions Q&amp;A">
+                <field name="question_text" string="Question"/>
+                <field name="author_name"/>
+                <field name="track_id"/>
+                <field name="event_id"/>
+                <filter string="En attente" name="filter_pending"
+                        domain="[('state', '=', 'pending')]"/>
+                <filter string="Approuvées" name="filter_approved"
+                        domain="[('state', '=', 'approved')]"/>
+                <filter string="Répondues" name="filter_answered"
+                        domain="[('state', '=', 'answered')]"/>
+                <filter string="Rejetées" name="filter_rejected"
+                        domain="[('state', '=', 'rejected')]"/>
+                <separator/>
+                <filter string="Plus votées" name="filter_voted"
+                        domain="[('vote_count', '>', 0)]"/>
+                <group>
+                    <filter string="Statut" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                    <filter string="Session" name="group_track"
+                            context="{'group_by': 'track_id'}"/>
+                    <filter string="Évènement" name="group_event"
+                            context="{'group_by': 'event_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- ============================ ACTION ============================ -->
+    <record id="action_event_qa_question" model="ir.actions.act_window">
+        <field name="name">Questions Q&amp;A</field>
+        <field name="res_model">event.qa.question</field>
+        <field name="view_mode">kanban,list,form</field>
+        <field name="search_view_id" ref="view_event_qa_question_search"/>
+        <field name="context">{'search_default_filter_pending': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Aucune question pour le moment</p>
+            <p>Les questions soumises par les participants apparaîtront ici pour modération.</p>
+        </field>
+    </record>
+
+</odoo>

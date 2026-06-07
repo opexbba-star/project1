@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--
+            Les modèles Q&A réutilisent les groupes existants du module Event :
+              * event.group_event_user    -> lecture/écriture/création (pas de suppression)
+              * event.group_event_manager -> accès complet
+            Voir : security/ir.model.access.csv
+
+            Les utilisateurs publics n'ont aucun accès ORM ; le contrôleur du
+            site (controllers/main.py) effectue toutes les écritures publiques
+            via sudo, avec le jeton d'accès de la session comme secret
+            d'autorisation.
+
+            Réservé pour de futures règles d'enregistrement (ir.rule) si
+            l'isolation multi-société ou par évènement devient nécessaire.
+        -->
+    </data>
+</odoo>

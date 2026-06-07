@@ -1,0 +1,7 @@
+<odoo>
+    <menuitem id="menu_ceo_membership_root" name="CEO Cluster" sequence="25"/>
+    <menuitem id="menu_ceo_membership_applications" name="Demandes d’adhésion" parent="menu_ceo_membership_root" action="action_ceo_membership_application" sequence="10"/>
+    <menuitem id="menu_ceo_membership_members" name="Membres" parent="menu_ceo_membership_root" action="action_ceo_membership_member" sequence="20"/>
+    <menuitem id="menu_ceo_membership_config" name="Configuration" parent="menu_ceo_membership_root" sequence="90" groups="ceo_membership.group_ceo_membership_manager"/>
+    <menuitem id="menu_ceo_membership_plans" name="Formules" parent="menu_ceo_membership_config" action="action_ceo_membership_plan" sequence="10"/>
+</odoo>

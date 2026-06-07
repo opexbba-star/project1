@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="menu_ceo_documentation" model="website.menu">
+            <field name="name">Documentation</field>
+            <field name="url">/documentation-opex</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">60</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+        <record id="menu_ceo_academy" model="website.menu">
+            <field name="name">OpEx Academy</field>
+            <field name="url">/opex-academy</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">70</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+    </data>
+</odoo>

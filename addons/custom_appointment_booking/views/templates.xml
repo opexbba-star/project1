@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend_fullcalendar">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/web/static/lib/fullcalendar/core/index.global.js"/>
+            <script type="text/javascript" src="/web/static/lib/fullcalendar/daygrid/index.global.js"/>
+            <script type="text/javascript" src="/web/static/lib/fullcalendar/interaction/index.global.js"/>
+
+            <script type="text/javascript" src="/web/static/lib/fullcalendar/timegrid/index.global.js"/>
+            <script type="text/javascript" src="/web/static/lib/fullcalendar/core/locales-all.global.js"/>
+        </xpath>
+    </template>
+</odoo>

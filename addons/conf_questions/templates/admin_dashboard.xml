@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="template_admin_dashboard" name="Admin Event Dashboard">
+        <html lang="fr">
+            <head>
+                <meta charset="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title><t t-out="event.name"/> — Tableau de Bord</title>
+                <link rel="stylesheet" href="/conf_questions/static/src/css/style.css"/>
+            </head>
+            <body class="conf-dashboard"
+                  t-att-data-event-id="event.id"
+                  t-att-data-public-url="public_url">
+
+                <!-- Navigation bar -->
+                <nav class="dashboard-nav">
+                    <div class="nav-left">
+                        <a href="/conf/events">← Retour aux événements</a>
+                    </div>
+                    <div class="nav-right">
+                        <t t-if="event.status != 'closed'">
+                            <button id="close-btn" class="btn-close-event"
+                                    onclick="closeEvent()">
+                                ⏹ Clôturer
+                            </button>
+                        </t>
+                        <t t-else="">
+                            <button class="btn-reopen-event" onclick="setLive()">
+                                ▶ Rouvrir
+                            </button>
+                        </t>
+                        <button class="btn-share-link" onclick="copyShareLink()">
+                            🔗 Partager le lien
+                        </button>
+                        <span class="nav-title">Tableau de Bord</span>
+                    </div>
+                </nav>
+
+                <!-- Main content -->
+                <div class="dashboard-content">
+
+                    <!-- Stats row -->
+                    <div class="stats-row">
+                        <div class="stat-card pending">
+                            <div class="stat-number" id="stat-pending">
+                                <t t-out="event.pending_count"/>
+                            </div>
+                            <div class="stat-label">En attente</div>
+                        </div>
+                        <div class="stat-card history">
+                            <div class="stat-number" id="stat-history">
+                                <t t-out="event.read_count"/>
+                            </div>
+                            <div class="stat-label">Historique</div>
+                        </div>
+                        <div class="stat-card total">
+                            <div class="stat-number" id="stat-total">
+                                <t t-out="event.question_count"/>
+                            </div>
+                            <div class="stat-label">Total</div>
+                        </div>
+                    </div>
+
+                    <!-- Queue section -->
+                    <div class="section-header">
+                        ⏳ <span id="queue-title">File d'attente (<t t-out="event.pending_count"/>)</span>
+                    </div>
+                    <div id="queue-container">
+                        <t t-if="pending_questions">
+                            <t t-foreach="pending_questions" t-as="q">
+                                <div class="question-card pending" t-att-data-id="q.id">
+                                    <div class="question-header">
+                                        <span class="question-submitter" t-out="q.submitter_name"/>
+                                        <span class="question-time">
+                                            <t t-if="q.submitted_at"
+                                               t-out="q.submitted_at.strftime('%I:%M:%S %p')"/>
+                                        </span>
+                                    </div>
+                                    <div class="question-text" t-out="q.question_text"/>
+                                    <div class="question-actions">
+                                        <button class="btn-lu"
+                                                t-attf-onclick="markRead(#{q.id})">
+                                            ✅ Lu
+                                        </button>
+                                        <button class="btn-skip"
+                                                t-attf-onclick="skipQuestion(#{q.id})">
+                                            ⏭ Skip
+                                        </button>
+                                        <button class="btn-supp"
+                                                t-attf-onclick="deleteQuestion(#{q.id})">
+                                            🗑 Supp
+                                        </button>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <p class="no-questions">Aucune question en attente</p>
+                        </t>
+                    </div>
+
+                    <!-- History section -->
+                    <div class="section-header" style="margin-top:32px">
+                        📋 <span id="history-title">Historique (<t t-out="event.read_count"/>)</span>
+                    </div>
+                    <div id="history-container">
+                        <t t-if="history_questions">
+                            <t t-foreach="history_questions" t-as="q">
+                                <div class="question-card history" t-att-data-id="q.id">
+                                    <div class="question-header">
+                                        <span class="question-submitter" t-out="q.submitter_name"/>
+                                        <span class="question-time treated">
+                                            Traitée à
+                                            <t t-if="q.submitted_at"
+                                               t-out="q.submitted_at.strftime('%I:%M:%S %p')"/>
+                                        </span>
+                                    </div>
+                                    <div class="question-text" t-out="q.question_text"/>
+                                    <div class="question-actions">
+                                        <button class="btn-delete-history"
+                                                t-attf-onclick="deleteQuestion(#{q.id})">
+                                            Supprimer
+                                        </button>
+                                    </div>
+                                </div>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <p class="no-questions">Aucune question dans l'historique</p>
+                        </t>
+                    </div>
+
+                </div>
+
+                <script src="/conf_questions/static/src/js/dashboard.js"/>
+            </body>
+        </html>
+    </template>
+</odoo>

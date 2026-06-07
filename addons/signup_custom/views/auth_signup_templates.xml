@@ -1,0 +1,343 @@
+<odoo>
+
+    <!-- ══ Template 1: Custom extra fields (unchanged) ══ -->
+    <template id="custom_signup_fields" inherit_id="auth_signup.signup" name="Custom Signup Fields">
+        <xpath expr="//div[contains(@class, 'field-login')]" position="after">
+
+            <!-- Champ pour le numéro de téléphone -->
+            <div class="mb-3 field_phone">
+                <label for="phone" class="form-label">Numéro de téléphone</label>
+                <input type="tel" name="phone" id="phone" class="form-control"
+                    t-att-value="company_name" placeholder="+213-000-00-00-00" autofocus="autofocus" required="required"/>
+            </div>
+
+            <!-- Champ pour le nom de l'entreprise -->
+            <div class="mb-3 field_company_name">
+                <label for="company_name" class="form-label">Nom de l'entreprise</label>
+                <input type="text" name="company_name" id="company_name" class="form-control"
+                    list="company-list"
+                    t-att-value="company_name"
+                    placeholder="Sélectionnez ou créez votre entreprise"/>
+                <datalist id="company-list">
+                    <t t-foreach="companies" t-as="company">
+                        <option t-att-value="company.name"/>
+                    </t>
+                </datalist>
+            </div>
+
+            <!-- Champ pour le poste -->
+            <div class="mb-3 field_position">
+                <label for="position" class="form-label">Votre fonction</label>
+                <input type="text" name="position" id="position" class="form-control"
+                    t-att-value="position" placeholder="Ex: Directeur commercial" autofocus="autofocus"/>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="mb-3 field_x_linkedin_profile">
+                <label for="x_linkedin_profile" class="form-label">Profil LinkedIn</label>
+                <input type="text" name="x_linkedin_profile" id="x_linkedin_profile" class="form-control"
+                    t-att-value="x_linkedin_profile" placeholder="https://www.linkedin.com/in/..." autofocus="autofocus"/>
+            </div>
+
+        </xpath>
+    </template>
+
+
+    <!-- ══ Template 2: Passkey removal + Redesigned after-form section ══ -->
+    <template id="custom_signup_after_form" inherit_id="auth_signup.signup" name="CEO Signup After Form">
+        <xpath expr="//form" position="after">
+
+            <style type="text/css">
+                /* ── Hide passkey / access key button ── */
+                button[value="passkey"],
+                .o_passkey_btn,
+                .btn-passkey { display: none !important; }
+
+                /* ── CEO After-Form Panel ── */
+                .csc-after {
+                    margin-left: 40px;
+                    margin-right: 40px;
+                    margin-top: 40px;
+                    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+                }
+
+                /* ── Hide login / signup link ── */
+                .o_login_auth {
+                    display: none !important;
+                }
+
+                /* Section eyebrow label */
+                .csc-eyebrow {
+                    font-size: 11px;
+                    font-weight: 700;
+                    letter-spacing: 2.5px;
+                    text-transform: uppercase;
+                    color: #fbb034;
+                    margin-bottom: 8px;
+                }
+
+                /* Section title */
+                .csc-after h3 {
+                    font-size: 22px;
+                    font-weight: 800;
+                    color: #1a1440;
+                    margin: 0 0 6px;
+                    line-height: 1.3;
+                }
+                .csc-after .csc-divider {
+                    width: 40px;
+                    height: 3px;
+                    background: #fbb034;
+                    border-radius: 2px;
+                    margin-bottom: 20px;
+                }
+
+                /* ── Profile cards (Who can join) ── */
+                .csc-profiles {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 10px;
+                    margin-bottom: 32px;
+                }
+                .csc-profile-card {
+                    background: #f8fafc;
+                    border: 1px solid rgba(26,20,64,.08);
+                    border-radius: 12px;
+                    padding: 14px;
+                    display: flex;
+                    align-items: flex-start;
+                    gap: 12px;
+                    transition: border-color .2s, box-shadow .2s;
+                }
+                .csc-profile-card:hover {
+                    border-color: #fbb034;
+                    box-shadow: 0 4px 16px rgba(251,176,52,.12);
+                }
+                .csc-picon {
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 10px;
+                    background: linear-gradient(135deg, #1a1440 0%, #2d1b69 100%);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    font-size: 16px;
+                }
+                .csc-pinfo strong {
+                    display: block;
+                    font-size: 12px;
+                    font-weight: 700;
+                    color: #1a1440;
+                    line-height: 1.35;
+                    margin-bottom: 3px;
+                }
+                .csc-pinfo span {
+                    font-size: 11px;
+                    color: #64748b;
+                    line-height: 1.45;
+                }
+
+                /* ── Why cards ── */
+                .csc-why-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    margin-bottom: 28px;
+                }
+                .csc-why-item {
+                    display: flex;
+                    gap: 14px;
+                    align-items: flex-start;
+                    padding: 16px;
+                    border-radius: 12px;
+                    background: #fff;
+                    border: 1px solid rgba(26,20,64,.07);
+                    border-left: 4px solid #fbb034;
+                    transition: box-shadow .2s;
+                }
+                .csc-why-item:hover { box-shadow: 0 4px 20px rgba(26,20,64,.08); }
+                .csc-why-num {
+                    font-size: 24px;
+                    font-weight: 900;
+                    color: #fbb034;
+                    line-height: 1;
+                    flex-shrink: 0;
+                    min-width: 28px;
+                }
+                .csc-why-item strong {
+                    display: block;
+                    font-size: 13px;
+                    font-weight: 700;
+                    color: #1a1440;
+                    margin-bottom: 4px;
+                }
+                .csc-why-item p {
+                    font-size: 12px;
+                    color: #475569;
+                    margin: 0;
+                    line-height: 1.6;
+                }
+
+                /* ── Closing tagline ── */
+                .csc-closing {
+                    background: linear-gradient(135deg, #1a1440 0%, #2d1b69 100%);
+                    border-radius: 14px;
+                    padding: 24px 20px;
+                    text-align: center;
+                    margin-bottom: 24px;
+                }
+                .csc-closing p {
+                    font-size: 13px;
+                    color: rgba(255,255,255,.8);
+                    font-style: italic;
+                    margin: 0 0 4px;
+                }
+                .csc-closing strong {
+                    font-size: 15px;
+                    color: #fbb034;
+                    font-style: normal;
+                    font-weight: 800;
+                }
+
+                /* ── CTA hint ── */
+                .csc-cta-hint {
+                    text-align: center;
+                    padding: 16px;
+                    background: rgba(251,176,52,.07);
+                    border: 1px dashed rgba(251,176,52,.4);
+                    border-radius: 10px;
+                }
+                .csc-cta-hint p {
+                    font-size: 13px;
+                    font-weight: 600;
+                    color: #1a1440;
+                    margin: 0 0 2px;
+                }
+                .csc-cta-hint small {
+                    font-size: 11px;
+                    color: #64748b;
+                }
+
+                @media (max-width: 600px) {
+                    .csc-profiles { grid-template-columns: 1fr; }
+                }
+            </style>
+
+            <div class="csc-after">
+
+                <!-- ══ WHO ══ -->
+                <div class="csc-eyebrow">Rejoignez-nous</div>
+                <h3>Qui peut se joindre à nous ?</h3>
+                <div class="csc-divider"></div>
+
+                <div class="csc-profiles">
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">⚙️</div>
+                        <div class="csc-pinfo">
+                            <strong>Managers Qualité &amp; Amélioration Continue</strong>
+                            <span>Certifications reconnues pour standardiser les pratiques et manager la transformation verte.</span>
+                        </div>
+                    </div>
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">🏢</div>
+                        <div class="csc-pinfo">
+                            <strong>Directeurs Généraux &amp; Comités de Direction</strong>
+                            <span>Liez performance et durabilité (RSE). Études de cas stratégiques pour l'adoption de l'OpEx 4.0.</span>
+                        </div>
+                    </div>
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">🏭</div>
+                        <div class="csc-pinfo">
+                            <strong>Directeurs des Opérations &amp; Production</strong>
+                            <span>Optimisez l'efficacité avec nos solutions OpEx 4.0 et diagnostic personnalisé (IA, IoT).</span>
+                        </div>
+                    </div>
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">🎓</div>
+                        <div class="csc-pinfo">
+                            <strong>Universités &amp; Centres de Recherche</strong>
+                            <span>Valorisez vos travaux et collaborez avec l'industrie sur des projets R&amp;D OpEx 4.0.</span>
+                        </div>
+                    </div>
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">💼</div>
+                        <div class="csc-pinfo">
+                            <strong>Consultants &amp; Sociétés de Services</strong>
+                            <span>Partagez votre expertise, participez aux forums et trouvez des opportunités de collaboration.</span>
+                        </div>
+                    </div>
+                    <div class="csc-profile-card">
+                        <div class="csc-picon">🚀</div>
+                        <div class="csc-pinfo">
+                            <strong>Startups &amp; Éditeurs de Technologies</strong>
+                            <span>Présentez vos solutions IA et Big Data aux entreprises qui cherchent activement à s'équiper.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ WHY ══ -->
+                <div class="csc-eyebrow">Nos engagements</div>
+                <h3>Pourquoi rejoindre le CEO ?</h3>
+                <div class="csc-divider"></div>
+
+                <div class="csc-why-list">
+                    <div class="csc-why-item">
+                        <div class="csc-why-num">01</div>
+                        <div>
+                            <strong>Un Écosystème d'Exportabilité</strong>
+                            <p>Un lieu unique de networking et de collaboration : masterclasses avec des experts de premier plan, certifications reconnues et levier stratégique pour soutenir l'exportabilité de vos biens et services.</p>
+                        </div>
+                    </div>
+                    <div class="csc-why-item">
+                        <div class="csc-why-num">02</div>
+                        <div>
+                            <strong>L'Accélérateur de Performance 4.0</strong>
+                            <p>Accès privilégié à l'IA, l'IoT, le Big Data, la Robotique et le Cloud. Outils de diagnostic personnalisés et solutions concrètes pour propulser vos processus vers l'OpEx 4.0.</p>
+                        </div>
+                    </div>
+                    <div class="csc-why-item">
+                        <div class="csc-why-num">03</div>
+                        <div>
+                            <strong>L'Engagement pour un Avenir Durable</strong>
+                            <p>Liez l'OpEx aux pratiques RSE pour répondre aux défis environnementaux et assurer une croissance durable et responsable au sein de votre organisation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ TAGLINE ══ -->
+                <div class="csc-closing">
+                    <p>Rejoindre le Cluster Excellence Opérationnelle, c'est choisir de</p>
+                    <strong>ne pas subir l'avenir, mais de le construire.</strong>
+                </div>
+
+                <!-- ══ CTA HINT ══ -->
+                <div class="csc-cta-hint">
+                    <p>✅ Prêt à nous rejoindre ?</p>
+                    <small>Remplissez simplement le formulaire ci-dessus pour accéder instantanément à un contenu exclusif.</small>
+                </div>
+
+            </div>
+
+        </xpath>
+    </template>
+
+
+    <!-- ══ Template 3: Simple Signup Title ══ -->
+    <template id="custom_signup_title" inherit_id="auth_signup.signup" name="CEO Signup Title">
+        <xpath expr="//form" position="before">
+            <div class="text-center mb-5" style="max-width: 600px; margin-left: auto; margin-right: auto; padding-top: 20px;">
+                <div style="font-size: 3rem; margin-bottom: 10px;">🏆</div>
+                <h4 style="font-weight: 700; color: #1a1440; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 5px; font-size: 14px;">
+                    Cluster Excellence Opérationnelle
+                </h4>
+                <h1 style="font-weight: 900; color: #1a1440; line-height: 1.2; margin-top: 10px; font-size: 32px;">
+                    Initiez votre adhésion<br/>
+                    pour <span style="color: #fbb034;">construire l'avenir</span> ensemble.
+                </h1>
+                <div style="width: 50px; height: 3px; background: #fbb034; margin: 20px auto;"></div>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,160 @@
+<odoo>
+    <data>
+        <!-- Template for the Appointment Booking Form -->
+        <template id="appointment_booking_form_template" name="Appointment Booking Form">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <h1 class="mt32">Réservez votre rendez-vous</h1>
+                            <div class="row">
+                                <!-- LEFT: Form -->
+                                <div class="col-md-8 col-lg-7">
+                                    <p class="alert alert-info">
+                                        Vous réservez en tant que <t t-esc="user_name"/> (<t t-esc="user_email"/>).
+                                        Fuseau horaire : <strong><t t-esc="user_tz"/></strong><br/>
+                                        ⏱️ Créneaux disponibles : Samedi → Jeudi, <t t-esc="start_hour"/> → <t t-esc="end_hour"/><br/>
+                                        📅 Les vendredis et jours spéciaux ne sont pas réservable.
+                                    </p>
+                                    <form action="/my/appointment/submit" method="POST" class="form-horizontal container-fluid mt32">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        
+                                        <!-- Subject Field -->
+                                        <div class="form-group row s_website_form_field s_website_form_required">
+                                            <label class="col-sm-3 col-form-label" for="appointment_subject">Sujet</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control s_website_form_input" name="appointment_subject" required="true"/>
+                                            </div>
+                                        </div>
+
+                                        <!-- Date and Time Field -->
+                                        <div class="form-group row s_website_form_field s_website_form_required">
+                                            <label class="col-sm-3 col-form-label" for="appointment_datetime">Date &amp; Heure</label>
+                                            <div class="col-sm-9">
+                                                <!-- Use datetime-local for modern browsers to handle date and time input -->
+                                                <input type="datetime-local" class="form-control s_website_form_input" name="appointment_datetime" required="true"/>
+                                            </div>
+                                        </div>
+
+                                        <!-- Duration Field (Example: Simple dropdown for common durations) -->
+                                        <div class="form-group row s_website_form_field">
+                                            <label class="col-sm-3 col-form-label" for="appointment_duration">Durée</label>
+                                            <div class="col-sm-9">
+                                                <select class="form-control s_website_form_input" name="appointment_duration">
+                                                    <option value="0.5">30 Minutes</option>
+                                                    <option value="1.0">1 Heure</option>
+                                                    <option value="1.5">1 Heures 30 Minutes</option>
+                                                    <option value="2.0">2 Heures</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <!-- Notes Field -->
+                                        <div class="form-group row s_website_form_field">
+                                            <label class="col-sm-3 col-form-label" for="appointment_notes">Notes</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control s_website_form_input" name="appointment_notes" rows="4"/>
+                                            </div>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="form-group row">
+                                            <div class="offset-sm-3 col-sm-9">
+                                                <button type="submit" class="btn btn-primary">Confirmer</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <!-- RIGHT: Booked Slots Table -->
+                                <div class="col-md-4 col-lg-5">
+                                    <h4 class="mt32">Créneaux déjà réservés</h4>
+                                    <table class="table table-striped table-sm mt16">
+                                        <thead>
+                                            <tr>
+                                                <th>Date et Heure</th>
+                                                <th>Durée</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-if="appointments_display">
+                                                <t t-foreach="appointments_display" t-as="appt">
+                                                    <tr>
+                                                        <td>
+                                                            <i class="fa fa-calendar me-1"></i>
+                                                            <t t-esc="appt['start']"/>
+                                                        </td>
+                                                        <td>
+                                                            <i class="fa fa-clock-o me-1"></i>
+                                                            <strong><t t-esc="appt['duration']"/></strong>
+                                                        </td>
+                                                    </tr>
+                                                </t>
+                                            </t>
+                                            <t t-else="">
+                                                <tr>
+                                                    <td colspan="2" class="text-muted text-center">
+                                                        Aucun créneau réservé pour le moment
+                                                    </td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template for Success Message -->
+        <template id="appointment_booking_success_template" name="Appointment Booking Success">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <h1 class="mt32">Réservation confirmée!</h1>
+                            <div class="alert alert-success">
+                                Votre rendez-vous a bien été réservé.
+                            </div>
+                            <p>
+                                <a href="/" class="btn btn-primary">Aller à la page d'accueil</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <!-- Template for Error Message -->
+        <template id="appointment_booking_error_template" name="Appointment Booking Error">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="oe_structure">
+                        <div class="container">
+                            <h1 class="mt32">La réservation a échoué.</h1>
+                            <div class="alert alert-danger">
+                                <t t-if="error_message">
+                                    <br/><t t-esc="error_message"/>
+                                </t>
+                            </div>
+                            <p>
+                                <a href="/my/appointment/book" class="btn btn-secondary">Rssayer</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        
+        <!-- Optional: Add a menu item to the website for easy access -->
+        <record id="menu_appointment_booking" model="website.menu">
+            <field name="name">Rendez-vous</field>
+            <field name="url">/my/appointment/book</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence" type="int">50</field>
+        </record>
+
+    </data>
+</odoo>

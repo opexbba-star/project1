@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="template_event_public" name="Public Event — Question Form">
+        <html lang="fr">
+            <head>
+                <meta charset="UTF-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                <title><t t-out="event.name"/> — Poser une question</title>
+                <link rel="stylesheet" href="/conf_questions/static/src/css/style.css"/>
+            </head>
+            <body class="conf-public-page">
+                <div class="page-wrapper">
+                    <div class="event-public-card">
+
+                        <!-- Header -->
+                        <div class="event-public-header">
+                            <h1 t-out="event.name"/>
+                            <p>Posez votre question pour cet événement</p>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="event-public-body">
+
+                            <!-- Event closed -->
+                            <t t-if="event.status == 'closed'">
+                                <div class="alert alert-error">
+                                    Cet événement est clôturé. Les questions ne sont plus acceptées.
+                                </div>
+                            </t>
+
+                            <!-- Success -->
+                            <t t-elif="success">
+                                <div class="alert alert-success">
+                                    ✅ Votre question a été soumise avec succès !
+                                </div>
+                                <p class="text-center" style="margin-top:16px">
+                                    <a href="" style="color:#4f5bd5;font-size:0.9rem">
+                                        Poser une autre question
+                                    </a>
+                                </p>
+                            </t>
+
+                            <!-- Form -->
+                            <t t-else="">
+                                <div t-if="error" class="alert alert-error">
+                                    <t t-out="error"/>
+                                </div>
+
+                                <form method="post"
+                                      t-attf-action="/event/#{event.slug}/submit">
+                                    <div class="form-group">
+                                        <label for="submitter_name">
+                                            Votre prénom <span class="required">*</span>
+                                        </label>
+                                        <input type="text"
+                                               id="submitter_name"
+                                               name="submitter_name"
+                                               t-att-value="submitter_name or ''"
+                                               placeholder="Votre prénom"
+                                               autocomplete="given-name"
+                                               required="required"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="question_text">
+                                            Votre question <span class="required">*</span>
+                                        </label>
+                                        <textarea id="question_text"
+                                                  name="question_text"
+                                                  rows="4"
+                                                  placeholder="Posez votre question ici..."
+                                                  required="required"><t t-out="question_text or ''"/></textarea>
+                                    </div>
+                                    <button type="submit" class="btn-submit">
+                                        💬 Envoyer la question
+                                    </button>
+                                </form>
+                            </t>
+
+                            <p class="footer-note">
+                                ℹ Votre question sera traitée en direct par les organisateurs
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </body>
+        </html>
+    </template>
+</odoo>

@@ -1,0 +1,20 @@
+{
+    'name': 'Conférence Questions',
+    'version': '19.0.1.0.0',
+    'category': 'Events/Conference',
+    'summary': 'Collectez et gérez les questions des participants lors de vos conférences en temps réel',
+    'author': 'Deltalog',
+    'depends': ['base', 'web'],
+    'data': [
+        'security/ir.model.access.csv',
+        'views/conf_event_views.xml',
+        'views/conf_question_views.xml',
+        'views/menu.xml',
+        'templates/public_event.xml',
+        'templates/admin_dashboard.xml',
+        'templates/admin_events.xml',
+    ],
+    'installable': True,
+    'application': True,
+    'license': 'LGPL-3',
+}

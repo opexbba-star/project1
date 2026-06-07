@@ -1,0 +1,43 @@
+<odoo>
+    <template id="portal_membership_form" name="CEO Membership Form">
+        <t t-call="website.layout">
+            <div class="container py-5">
+                <h1>Adhérer au Cluster CEO / OPEX</h1>
+                <p class="lead">Rejoignez un écosystème orienté Excellence Opérationnelle, IA, digitalisation et innovation industrielle.</p>
+                <form action="/adhesion-ceo/submit" method="post" class="row g-3">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <div class="col-md-6"><label>Organisation *</label><input name="company_name" class="form-control" required="required"/></div>
+                    <div class="col-md-6"><label>Nom commercial</label><input name="commercial_name" class="form-control"/></div>
+                    <div class="col-md-6"><label>Profil *</label><select name="member_profile" class="form-select" required="required"><option value="micro">Micro-Entreprise</option><option value="startup">Startup</option><option value="pme">PME / PMI</option><option value="grand_account">Grand Compte</option><option value="expert">Expert / Consultant</option><option value="institution">Institution / Université</option><option value="sponsor">Partenaire Sponsor</option></select></div>
+                    <div class="col-md-6"><label>Formule *</label><select name="plan_id" class="form-select" required="required"><t t-foreach="plans" t-as="plan"><option t-att-value="plan.id"><t t-esc="plan.name"/> - <t t-esc="plan.annual_fee"/> DZD</option></t></select></div>
+                    <div class="col-md-6"><label>Contact principal *</label><input name="contact_name" class="form-control" required="required"/></div>
+                    <div class="col-md-6"><label>Fonction</label><input name="contact_function" class="form-control"/></div>
+                    <div class="col-md-6"><label>Email *</label><input name="email" type="email" class="form-control" required="required"/></div>
+                    <div class="col-md-6"><label>Téléphone *</label><input name="phone" class="form-control" required="required"/></div>
+                    <div class="col-md-6"><label>WhatsApp</label><input name="whatsapp" class="form-control"/></div>
+                    <div class="col-md-3"><label>Wilaya</label><input name="wilaya" class="form-control"/></div>
+                    <div class="col-md-3"><label>Commune</label><input name="commune" class="form-control"/></div>
+                    <div class="col-md-6"><label>Secteur</label><input name="sector" class="form-control"/></div>
+                    <div class="col-md-6"><label>Effectif</label><select name="employee_range" class="form-select"><option value="1_5">1 à 5</option><option value="6_20">6 à 20</option><option value="21_50">21 à 50</option><option value="51_250">51 à 250</option><option value="250_plus">250+</option></select></div>
+                    <div class="col-md-6"><label>Maturité digitale</label><select name="digital_maturity" class="form-select"><option value="low">Faible</option><option value="medium">Moyenne</option><option value="advanced">Avancée</option></select></div>
+                    <div class="col-md-6"><label>Maturité OPEX</label><select name="opex_maturity" class="form-select"><option value="beginner">Débutant</option><option value="intermediate">Intermédiaire</option><option value="advanced">Avancé</option></select></div>
+                    <div class="col-12"><label>Motivation</label><textarea name="motivation" class="form-control" rows="3"></textarea></div>
+                    <div class="col-12"><label>Problèmes prioritaires</label><textarea name="pain_points" class="form-control" rows="3"></textarea></div>
+                    <div class="col-12"><label>Axes d’intérêt</label><br/>
+                        <label class="me-3"><input type="checkbox" name="interest_opex"/> OPEX</label>
+                        <label class="me-3"><input type="checkbox" name="interest_ai"/> IA</label>
+                        <label class="me-3"><input type="checkbox" name="interest_digital"/> Digitalisation</label>
+                        <label class="me-3"><input type="checkbox" name="interest_maintenance"/> Maintenance</label>
+                        <label class="me-3"><input type="checkbox" name="interest_quality"/> Qualité</label>
+                        <label class="me-3"><input type="checkbox" name="interest_training"/> Formation</label>
+                    </div>
+                    <div class="col-12"><label class="me-3"><input type="checkbox" name="wants_project"/> Je souhaite proposer un projet</label><label class="me-3"><input type="checkbox" name="wants_support"/> Je souhaite être accompagné</label><label class="me-3"><input type="checkbox" name="wants_sponsor"/> Je souhaite devenir sponsor</label></div>
+                    <div class="col-12"><button type="submit" class="btn btn-primary btn-lg">Soumettre la demande</button></div>
+                </form>
+            </div>
+        </t>
+    </template>
+    <template id="portal_membership_thanks" name="CEO Membership Thanks">
+        <t t-call="website.layout"><div class="container py-5"><h1>Demande reçue</h1><p>Votre demande <strong><t t-esc="application.name"/></strong> a été enregistrée. L’équipe CEO vous contactera après qualification.</p></div></t>
+    </template>
+</odoo>

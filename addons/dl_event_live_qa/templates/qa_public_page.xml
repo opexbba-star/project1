@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Page publique Q&A rendue sous le layout standard du site.
+        Le div racine <div class="o_event_qa_live"> porte le jeton de la
+        session que le JS frontend lit pour appeler les endpoints
+        /event/qa/<token>/*.
+    -->
+    <template id="qa_public_page" name="Page publique Q&amp;A Évènement">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <div class="o_qa_page o_event_qa_live"
+                     t-att-data-token="track.qa_access_token">
+
+                    <!-- En-tête avec dégradé -->
+                    <section class="o_qa_hero">
+                        <div class="container">
+                            <div class="o_qa_hero_inner">
+                                <div class="o_qa_event_meta">
+                                    <i class="fa fa-calendar"/>
+                                    <span t-esc="track.event_id.name"/>
+                                </div>
+                                <h1 class="o_qa_hero_title" t-esc="track.name"/>
+                                <div class="o_qa_hero_status">
+                                    <t t-if="track.qa_state == 'active'">
+                                        <span class="o_qa_status_pill o_qa_status_live">
+                                            <span class="o_qa_pulse_dot"/>
+                                            EN DIRECT
+                                        </span>
+                                    </t>
+                                    <t t-elif="track.qa_state == 'done'">
+                                        <span class="o_qa_status_pill o_qa_status_closed">
+                                            <i class="fa fa-lock me-1"/>Clôturé
+                                        </span>
+                                    </t>
+                                    <t t-else="">
+                                        <span class="o_qa_status_pill o_qa_status_pending">
+                                            <i class="fa fa-clock-o me-1"/>Pas encore commencé
+                                        </span>
+                                    </t>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="container o_qa_main">
+
+                        <!-- Carte de soumission -->
+                        <div class="o_qa_submit_wrapper"
+                             t-if="track.qa_state == 'active'">
+                            <div class="o_qa_submit_card">
+                                <div class="o_qa_submit_header">
+                                    <div class="o_qa_submit_icon">
+                                        <i class="fa fa-comment-o"/>
+                                    </div>
+                                    <div>
+                                        <h3>Posez votre question</h3>
+                                        <p>Votre question sera modérée puis affichée à tous.</p>
+                                    </div>
+                                </div>
+                                <form class="o_qa_submit_form" onsubmit="return false;">
+                                    <div class="o_qa_field">
+                                        <label>Votre nom <span class="o_qa_optional">(optionnel)</span></label>
+                                        <input type="text"
+                                               class="o_qa_input o_qa_author_input"
+                                               placeholder="Anonyme"
+                                               maxlength="100"/>
+                                    </div>
+                                    <div class="o_qa_field">
+                                        <label>Votre question</label>
+                                        <textarea class="o_qa_input o_qa_textarea o_qa_question_input"
+                                                  rows="3"
+                                                  placeholder="Que voulez-vous demander ?"
+                                                  maxlength="1000"
+                                                  required="required"/>
+                                    </div>
+                                    <div class="o_qa_submit_footer">
+                                        <button type="submit" class="o_qa_btn_submit">
+                                            <i class="fa fa-paper-plane me-2"/>
+                                            Envoyer la question
+                                        </button>
+                                        <span class="o_qa_submit_feedback"/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Notice fermée / brouillon -->
+                        <div class="o_qa_notice" t-if="track.qa_state != 'active'">
+                            <t t-if="track.qa_state == 'draft'">
+                                <i class="fa fa-clock-o o_qa_notice_icon"/>
+                                <h3>Le Q&amp;A n'a pas encore commencé</h3>
+                                <p>Revenez lorsque la session sera en direct.</p>
+                            </t>
+                            <t t-elif="track.qa_state == 'done'">
+                                <i class="fa fa-check-circle o_qa_notice_icon"/>
+                                <h3>Ce Q&amp;A est clôturé</h3>
+                                <p>Merci d'avoir participé ! Les soumissions ne sont plus acceptées.</p>
+                            </t>
+                        </div>
+
+                        <!-- Liste des questions -->
+                        <div class="o_qa_questions_section">
+                            <div class="o_qa_section_title">
+                                <h2>
+                                    <i class="fa fa-comments-o me-2"/>
+                                    Questions
+                                </h2>
+                                <span class="o_qa_section_hint">Votez pour ce que vous voulez voir répondu</span>
+                            </div>
+                            <div class="o_qa_questions_list">
+                                <p class="o_qa_loading">Chargement des questions…</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

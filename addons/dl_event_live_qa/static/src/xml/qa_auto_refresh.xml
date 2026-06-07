@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+
+    <t t-name="dl_event_live_qa.QaAutoRefresh">
+        <div class="o_qa_auto_refresh d-flex align-items-center gap-2 my-2">
+            <t t-if="!isActive">
+                <span class="badge text-bg-light">
+                    <i class="fa fa-pause-circle me-1"/>
+                    Rafraîchissement automatique inactif (démarrez le Q&amp;A pour l'activer)
+                </span>
+            </t>
+            <t t-elif="state.paused">
+                <span class="badge text-bg-secondary">
+                    <i class="fa fa-pause-circle me-1"/>En pause
+                </span>
+                <button type="button" class="btn btn-sm btn-link p-0" t-on-click="togglePause">
+                    Reprendre
+                </button>
+            </t>
+            <t t-else="">
+                <span class="badge text-bg-success">
+                    <i class="fa fa-circle me-1" t-att-class="state.refreshing ? 'fa-spin' : ''"/>
+                    Rafraîchissement auto ON (toutes les 10s)
+                </span>
+                <button type="button" class="btn btn-sm btn-link p-0" t-on-click="togglePause">
+                    Pause
+                </button>
+                <small class="text-muted ms-2" t-if="state.lastUpdate">
+                    Dernier : <t t-esc="state.lastUpdate.toLocaleTimeString()"/>
+                </small>
+            </t>
+        </div>
+    </t>
+
+</templates>

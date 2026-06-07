@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <template id="template_channel_locked" name="Channel Locked Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <div class="container mt-5 text-center">
+                    <h2>🔒 Cours Verrouillé</h2>
+
+                    <p>
+                        Ce cours nécessite
+                        <strong t-esc="channel.x_points_cost"/> points.
+                    </p>
+
+                    <t t-if="can_buy">
+                        <a t-att-href="'/course/unlock/%s' % channel.id"
+                           class="btn btn-primary mt-4">
+                            Débloquer avec mes points
+                        </a>
+                    </t>
+                    <t t-else="">
+                        <p class="mt-3 text-danger">
+                            Il vous manque <strong t-esc="missing"/> points supplémentaires.
+                        </p>
+                    </t>
+                </div>
+            </div>
+        </t>
+    </template>
+
+</odoo>

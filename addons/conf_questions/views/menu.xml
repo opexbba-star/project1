@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Root menu -->
+    <menuitem id="menu_conf_root"
+              name="Conférences"
+              sequence="90"/>
+
+    <!-- Sub-menus -->
+    <menuitem id="menu_conf_events"
+              name="Événements"
+              parent="menu_conf_root"
+              action="action_conf_event"
+              sequence="10"/>
+
+    <menuitem id="menu_conf_questions"
+              name="Toutes les Questions"
+              parent="menu_conf_root"
+              action="action_conf_question"
+              sequence="20"/>
+
+    <!-- Link to custom admin interface -->
+    <menuitem id="menu_conf_admin_web"
+              name="Interface Admin Web"
+              parent="menu_conf_root"
+              action="action_open_admin_events"
+              sequence="30"/>
+
+    <!-- Action to open the custom admin web interface -->
+    <record id="action_open_admin_events" model="ir.actions.act_url">
+        <field name="name">Interface Admin Web</field>
+        <field name="url">/conf/events</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

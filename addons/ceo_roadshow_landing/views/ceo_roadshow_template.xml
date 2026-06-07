@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<template id="ceo_roadshow_page" name="CEO Roadshow SBA 2026">
+  <t t-call="website.layout">
+    <t t-set="additional_title">CEO Roadshow 2026 — Management de l'excellence à l'ère de l'IA</t>
+    <t t-set="meta_description">CEO Roadshow — 20-21 mai 2026, Université Djilali Liabes, Sidi Bel Abbès. Inscription gratuite.</t>
+    <t t-set="head">
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap"/>
+    </t>
+
+    <div class="crs-wrap" id="ceo-roadshow-wrapper">
+
+      <!-- ═══ HERO ═══ -->
+      <header class="crs-hero">
+        <div class="crs-hero-grid"/>
+        <div class="crs-hero-blob1"/>
+        <div class="crs-hero-blob2"/>
+        <div class="crs-container crs-hero-content">
+          <span class="crs-badge">
+            <span class="crs-badge-dot"/>
+            Sous le parrainage du Ministère de l'Économie de la connaissance
+          </span>
+          <p class="crs-eyebrow">Cluster Excellence Opérationnelle</p>
+          <div class="mb-2">
+            <span class="text-white-50 small text-uppercase ls-2">l’Innovation Agile et Compétitivité</span>
+          </div>
+          <h1>Management de l'excellence à l'ère de l'intelligence artificielle</h1>
+          <p class="crs-hero-sub">
+            Deux journées pour transformer votre entreprise avec le modèle <strong style="color: var(--ca);">HODA</strong> — Humaine, Opérationnelle, Digitale, Agile. 20 ans d'expertise au service de la compétitivité algérienne.
+          </p>
+
+          <div class="crs-facts">
+            <div class="crs-fact-card"><p class="crs-fact-label">Dates</p><p class="crs-fact-value">20–21 mai 2026</p></div>
+            <div class="crs-fact-card"><p class="crs-fact-label">Lieu</p><p class="crs-fact-value">Univ. Djilali Liabes, SBA</p></div>
+            <div class="crs-fact-card"><p class="crs-fact-label">Format</p><p class="crs-fact-value">Conférences + ateliers</p></div>
+            <div class="crs-fact-card"><p class="crs-fact-label">Participation</p><p class="crs-fact-value success">Gratuite, sur inscription</p></div>
+          </div>
+
+          <div class="crs-countdown" id="crs-countdown"/>
+
+          <div class="crs-hero-cta">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVImyOwfXxqfQ5_d674lMTHoxf5Di1kOtd3dJm4CwDEXl4eg/viewform"
+               class="crs-btn crs-btn-primary crs-btn-lg" target="_blank" rel="noopener">
+              Réserver ma place →
+            </a>
+            <a href="#crs-programme" class="crs-btn crs-btn-outline crs-btn-lg">Voir le programme</a>
+            <!-- Documents dropdown -->
+            <div class="crs-dropdown-wrapper">
+              <div class="ceo-dropdown-container">
+                <button class="ceo-tab-button crs-btn crs-btn-outline crs-btn-lg" type="button">
+                  <i class="fa fa-file-text-o me-2"></i>
+                  <span>DOCUMENTS</span>
+                  <i class="fa fa-chevron-down ms-2" style="font-size: 10px; opacity: 0.7;"></i>
+                </button>
+                <div class="ceo-dropdown-list">
+                  <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/05/Arg-Invitation-ORS-SBA-20-21-05-2026-2.1.pdf"
+                     download="Invitation-Entreprise.pdf">
+                    <span class="list-icon">✉️</span> Invitation Entreprise (PDF)
+                  </a>
+                  <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/05/Arg-Invitation-ORS-SBA-20-21-02-2026-2.1-arabe-3.pdf"
+                     download="Invitation-Entreprise-Arabe.pdf">
+                    <span class="list-icon">✉️</span> Invitation Entreprise - Arabe (PDF)
+                  </a>
+                  <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/05/Programme-ORS-SBA-28-04-2026-6.pdf"
+                     download="Programme-ORS-SBA.pdf">
+                    <span class="list-icon">📅</span> Le Programme (PDF)
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p class="crs-hero-note">Places limitées · Confirmation par email sous 48h</p>
+        </div>
+      </header>
+
+      <!-- ═══ PROBLEM / SOLUTION ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-ps-grid">
+            <div class="crs-ps-card crs-reveal">
+              <p class="crs-ps-label danger">Le constat</p>
+              <p>Pression sur les coûts, qualité, délais, capital humain. Le contexte géopolitique et industriel impose aux entreprises algériennes de repenser leur modèle opérationnel — vite.</p>
+            </div>
+            <div class="crs-ps-card crs-reveal delay-1">
+              <p class="crs-ps-label success">La réponse</p>
+              <p>Un cadre éprouvé qui combine bonnes pratiques internationales et success stories algériennes, structuré autour de 4 piliers actionnables dès le retour au bureau.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ 4 PILLARS ═══ -->
+      <section class="crs-section crs-section-alt">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Les 4 piliers du management de l'excellence</h2>
+            <p class="crs-section-sub">Un cadre structuré, issu de 20 ans de terrain industriel et de bonnes pratiques internationales.</p>
+          </div>
+          <div class="crs-pillars">
+            <div class="crs-pillar purple crs-reveal"><p class="crs-pillar-num">01</p><p class="crs-pillar-title">Gouvernance</p><p class="crs-pillar-desc">Pilotage stratégique et prise de décision</p></div>
+            <div class="crs-pillar teal crs-reveal delay-1"><p class="crs-pillar-num">02</p><p class="crs-pillar-title">Management</p><p class="crs-pillar-desc">Hommes, projets et changement</p></div>
+            <div class="crs-pillar coral crs-reveal delay-2"><p class="crs-pillar-num">03</p><p class="crs-pillar-title">Excellence opérationnelle</p><p class="crs-pillar-desc">Processus, qualité et performance</p></div>
+            <div class="crs-pillar amber crs-reveal delay-3"><p class="crs-pillar-num">04</p><p class="crs-pillar-title">Crises &amp; conflits</p><p class="crs-pillar-desc">Résilience et agilité</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ BENEFITS ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Ce que vous repartirez avoir gagné</h2>
+            <p class="crs-section-sub">5 résultats concrets, pas de bla-bla.</p>
+          </div>
+          <div class="crs-benefits">
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num">1</div>
+              <div><p class="crs-benefit-title">Sensibiliser</p><p class="crs-benefit-desc">Comprendre les enjeux critiques de la transformation HODA pour la compétitivité et la pérennité de votre entreprise.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num">2</div>
+              <div><p class="crs-benefit-title">Diagnostiquer</p><p class="crs-benefit-desc">Déclencher votre diagnostic de maturité HODA et identifier vos axes de progrès prioritaires.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num">3</div>
+              <div><p class="crs-benefit-title">Positionner l'IA</p><p class="crs-benefit-desc">Découvrir comment l'intelligence artificielle peut devenir un levier stratégique de performance — accessible, pas théorique.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num">4</div>
+              <div><p class="crs-benefit-title">Aligner l'écosystème</p><p class="crs-benefit-desc">Créer des ponts concrets entre Université, Industrie et Startups autour de projets finançables et impactants.</p></div>
+            </div>
+            <div class="crs-benefit crs-reveal">
+              <div class="crs-benefit-num">5</div>
+              <div><p class="crs-benefit-title">Connecter</p><p class="crs-benefit-desc">Relier vos besoins industriels avec des projets de fin d'études, des solutions startups et des opportunités de partenariat.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ PROGRAMME ═══ -->
+      <section class="crs-section crs-section-alt" id="crs-programme">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Programme</h2>
+            <p class="crs-section-sub">2 jours, 7 sessions de fond, 2 ateliers pratiques.</p>
+            <div class="mt-4">
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVImyOwfXxqfQ5_d674lMTHoxf5Di1kOtd3dJm4CwDEXl4eg/viewform"
+                 class="crs-btn crs-btn-primary crs-btn-lg" target="_blank" rel="noopener">
+                S'inscrire à l'événement →
+              </a>
+            </div>
+          </div>
+          <div class="crs-tabs">
+            <button class="crs-tab active" id="crs-tab1" data-day="1">Jour 1 · Mer 20 mai</button>
+            <button class="crs-tab" id="crs-tab2" data-day="2">Jour 2 · Jeu 21 mai</button>
+          </div>
+          <div class="crs-day" id="crs-day1">
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Conférence d'ouverture</p><span class="crs-session-tag">Matinée</span></div><p class="crs-session-desc">Management de l'excellence à l'ère de l'IA : les 4 piliers</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Conférence 2</p><span class="crs-session-tag">Matinée</span></div><p class="crs-session-desc">Facteurs clé de succès d'un écosystème entrepreneurial centré sur l'innovation</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Retour d'expérience</p><span class="crs-session-tag">Matinée</span></div><p class="crs-session-desc">Transformation d'entreprise et excellence opérationnelle — cas algériens</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Débat 1 · Marché &amp; emploi</p><span class="crs-session-tag">Après-midi</span></div><p class="crs-session-desc">IT, sous-traitance et employabilité</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Débat 2 · Normes &amp; agilité</p><span class="crs-session-tag">Après-midi</span></div><p class="crs-session-desc">ISO 9001:2026 et excellence opérationnelle</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Débat 3 · Excellence &amp; IA</p><span class="crs-session-tag">Après-midi</span></div><p class="crs-session-desc">Management de l'excellence au quotidien et intelligence artificielle</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Débat 4 · Innovation &amp; décision</p><span class="crs-session-tag">Après-midi</span></div><p class="crs-session-desc">Innover ou mourir ?</p></div>
+          </div>
+          <div class="crs-day" id="crs-day2">
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Atelier 1 · Design thinking</p><span class="crs-session-tag">Matinée</span></div><p class="crs-session-desc">Du problème (besoin) aux solutions — méthodologie pratique</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Atelier 2 · Présélection</p><span class="crs-session-tag">Matinée</span></div><p class="crs-session-desc">Présélection des startups et PME de la région dans le domaine OpEx</p></div>
+            <div class="crs-session"><div class="crs-session-head"><p class="crs-session-title">Pitch &amp; sélection</p><span class="crs-session-tag">Après-midi</span></div><p class="crs-session-desc">Présentation des projets et sélection des « Top OpEx Solutions »</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ AUDIENCE ═══ -->
+      <section class="crs-section" id="crs-audience">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Cet événement est pour vous si</h2>
+            <p class="crs-section-sub">Quatre profils, un même objectif : faire bouger l'industrie algérienne.</p>
+          </div>
+          <div class="crs-audience-grid">
+            <div class="crs-audience-card crs-reveal">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V12h6v9"/></svg>
+              </div>
+              <h3>Dirigeants &amp; cadres opérationnels</h3>
+              <p>Chef d'entreprise, DG/DGA, Directeur des opérations, Directeur d'usine, Responsable excellence opérationnelle.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-1">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <h3>Fonctions support stratégiques</h3>
+              <p>Directeur dév. stratégique, SMI/Qualité, Projets, RH, Innovation/R&amp;D, Supply chain.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-2">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <h3>Écosystème entrepreneurial</h3>
+              <p>Startupeur, fondateur, consultant en transformation, prestataire B2B, investisseur / business angel.</p>
+            </div>
+            <div class="crs-audience-card crs-reveal delay-3">
+              <div class="crs-audience-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <h3>Académiques &amp; recherche</h3>
+              <p>Enseignant-chercheur, responsable d'incubateur, étudiant ingénieur (Master/PFE), doctorant.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ SPEAKERS ═══ -->
+      <section class="crs-section crs-section-alt" id="crs-intervenants">
+        <div class="crs-container">
+          <div class="crs-section-header crs-reveal">
+            <h2>Ils interviendront</h2>
+            <p class="crs-section-sub">Des dirigeants, experts et chercheurs qui font avancer l'excellence opérationnelle en Algérie.</p>
+          </div>
+          <div class="crs-speakers-grid">
+            <article class="crs-speaker crs-reveal">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag keynote">Keynote</span><h3 class="crs-speaker-name">Prénom Nom</h3><p class="crs-speaker-role">Fondateur du Cluster Excellence Opérationnelle</p><p class="crs-speaker-company">CEO-DZ</p></div>
+            </article>
+            <article class="crs-speaker crs-reveal delay-1">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag industriel">Industriel</span><h3 class="crs-speaker-name">Prénom Nom</h3><p class="crs-speaker-role">Directeur des opérations</p><p class="crs-speaker-company">Entreprise algérienne</p></div>
+            </article>
+            <article class="crs-speaker crs-reveal delay-2">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag expert">Expert IA</span><h3 class="crs-speaker-name">Prénom Nom</h3><p class="crs-speaker-role">Consultant transformation digitale</p><p class="crs-speaker-company">Cabinet de conseil</p></div>
+            </article>
+            <article class="crs-speaker crs-reveal delay-3">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag academique">Académique</span><h3 class="crs-speaker-name">Pr. Prénom Nom</h3><p class="crs-speaker-role">Enseignant-chercheur</p><p class="crs-speaker-company">Université Djilali Liabes, SBA</p></div>
+            </article>
+            <article class="crs-speaker crs-reveal">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag industriel">Industriel</span><h3 class="crs-speaker-name">Prénom Nom</h3><p class="crs-speaker-role">Directeur SMI / Qualité</p><p class="crs-speaker-company">Groupe industriel</p></div>
+            </article>
+            <article class="crs-speaker crs-reveal delay-1">
+              <div class="crs-speaker-placeholder" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg></div>
+              <div class="crs-speaker-info"><span class="crs-speaker-tag expert">Innovation</span><h3 class="crs-speaker-name">Prénom Nom</h3><p class="crs-speaker-role">Fondateur startup OpEx</p><p class="crs-speaker-company">Startup algérienne</p></div>
+            </article>
+          </div>
+          <p class="crs-pdf-note">Programme complet disponible dans le <a href="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/05/Programme-ORS-SBA-28-04-2026-6.pdf" target="_blank" rel="noopener">PDF officiel</a>.</p>
+          <div class="text-center mt-4 crs-reveal">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVImyOwfXxqfQ5_d674lMTHoxf5Di1kOtd3dJm4CwDEXl4eg/viewform"
+               class="crs-btn crs-btn-primary crs-btn-lg" target="_blank" rel="noopener">
+              S'inscrire maintenant →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FAQ ═══ -->
+      <section class="crs-section" id="crs-faq">
+        <div class="crs-container">
+          <div class="crs-section-header centered crs-reveal">
+            <h2>Questions fréquentes</h2>
+            <p class="crs-section-sub">Tout ce que vous devez savoir avant de vous inscrire.</p>
+          </div>
+          <div class="crs-faq">
+            <div class="crs-faq-item crs-reveal">
+              <button class="crs-faq-question">L'événement est-il payant ?<span class="crs-faq-icon">+</span></button>
+              <div class="crs-faq-answer"><p>Non, la participation est gratuite mais soumise à inscription préalable et confirmation par les organisateurs.</p></div>
+            </div>
+            <div class="crs-faq-item crs-reveal">
+              <button class="crs-faq-question">Puis-je n'assister qu'à une seule journée ?<span class="crs-faq-icon">+</span></button>
+              <div class="crs-faq-answer"><p>Oui, vous pouvez l'indiquer lors de l'inscription. Nous recommandons les deux pour une expérience complète : théorie le jour 1, ateliers pratiques le jour 2.</p></div>
+            </div>
+            <div class="crs-faq-item crs-reveal">
+              <button class="crs-faq-question">Une attestation de participation est-elle délivrée ?<span class="crs-faq-icon">+</span></button>
+              <div class="crs-faq-answer"><p>Oui, une attestation officielle CEO Roadshow vous sera remise à l'issue de l'événement.</p></div>
+            </div>
+            <div class="crs-faq-item crs-reveal">
+              <button class="crs-faq-question">Comment se rendre à l'Université Djilali Liabes ?<span class="crs-faq-icon">+</span></button>
+              <div class="crs-faq-answer"><p>L'université est située à Sidi Bel Abbès. <a href="https://maps.app.goo.gl/8KaUyw6t4gtCEncY7" target="_blank" rel="noopener">Voir l'itinéraire sur Google Maps</a>.</p></div>
+            </div>
+            <div class="crs-faq-item crs-reveal">
+              <button class="crs-faq-question">Dois-je préparer quelque chose à l'avance ?<span class="crs-faq-icon">+</span></button>
+              <div class="crs-faq-answer"><p>Non, mais nous vous recommandons de parcourir le programme PDF et de réfléchir aux 2-3 défis opérationnels prioritaires de votre entreprise pour profiter au mieux des ateliers.</p></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FINAL CTA ═══ -->
+      <section class="crs-section">
+        <div class="crs-container">
+          <div class="crs-final-cta crs-reveal">
+            <p class="crs-eyebrow">Dernière étape</p>
+            <h2>Réservez votre place avant qu'il n'en reste plus</h2>
+            <p>Inscription en 2 minutes · Confirmation sous 48h · Aucun engagement</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdVImyOwfXxqfQ5_d674lMTHoxf5Di1kOtd3dJm4CwDEXl4eg/viewform"
+               class="crs-btn crs-btn-white crs-btn-lg" target="_blank" rel="noopener">
+              Je m'inscris maintenant →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FOOTER ═══ -->
+      <footer class="crs-footer">
+        <div class="crs-container">
+          <div class="crs-footer-grid">
+            <div>
+              <div class="crs-footer-brand">CEO Roadshow <span>· 2026</span></div>
+              <p>Cluster Excellence Opérationnelle. 20 ans d'expertise au service de la compétitivité algérienne.</p>
+            </div>
+            <div>
+              <h4>Événement</h4>
+              <ul>
+                <li><a href="#crs-programme">Programme</a></li>
+                <li><a href="#crs-intervenants">Intervenants</a></li>
+                <li><a href="#crs-audience">Pour qui</a></li>
+                <li><a href="#crs-faq">FAQ</a></li>
+                <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdVImyOwfXxqfQ5_d674lMTHoxf5Di1kOtd3dJm4CwDEXl4eg/viewform" target="_blank" rel="noopener">Inscription</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4>Suivez-nous</h4>
+              <ul>
+                <li><a href="https://www.facebook.com/profile.php?id=61587119714266" target="_blank" rel="noopener">Facebook</a></li>
+                <li><a href="https://www.instagram.com/ceo_opex_dz/" target="_blank" rel="noopener">Instagram</a></li>
+                <li><a href="#">LinkedIn</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="crs-footer-bottom">
+            <span>© 2026 CEO Roadshow — Tous droits réservés</span>
+            <span>Sidi Bel Abbès, Algérie</span>
+          </div>
+        </div>
+      </footer>
+
+    </div><!-- /crs-wrap -->
+  </t>
+</template>
+</odoo>

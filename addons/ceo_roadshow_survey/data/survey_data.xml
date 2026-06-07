@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="survey_sba_2026" model="survey.survey">
+            <field name="title">Inscription à Opex Road Show Sidi Bel Abbés 2026</field>
+            <field name="access_mode">public</field>
+            <field name="users_can_signup">True</field>
+            <field name="questions_layout">page_per_section</field>
+            <field name="description" type="html">
+                <div class="survey_description">
+                    <p><b>IMPORTANT :</b> Ce formulaire peut être traduit via votre navigateur (clic droit → « Traduire »)</p>
+                    <p>Organisé par le "CEO" : <b>Cluster de l'Excellence Opérationnelle</b>, sous le thème :</p>
+                    <h3 class="text-primary">Management de l’Excellence à l’ère de l’IA : l’Innovation Agile et Compétitivité</h3>
+                    <p>Un événement exceptionnel pour les professionnels et organismes d'appuis à l'innovation et entrepreneuriat.</p>
+                    <p><b>20-21 mai 2026, Université Djilali Liabès, Sidi Bel Abbés</b></p>
+                    <hr/>
+                    <h4>🔹 Jour 1 – Management de l’Excellence (Mercredi 20 mai 2026)</h4>
+                    <ul>
+                        <li>Conférence 1 : Management de l’excellence à l’ère de l’IA : les 4 piliers</li>
+                        <li>Conférence 2 : Facteurs Clef de Succès d’un écosystème entrepreneurial centré sur l’innovation</li>
+                        <li>Retour d’expérience DZ : Transformation d’entreprise et Excellence opérationnelle (DZ)</li>
+                        <li>Débat 1 – Marché &amp; Emploi : IT, sous-traitance &amp; employabilité</li>
+                        <li>Débat 2 – Normes &amp; Agilité : ISO 9001:2026 et Excellence opérationnelle</li>
+                        <li>Débat 3 – Management de l’Excellence au quotidien et Intelligence Artificielle</li>
+                        <li>Débat 4 – Innovation &amp; Décision : Innover ou mourir ?</li>
+                    </ul>
+                    <h4>🔹 Jours 2 – R&amp;D Challenge (Jeudi 21 mai 2026)</h4>
+                    <ul>
+                        <li>Atelier 1 : design thinking : du Problème(Besoin) aux Solutions</li>
+                        <li>Atelier 2 : présélection des Startup et PME (de la région) du domaine opex</li>
+                        <li>Présentation des projets et sélections des « Top Opex Solutions ».</li>
+                    </ul>
+                </div>
+            </field>
+        </record>
+
+        <!-- Section 1: Identification & Profil -->
+        <record id="survey_sba_section_1" model="survey.question">
+            <field name="title">Identification &amp; Profil</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="is_page" eval="True"/>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="q_name" model="survey.question">
+            <field name="title">Nom &amp; Prénom</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">char_box</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">11</field>
+        </record>
+
+        <record id="q_email" model="survey.question">
+            <field name="title">Email professionnel</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">char_box</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="validation_email" eval="True"/>
+            <field name="sequence">12</field>
+        </record>
+
+        <record id="q_phone" model="survey.question">
+            <field name="title">Numéro de téléphone</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">char_box</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">13</field>
+        </record>
+
+        <record id="q_org_type" model="survey.question">
+            <field name="title">Type Organisation</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">14</field>
+        </record>
+        <record id="ans_ot_1" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">Grande entreprise</field></record>
+        <record id="ans_ot_2" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">PME / PMI</field></record>
+        <record id="ans_ot_3" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">TPE</field></record>
+        <record id="ans_ot_4" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">Startup</field></record>
+        <record id="ans_ot_5" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">Institution publique</field></record>
+        <record id="ans_ot_6" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">Université / Centre de recherche</field></record>
+        <record id="ans_ot_7" model="survey.question.answer"><field name="question_id" ref="q_org_type"/><field name="value">Indépendant / Consultant</field></record>
+
+        <record id="q_sector" model="survey.question">
+            <field name="title">Secteur d'activité</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">15</field>
+        </record>
+        <record id="ans_sec_1" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Industrie manufacturière</field></record>
+        <record id="ans_sec_2" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Agroalimentaire</field></record>
+        <record id="ans_sec_3" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Énergie (pétrole, gaz, renouvelable)</field></record>
+        <record id="ans_sec_4" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">BTP &amp; infrastructures</field></record>
+        <record id="ans_sec_5" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">IT / Digital / IA</field></record>
+        <record id="ans_sec_6" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Services aux entreprises</field></record>
+        <record id="ans_sec_7" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Santé</field></record>
+        <record id="ans_sec_8" model="survey.question.answer"><field name="question_id" ref="q_sector"/><field name="value">Startup / Innovation</field></record>
+
+        <record id="q_maturity" model="survey.question">
+            <field name="title">Niveau de maturité en Excellence Opérationnelle</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">16</field>
+        </record>
+        <record id="ans_mat_1" model="survey.question.answer"><field name="question_id" ref="q_maturity"/><field name="value">Aucun</field></record>
+        <record id="ans_mat_2" model="survey.question.answer"><field name="question_id" ref="q_maturity"/><field name="value">Initiation</field></record>
+        <record id="ans_mat_3" model="survey.question.answer"><field name="question_id" ref="q_maturity"/><field name="value">En cours de structuration</field></record>
+        <record id="ans_mat_4" model="survey.question.answer"><field name="question_id" ref="q_maturity"/><field name="value">Avancé</field></record>
+
+        <record id="q_priorities" model="survey.question">
+            <field name="title">Vos priorités actuelles ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">multiple_choice</field>
+            <field name="comments_allowed" eval="True"/>
+            <field name="comments_message">Autre</field>
+            <field name="sequence">17</field>
+        </record>
+        <record id="ans_p_1" model="survey.question.answer"><field name="question_id" ref="q_priorities"/><field name="value">Optimisation des processus</field></record>
+        <record id="ans_p_2" model="survey.question.answer"><field name="question_id" ref="q_priorities"/><field name="value">Digitalisation (ERP, Data, BI)</field></record>
+        <record id="ans_p_3" model="survey.question.answer"><field name="question_id" ref="q_priorities"/><field name="value">Intelligence Artificielle</field></record>
+
+        <record id="q_day1" model="survey.question">
+            <field name="title">Confirmez-vous votre présence à la journée 1 ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">18</field>
+        </record>
+        <record id="ans_d1_y" model="survey.question.answer"><field name="question_id" ref="q_day1"/><field name="value">Oui</field></record>
+        <record id="ans_d1_n" model="survey.question.answer"><field name="question_id" ref="q_day1"/><field name="value">Non</field></record>
+
+        <!-- Section 2: Sponsoring -->
+        <record id="survey_sba_section_2" model="survey.question">
+            <field name="title">Sponsoring &amp; Consentement</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="is_page" eval="True"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="q_consent" model="survey.question">
+            <field name="title">J'autorise DELTALOG à utiliser mes données personnelles uniquement dans le cadre de cet événement</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">21</field>
+        </record>
+        <record id="ans_c_y" model="survey.question.answer"><field name="question_id" ref="q_consent"/><field name="value">Oui</field></record>
+        <record id="ans_c_n" model="survey.question.answer"><field name="question_id" ref="q_consent"/><field name="value">Non</field></record>
+
+        <!-- Section 2: Problématiques & Ateliers -->
+        <record id="survey_sba_section_2" model="survey.question">
+            <field name="title">Je souhaite proposer une problématique</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="is_page" eval="True"/>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="q_prob_check" model="survey.question">
+            <field name="title">Souhaitez-vous proposer une problématique réelle à traiter dans la journée 2 ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">21</field>
+        </record>
+        <record id="ans_prob_y" model="survey.question.answer"><field name="question_id" ref="q_prob_check"/><field name="value">Oui</field></record>
+        <record id="ans_prob_n" model="survey.question.answer"><field name="question_id" ref="q_prob_check"/><field name="value">Non</field></record>
+
+        <record id="q_prob_desc" model="survey.question">
+            <field name="title">Que proposez-vous ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">text_box</field>
+            <field name="triggering_answer_ids" eval="[(4, ref('ans_prob_y'))]"/> <!-- Affiché uniquement SI Oui -->
+            <field name="sequence">22</field>
+        </record>
+
+        <record id="q_ateliers_contribute" model="survey.question">
+            <field name="title">Souhaitez contribuer aux ateliers de la journée 2 (pour les entreprises uniquement)</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">23</field>
+        </record>
+        <record id="ans_at_1" model="survey.question.answer"><field name="question_id" ref="q_ateliers_contribute"/><field name="value">Oui</field></record>
+        <record id="ans_at_2" model="survey.question.answer"><field name="question_id" ref="q_ateliers_contribute"/><field name="value">Non</field></record>
+        <record id="ans_at_3" model="survey.question.answer"><field name="question_id" ref="q_ateliers_contribute"/><field name="value">Je veux en savoir un peu plus</field></record>
+
+        <!-- Section 3: Intérêts -->
+        <record id="survey_sba_section_3" model="survey.question">
+            <field name="title">Intérêts pour les sujets présentés</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="is_page" eval="True"/>
+            <field name="sequence">30</field>
+        </record>
+
+        <record id="q_matrix_interest" model="survey.question">
+            <field name="title">Notez votre niveau d'intérêt pour les thèmes suivants :</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">matrix</field>
+            <field name="matrix_subtype">simple</field>
+            <field name="sequence">31</field>
+        </record>
+        <!-- Colonnes Matrix -->
+        <record id="col_5" model="survey.question.answer"><field name="matrix_question_id" ref="q_matrix_interest"/><field name="value">5 (Fort)</field><field name="sequence">1</field></record>
+        <record id="col_3" model="survey.question.answer"><field name="matrix_question_id" ref="q_matrix_interest"/><field name="value">3 (Moyen)</field><field name="sequence">2</field></record>
+        <record id="col_1" model="survey.question.answer"><field name="matrix_question_id" ref="q_matrix_interest"/><field name="value">1 (Faible)</field><field name="sequence">3</field></record>
+        <!-- Lignes Matrix (Thèmes) -->
+        <record id="row_1" model="survey.question.answer"><field name="question_id" ref="q_matrix_interest"/><field name="value">Conférence 1 : Management &amp; IA</field></record>
+        <record id="row_2" model="survey.question.answer"><field name="question_id" ref="q_matrix_interest"/><field name="value">Conférence 2 : Ecosystème Innovation</field></record>
+        <record id="row_3" model="survey.question.answer"><field name="question_id" ref="q_matrix_interest"/><field name="value">Débats (Normes, Emploi, Décision)</field></record>
+        <record id="row_4" model="survey.question.answer"><field name="question_id" ref="q_matrix_interest"/><field name="value">Ateliers Design Thinking / Startup</field></record>
+
+        <record id="q_attentes" model="survey.question">
+            <field name="title">Qu’attendez-vous de votre participation à cet événement ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">text_box</field>
+            <field name="sequence">32</field>
+        </record>
+
+        <record id="q_sponsor_interest" model="survey.question">
+            <field name="title">Êtes-vous intéressé par une offre de sponsoring ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">33</field>
+        </record>
+        <record id="ans_sp_y" model="survey.question.answer"><field name="question_id" ref="q_sponsor_interest"/><field name="value">Oui</field></record>
+        <record id="ans_sp_n" model="survey.question.answer"><field name="question_id" ref="q_sponsor_interest"/><field name="value">Non</field></record>
+        <record id="ans_sp_d" model="survey.question.answer"><field name="question_id" ref="q_sponsor_interest"/><field name="value">A discuter</field></record>
+
+        <!-- Section 4: Restez connectés -->
+        <record id="survey_sba_section_4" model="survey.question">
+            <field name="title">Restez connectés</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="is_page" eval="True"/>
+            <field name="sequence">40</field>
+        </record>
+
+        <record id="q_rappel" model="survey.question">
+            <field name="title">Souhaitez-vous recevoir un rappel par e-mail ou WhatsApp avant l’événement ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">41</field>
+        </record>
+        <record id="ans_r_y" model="survey.question.answer"><field name="question_id" ref="q_rappel"/><field name="value">Oui</field></record>
+        <record id="ans_r_n" model="survey.question.answer"><field name="question_id" ref="q_rappel"/><field name="value">Non</field></record>
+
+        <record id="q_info_ceo" model="survey.question">
+            <field name="title">Souhaitez-vous être informé(e) des offres de services et solutions du Cluster "CEO" ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">42</field>
+        </record>
+        <record id="ans_i_y" model="survey.question.answer"><field name="question_id" ref="q_info_ceo"/><field name="value">Oui</field></record>
+        <record id="ans_i_n" model="survey.question.answer"><field name="question_id" ref="q_info_ceo"/><field name="value">Non</field></record>
+
+        <record id="q_source" model="survey.question">
+            <field name="title">Comment avez entendu parlé de l'événement ?</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="comments_allowed" eval="True"/>
+            <field name="comments_message">Autre</field>
+            <field name="sequence">43</field>
+        </record>
+        <record id="as_1" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">l'Université de SBA</field></record>
+        <record id="as_2" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">la DIM de SBA</field></record>
+        <record id="as_3" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">l'ESI de SBA</field></record>
+        <record id="as_4" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">Contact direct par le CEO</field></record>
+        <record id="as_5" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">La CCI (Président)</field></record>
+        <record id="as_6" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">NESDA</field></record>
+        <record id="as_7" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">le BLEU de SBA</field></record>
+        <record id="as_8" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">Le CDE de SBA</field></record>
+        <record id="as_9" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">l'Incubateur de SBA</field></record>
+        <record id="as_10" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">Annonce sur les réseaux sociaux</field></record>
+        <record id="as_11" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">eMail du CEO</field></record>
+        <record id="as_12" model="survey.question.answer"><field name="question_id" ref="q_source"/><field name="value">Collègue/Connaissance</field></record>
+
+        <record id="q_consent_final" model="survey.question">
+            <field name="title">J'autorise DELTALOG (organisateur de l'évenement) à utiliser mes données personnelles uniquement dans le cadre de cet évènement</field>
+            <field name="survey_id" ref="survey_sba_2026"/>
+            <field name="question_type">simple_choice</field>
+            <field name="constr_mandatory" eval="True"/>
+            <field name="sequence">44</field>
+        </record>
+        <record id="ans_cf_y" model="survey.question.answer"><field name="question_id" ref="q_consent_final"/><field name="value">Oui</field></record>
+        <record id="ans_cf_n" model="survey.question.answer"><field name="question_id" ref="q_consent_final"/><field name="value">Non</field></record>
+    </data>
+</odoo>

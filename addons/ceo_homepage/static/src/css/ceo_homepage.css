@@ -1,0 +1,875 @@
+/* ================================================================
+   CEO HOMEPAGE — Custom Styles
+   Coherent with CEO Roadshow SBA 2026
+   All rules scoped under .chp-wrap
+   ================================================================ */
+
+.chp-wrap {
+  --cp: #1a1440;
+  /* Brand Navy */
+  --ca: #fbb034;
+  /* Brand Amber/Gold */
+  --ca-hover: #f39c12;
+  --ct: #0f172a;
+  /* Text Primary */
+  --ctm: #475569;
+  /* Text Medium */
+  --ctl: #94a3b8;
+  /* Text Light */
+  --cb: #ffffff;
+  /* Background */
+  --cbs: #f8fafc;
+  /* Background Soft */
+  --cborder: rgba(0, 0, 0, 0.06);
+  --rmd: 12px;
+  --rlg: 16px;
+  --rxl: 24px;
+  --smd: 0 4px 16px rgba(26, 20, 64, 0.08);
+  --slg: 0 12px 40px rgba(26, 20, 64, 0.12);
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: var(--ct);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.chp-wrap * {
+  box-sizing: border-box;
+}
+
+.chp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Typography ── */
+.chp-wrap h1,
+.chp-wrap h2,
+.chp-wrap h3 {
+  color: var(--cp);
+  margin: 0 0 1rem;
+}
+
+.chp-wrap h1 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.chp-wrap h2 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.chp-wrap h3 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.chp-wrap .lead {
+  font-size: 1.25rem;
+  color: var(--ctm);
+}
+
+/* ── Buttons ── */
+.chp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.chp-btn-primary {
+  background: var(--ca);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(26, 20, 64, 0.2);
+  display: none;
+}
+
+.chp-btn-primaryy {
+  background: var(--ca);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(26, 20, 64, 0.2);
+}
+
+.chp-btn-amber {
+  background: var(--cp);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(251, 176, 52, 0.2);
+}
+
+.chp-btn-amber:hover {
+  background: var(--ca-hover);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+/* ── Sections ── */
+.chp-section {
+  padding: 80px 0;
+}
+
+.chp-section-alt {
+  background: var(--cbs);
+}
+
+.chp-section-altt {
+  background: white;
+}
+
+.chp-section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.chp-title-line {
+  width: 60px;
+  height: 4px;
+  background: var(--ca);
+  border-radius: 2px;
+}
+
+.chp-section-title h2 {
+  margin-bottom: 10px;
+}
+
+.chp-section-title p {
+  color: var(--ctm);
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── Hero ── */
+.chp-hero {
+  background: linear-gradient(135deg, var(--cp) 0%, #2d1b69 100%);
+  color: #fff;
+  padding: 120px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.chp-hero h1,
+.chp-hero h2,
+.chp-hero p {
+  color: #fff;
+}
+
+.chp-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+}
+
+.chp-hero-blob {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(251, 176, 52, 0.15) 0%, transparent 70%);
+  filter: blur(40px);
+}
+
+/* ── Hero QR Share Block ── */
+.chp-hero-qr-wrap {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  /* Align text to the left within the block */
+}
+
+.chp-share-card {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.chp-share-title {
+  font-size: 36px !important;
+  font-weight: 800;
+  margin-bottom: 15px !important;
+  background: linear-gradient(90deg, #ffffff, #fbb034);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.chp-qr-frame {
+  background: #fff;
+  padding: 16px;
+  border-radius: 20px;
+  width: 260px;
+  /* Increased size */
+  height: 260px;
+  /* Increased size */
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.chp-qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chp-qr-scan-line {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background: var(--ca);
+  box-shadow: 0 0 15px var(--ca);
+  animation: chpScan 3s linear infinite;
+}
+
+@keyframes chpScan {
+  0% {
+    top: 16px;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 240px;
+    opacity: 0;
+  }
+}
+
+.chp-scan-hint {
+  color: var(--ca);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Swiggling Arrow */
+.chp-hero-arrow {
+  position: absolute;
+  left: -80px;
+  top: 40px;
+  /* Adjusted to point better from the top-aligned text */
+  width: 120px;
+  height: 90px;
+}
+
+.chp-swiggle-arrow {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 5px rgba(251, 176, 52, 0.4));
+  animation: chpArrowSwiggle 3s ease-in-out infinite;
+}
+
+@keyframes chpArrowSwiggle {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@media (max-width: 991px) {
+  .chp-hero-qr-wrap {
+    margin-top: 60px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .chp-hero-arrow {
+    display: none;
+  }
+
+  .chp-share-card {
+    align-items: center;
+  }
+}
+
+/* ── Vision Timeline ── */
+.chp-vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.chp-vision-card {
+  background: #fff;
+  padding: 32px;
+  border-radius: var(--rlg);
+  border: 1px solid var(--cborder);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.chp-vision-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--slg);
+  border-color: var(--ca);
+}
+
+.chp-vision-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--ca);
+  border-radius: 4px 0 0 4px;
+}
+
+/* ── Action Cards Refined ── */
+.chp-action-card {
+  background: #fff;
+  border-radius: var(--rxl);
+  padding: 40px;
+  text-align: center;
+  box-shadow: var(--smd);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--cborder);
+}
+
+.chp-action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--slg);
+  border-color: var(--ca);
+}
+
+.chp-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--cp), var(--ca));
+}
+
+.chp-action-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 24px;
+  color: var(--cp);
+  background: var(--cbs);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  transition: all 0.3s ease;
+}
+
+.chp-action-card:hover .chp-action-icon {
+  background: var(--cp);
+  color: #fff;
+  transform: rotate(5deg);
+}
+
+.chp-card-subtitle {
+  color: var(--ctm);
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  min-height: 40px;
+}
+
+.chp-card-divider {
+  width: 40px;
+  height: 2px;
+  background: var(--ca);
+  margin-bottom: 20px;
+}
+
+.chp-card-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.chp-card-list li {
+  font-size: 14px;
+  color: var(--ctm);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chp-card-list i {
+  color: var(--ca);
+  font-size: 16px;
+}
+
+/* ── Feature Tiles Refined ── */
+.chp-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.chp-feature-tile {
+  background: #fff;
+  padding: 30px;
+  border-radius: var(--rlg);
+  border: 1px solid var(--cborder);
+  display: flex;
+  gap: 20px;
+  transition: all 0.3s ease;
+}
+
+.chp-feature-tile:hover {
+  border-color: var(--cp);
+  box-shadow: var(--smd);
+  transform: translateX(5px);
+}
+
+.chp-tile-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--cbs);
+  color: var(--ca);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  transition: all 0.3s ease;
+}
+
+.chp-feature-tile:hover .chp-tile-icon {
+  background: var(--ca);
+  color: #fff;
+}
+
+.chp-feature-tile h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--cp);
+}
+
+.chp-feature-tile p {
+  font-size: 14px;
+  color: var(--ctm);
+  margin: 0;
+}
+
+/* ── Appointment & Quote ── */
+.chp-appointment-section {
+  background: #fff;
+}
+
+.chp-quote-box {
+  background: var(--cbs);
+  padding: 40px;
+  border-radius: var(--rxl);
+  position: relative;
+  border: 1px solid var(--cborder);
+}
+
+.chp-quote-icon {
+  font-size: 40px;
+  color: var(--ca);
+  opacity: 0.2;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.chp-quote-box p {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--cp);
+  line-height: 1.8;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 20px;
+}
+
+.chp-quote-author {
+  font-weight: 700;
+  color: var(--ctm);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* ── Quiz Section (Dark Theme) ── */
+.chp-quiz-section {
+  padding: 100px 0;
+  background: linear-gradient(rgba(26, 20, 64, 0.95), rgba(26, 20, 64, 0.95)), url('/ceo_homepage/static/src/img/quiz_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.chp-quiz-box {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.chp-quiz-box h2 {
+  font-size: 42px;
+}
+
+/* ── Partners Logo Slider ── */
+.chp-logo-slider {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 40px 0;
+  width: 100%;
+  position: relative;
+  background: transparent;
+  -webkit-overflow-scrolling: touch; /* Smooth touch scrolling */
+  cursor: grab;
+}
+
+.chp-logo-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.chp-logo-track {
+  display: flex;
+  width: max-content;
+  animation: chpMarquee 60s linear infinite;
+  gap: 30px;
+}
+
+.chp-logo-slider:hover .chp-logo-track,
+.chp-logo-slider:active .chp-logo-track {
+  animation-play-state: paused;
+}
+
+@keyframes chpMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ── Flip Card System ── */
+.chp-flip-card {
+  background-color: transparent;
+  width: 220px;
+  height: 120px;
+  perspective: 1000px;
+  flex: 0 0 auto;
+}
+
+.chp-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  border-radius: 16px;
+  background: white;
+}
+
+.chp-flip-card:hover .chp-flip-inner {
+  transform: rotateY(180deg);
+}
+
+.chp-flip-front, .chp-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.chp-flip-back {
+  background-color: var(--cp);
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 15px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+}
+
+.chp-logo-wrapper img {
+  max-width: 170px;
+  max-height: 85px;
+  object-fit: contain;
+}
+
+/* ── Transformation CTA ── */
+.chp-cta-section {
+  background: #fff;
+  border-bottom: 1px solid var(--cborder);
+}
+
+.chp-cta-image-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.chp-cta-image-wrap img {
+  position: relative;
+  z-index: 2;
+  max-width: 400px;
+}
+
+.chp-cta-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(251, 176, 52, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.chp-btn-lg {
+  padding: 16px 36px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Transformation Gears Visual ── */
+.chp-cta-visual-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 450px;
+  position: relative;
+}
+
+.chp-gears-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.chp-sketchy-gears {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
+}
+
+.gear {
+  animation: chpSpin linear infinite;
+}
+
+.gear-ccw {
+  animation-direction: reverse;
+}
+
+@keyframes chpSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Reveal Animations ── */
+.chp-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.chp-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Editor & No-JS Fallback ── */
+/* Ensure visibility when editing in Odoo */
+:root.editor_enable .chp-reveal,
+:root.editor_has_snippets .chp-reveal,
+.o_edit_mode_active .chp-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Very basic fallback if JS doesn't add .visible within reasonable time, 
+   though the JS now has a safety timeout. */
+@media (prefers-reduced-motion: reduce) {
+  .chp-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.chp-reveal.delay-2 {
+  transition-delay: 0.2s;
+}
+
+.chp-reveal.delay-3 {
+  transition-delay: 0.4s;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .chp-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chp-hero {
+    text-align: center;
+    padding: 80px 0;
+  }
+
+  .chp-hero-content {
+    margin: 0 auto;
+  }
+
+  .chp-cta-section {
+    text-align: center;
+  }
+
+  .chp-action-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Partners Page Styling ── */
+.chp-partners-page .chp-partners-hero {
+  padding: 140px 0 80px;
+  background: linear-gradient(135deg, var(--cp) 0%, #2d1b69 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.chp-partners-page .chp-partners-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(251, 176, 52, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.chp-partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.chp-partner-card {
+  height: 180px;
+  perspective: 1000px;
+}
+
+.chp-partner-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.chp-partner-card:hover .chp-partner-inner {
+  transform: rotateY(180deg);
+}
+
+.chp-partner-front, .chp-partner-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.chp-partner-front {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.chp-partner-front img {
+  max-width: 100%;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.chp-partner-back {
+  background: var(--cp);
+  color: white;
+  transform: rotateY(180deg);
+  padding: 25px;
+}
+
+.chp-partner-back p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.chp-section-header {
+  border-left: 4px solid var(--ca);
+  padding-left: 20px;
+  margin-bottom: 40px;
+}
+
+.chp-section-header .badge {
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .chp-partners-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+  .chp-partner-card {
+    height: 140px;
+  }
+}

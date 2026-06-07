@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_users_form_inherit_adherent" model="ir.ui.view">
+        <field name="name">res.users.form.adherent</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+
+            <!-- Insert inside Access Rights tab -->
+            <xpath expr="//notebook/page[@name='access_rights']" position="inside">
+                <group string="Adherent">
+                    <field name="x_is_adherent"/>
+                    <field name="x_points"/>
+                    <field name="x_requested_points"/>
+
+                    <button name="action_accept_points"
+                            string="Accepter"
+                            type="object"
+                            class="btn-primary"/>
+                </group>
+            </xpath>
+
+            <!-- Add modifier to hide button when no requested points -->
+            <xpath expr="//button[@name='action_accept_points']" position="attributes">
+                <attribute name="modifiers">{'invisible': [['x_requested_points', '=', 0]]}</attribute>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

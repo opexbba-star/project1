@@ -1,0 +1,30 @@
+<odoo>
+    <!-- Définition d'une catégorie locale pour Odoo 19 -->
+    <record id="module_category_ceo_membership" model="ir.module.category">
+        <field name="name">CEO Membership</field>
+        <field name="description">Gestion des adhésions au Cluster CEO</field>
+        <field name="sequence">20</field>
+    </record>
+
+    <record id="group_ceo_membership_user" model="res.groups">
+        <field name="name">Utilisateur</field>
+    </record>
+
+    <record id="group_ceo_membership_manager" model="res.groups">
+        <field name="name">Responsable</field>
+        <field name="implied_ids" eval="[(4, ref('group_ceo_membership_user'))]"/>
+    </record>
+
+    <!-- Attribution automatique à TOUS les employés -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('ceo_membership.group_ceo_membership_user'))]"/>
+    </record>
+
+    <!-- Attribution Responsable au compte admin -->
+    <record id="base.user_admin" model="res.users">
+        <field name="groups_id" eval="[(4, ref('ceo_membership.group_ceo_membership_manager'))]"/>
+    </record>
+    <record id="base.user_root" model="res.users">
+        <field name="groups_id" eval="[(4, ref('ceo_membership.group_ceo_membership_manager'))]"/>
+    </record>
+</odoo>

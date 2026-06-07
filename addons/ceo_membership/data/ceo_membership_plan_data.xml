@@ -1,0 +1,45 @@
+<odoo>
+    <record id="seq_ceo_membership_application" model="ir.sequence">
+        <field name="name">CEO Membership Application</field>
+        <field name="code">ceo.membership.application</field>
+        <field name="prefix">CEO-ADH-</field>
+        <field name="padding">5</field>
+    </record>
+
+    <record id="product_ceo_membership_fee" model="product.product">
+        <field name="name">Cotisation Adhésion CEO</field>
+        <field name="type">service</field>
+        <field name="invoice_policy">order</field>
+        <field name="list_price">0.0</field>
+    </record>
+
+    <record id="plan_discovery" model="ceo.membership.plan">
+        <field name="name">Découverte</field><field name="code">DISCOVERY</field><field name="sequence">1</field>
+        <field name="target_profile">micro</field><field name="annual_fee">0</field>
+        <field name="benefits">Newsletter, événements ouverts, appels à projets publics.</field>
+    </record>
+    <record id="plan_active" model="ceo.membership.plan">
+        <field name="name">Membre Actif</field><field name="code">ACTIVE</field><field name="sequence">2</field>
+        <field name="target_profile">pme</field><field name="annual_fee">50000</field>
+        <field name="include_directory_visibility">1</field>
+        <field name="benefits">Espace membre, annuaire, ateliers, veille OPEX/IA.</field>
+    </record>
+    <record id="plan_premium" model="ceo.membership.plan">
+        <field name="name">Premium</field><field name="code">PREMIUM</field><field name="sequence">3</field>
+        <field name="target_profile">pme</field><field name="annual_fee">150000</field>
+        <field name="include_directory_visibility">1</field><field name="include_diagnostic">1</field>
+        <field name="benefits">Diagnostic flash, groupes de travail, matchmaking, ateliers privés.</field>
+    </record>
+    <record id="plan_sponsor" model="ceo.membership.plan">
+        <field name="name">Partenaire Sponsor</field><field name="code">SPONSOR</field><field name="sequence">4</field>
+        <field name="target_profile">sponsor</field><field name="annual_fee">300000</field>
+        <field name="include_directory_visibility">1</field><field name="include_logo_visibility">1</field><field name="include_copil">1</field>
+        <field name="benefits">Visibilité portail, événements, COPIL, accès projets innovants.</field>
+    </record>
+    <record id="plan_institutional" model="ceo.membership.plan">
+        <field name="name">Institutionnelle</field><field name="code">INSTITUTION</field><field name="sequence">5</field>
+        <field name="target_profile">institution</field><field name="annual_fee">0</field>
+        <field name="include_directory_visibility">1</field><field name="include_copil">1</field>
+        <field name="benefits">Convention, programmes OPEX Road Show, ateliers académiques, hackathons.</field>
+    </record>
+</odoo>

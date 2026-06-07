@@ -1,0 +1,17 @@
+<!-- signup_customization/views/res_partner_views.xml -->
+<odoo>
+    <record id="res_partner_view_form_inherit_linkedin" model="ir.ui.view">
+        <field name="name">res.partner.form.linkedin</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- 
+                On utilise XPath pour trouver le champ 'website' et
+                insérer notre nouveau champ juste après.
+            -->
+            <xpath expr="//field[@name='website']" position="after">
+                <field name="x_linkedin_profile" widget="url" placeholder="https://www.linkedin.com/in/..."/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Une seule entrée "Q&A en direct" sous le menu principal Évènements
+        qui liste toutes les questions de toutes les sessions. Les contrôles
+        Q&A vivent désormais directement sur chaque fiche event.track
+        (onglet Q&A en direct + smart button).
+    -->
+    <menuitem id="menu_event_qa_questions"
+              name="Q&amp;A en direct"
+              parent="event.event_main_menu"
+              action="action_event_qa_question"
+              sequence="50"/>
+
+</odoo>

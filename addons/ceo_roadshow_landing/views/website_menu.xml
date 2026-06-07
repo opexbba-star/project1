@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!--
+        Website menu item — CEO Roadshow SBA 2026
+        noupdate="0" ensures the record is created/updated on every upgrade.
+        URL /ceo-roadshow-sba matches the route in controllers/main.py.
+    -->
+    <data noupdate="0">
+        <!-- <record id="menu_ceo_partners_sponsors" model="website.menu">
+            <field name="name">Partenaires &amp; Sponsors</field>
+            <field name="url">/partenaires-sponsors</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">50</field>
+            <field name="website_id" ref="website.default_website"/>
+            <field name="group_ids" eval="[(4, ref('base.group_public')), (4, ref('base.group_portal')), (4, ref('base.group_user'))]"/>
+        </record>
+         -->
+        <record id="menu_ceo_roadshow_sba" model="website.menu">
+            <field name="name">CEO Roadshow</field>
+            <field name="url">/ceo-roadshow-sba</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">999</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+
+        <record id="menu_matinee_excellence" model="website.menu">
+            <field name="name">Matinée OpEx</field>
+            <field name="url">/matinee-excellence</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">1000</field>
+            <field name="website_id" ref="website.default_website"/>
+        </record>
+    </data>
+</odoo>

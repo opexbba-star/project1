@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- List view -->
+    <record id="view_conf_question_list" model="ir.ui.view">
+        <field name="name">conf.question.list</field>
+        <field name="model">conf.question</field>
+        <field name="arch" type="xml">
+            <list string="Questions"
+                  decoration-warning="state == 'pending'"
+                  decoration-success="state == 'read'"
+                  decoration-muted="state == 'skipped'">
+                <field name="submitted_at" string="Heure"/>
+                <field name="event_id" string="Événement"/>
+                <field name="submitter_name" string="Prénom"/>
+                <field name="question_text" string="Question"/>
+                <field name="state" widget="badge"
+                       decoration-warning="state == 'pending'"
+                       decoration-success="state == 'read'"
+                       decoration-info="state == 'skipped'"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="view_conf_question_search" model="ir.ui.view">
+        <field name="name">conf.question.search</field>
+        <field name="model">conf.question</field>
+        <field name="arch" type="xml">
+            <search string="Rechercher des questions">
+                <field name="submitter_name"/>
+                <field name="question_text"/>
+                <field name="event_id"/>
+                <filter string="En attente" name="pending" domain="[('state','=','pending')]"/>
+                <filter string="Traitées" name="read" domain="[('state','=','read')]"/>
+                <filter string="Skippées" name="skipped" domain="[('state','=','skipped')]"/>
+                <group expand="0" string="Grouper par">
+                    <filter string="Événement" name="group_event"
+                            context="{'group_by': 'event_id'}"/>
+                    <filter string="État" name="group_state"
+                            context="{'group_by': 'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_conf_question" model="ir.actions.act_window">
+        <field name="name">Questions</field>
+        <field name="res_model">conf.question</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_conf_question_search"/>
+        <field name="context">{'search_default_pending': 1}</field>
+    </record>
+
+</odoo>

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="ceo_homepage_content" inherit_id="website.homepage" name="CEO Custom Homepage">
+        <xpath expr="//div[@id='wrap']" position="replace">
+            <div id="wrap" class="oe_structure chp-wrap">
+                <!-- 1. Hero Section -->
+                <section class="chp-hero">
+                    <div class="chp-hero-blob"></div>
+                    <div class="chp-container">
+                        <div class="row align-items-start">
+                            <!-- Hero Text -->
+                            <div class="col-lg-7">
+                                <div class="chp-hero-content">
+                                    <h1 class="mb-4">OPEX.IA 2030 : <br/><span style="color: var(--ca)">L'Excellence Opérationnelle</span> au cœur de votre mission.</h1>
+                                    <p class="lead mb-5">Un écosystème dynamique pour propulser les individus et les organisations vers une transformation durable par l'innovation et le partage des connaissances.</p>
+                                    <div class="d-flex gap-3 flex-wrap">
+                                        <a href="/contactus" class="chp-btn chp-btn-amber">NOUS CONTACTER</a>
+                                        <a href="/web/signup" class="chp-btn chp-btn-primaryy">S'INSCRIRE</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- QR Share Block (Right side) -->
+                            <div class="col-lg-5 text-center">
+                                <div class="chp-hero-qr-wrap">
+                                    <!-- Swiggling Arrow -->
+                                    <div class="chp-hero-arrow">
+                                        <svg viewBox="0 0 120 100" class="chp-swiggle-arrow">
+                                            <path d="M10,50 C30,10 70,90 100,20" fill="none" stroke="#fbb034" stroke-width="4" stroke-linecap="round"/>
+                                            <path d="M90,15 L105,18 L100,32" fill="none" stroke="#fbb034" stroke-width="4" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="chp-share-card">
+                                        <h3 class="chp-share-title">Partagez l'Excellence</h3>
+                                        <div class="chp-qr-frame">
+                                            <img src="https://www.ceo-dz.com/ceo-roadshow/wp-content/uploads/2026/05/qrcodewebsite.png" alt="QR Code CEO Deltalog" class="chp-qr-image"/>
+                                            <div class="chp-qr-scan-line"></div>
+                                        </div>
+                                        <span class="chp-scan-hint">SCANNEZ POUR VISITER</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. Notre Vision Section -->
+                <section class="chp-section chp-section-alt">
+                    <div class="chp-container">
+                        <div class="chp-section-title">
+                            <h2 class="chp-reveal">Notre Vision</h2>
+                            <p class="chp-reveal delay-2">Propulser l'Algérie vers les standards mondiaux de l'excellence.</p>
+                        </div>
+                        <div class="chp-vision-grid">
+                            <div class="chp-vision-card chp-reveal">
+                                <h3>Objectif</h3>
+                                <p>Positionner l'Algérie comme un hub national et africain de l'excellence opérationnelle.</p>
+                            </div>
+                            <div class="chp-vision-card chp-reveal delay-2">
+                                <h3>Méthode</h3>
+                                <p>Accélérer la transformation HODA (Humaine, Opérationnelle, Digitale et Agile).</p>
+                            </div>
+                            <div class="chp-vision-card chp-reveal delay-2">
+                                <h3>Outils</h3>
+                                <p>Intégration des technologies de pointe : IA, IoT, ERP et Cloud au service de l'excellence.</p>
+                            </div>
+                            <div class="chp-vision-card chp-reveal delay-3">
+                                <h3>Bénéfices</h3>
+                                <p>Augmenter la compétitivité nationale et soutenir l'exportabilité de nos biens et services.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. Transformation CTA (The Requested Section) -->
+                <section class="chp-section chp-cta-section">
+                    <div class="chp-container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 chp-reveal">
+                                <div class="chp-cta-visual-wrap">
+                                    <div class="chp-gears-container">
+                                        <svg viewBox="0 0 921 923" xmlns="http://www.w3.org/2000/svg" class="chp-sketchy-gears">
+                                            <!-- Large Gear (Top Left) -->
+                                            <g id="chp_gear1" class="gear" style="transform-origin: 265px 261px; animation-duration: 15s;"></g>
+                                            
+                                            <!-- Medium Gear (Right) -->
+                                            <g id="chp_gear2" class="gear gear-ccw" style="transform-origin: 685px 495px; animation-duration: 15s;"></g>
+                                            
+                                            <!-- Small Gear (Bottom) -->
+                                            <g id="chp_gear3" class="gear gear-ccw" style="transform-origin: 354px 731px; animation-duration: 15s;"></g>
+                                        </svg>
+                                        <script>
+                                            // <![CDATA[
+                                            (function() {
+                                                function drawSketchyGear(id, cx, cy, r, teeth, toothH, toothW, rotationOffset, dashPattern) {
+                                                    const g = document.getElementById(id);
+                                                    if (!g) return;
+                                                    const strokeWidth = 16;
+                                                    
+                                                    // 1. Inner Hole (Sketchy Circle)
+                                                    const holeR = r * 0.45;
+                                                    const hole = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                                                    hole.setAttribute("cx", cx);
+                                                    hole.setAttribute("cy", cy);
+                                                    hole.setAttribute("r", holeR);
+                                                    hole.setAttribute("fill", "none");
+                                                    hole.setAttribute("stroke", "black");
+                                                    hole.setAttribute("stroke-width", strokeWidth);
+                                                    hole.setAttribute("stroke-linecap", "round");
+                                                    hole.setAttribute("stroke-dasharray", "120 40 80 30");
+                                                    g.appendChild(hole);
+
+                                                    // 2. Main Body and Teeth
+                                                    const step = (Math.PI * 2) / teeth;
+                                                    const gearGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                                    
+                                                    for (let i = 0; i < teeth; i++) {
+                                                        const angle = i * step + rotationOffset;
+                                                        
+                                                        // Tooth points
+                                                        const x1 = cx + Math.cos(angle - 0.2) * r;
+                                                        const y1 = cy + Math.sin(angle - 0.2) * r;
+                                                        const x2 = cx + Math.cos(angle - 0.25) * (r + toothH);
+                                                        const y2 = cy + Math.sin(angle - 0.25) * (r + toothH);
+                                                        const x3 = cx + Math.cos(angle + 0.25) * (r + toothH);
+                                                        const y3 = cy + Math.sin(angle + 0.25) * (r + toothH);
+                                                        const x4 = cx + Math.cos(angle + 0.2) * r;
+                                                        const y4 = cy + Math.sin(angle + 0.2) * r;
+
+                                                        // Tooth path
+                                                        const tooth = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                                                        tooth.setAttribute("d", `M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3} L ${x4} ${y4}`);
+                                                        tooth.setAttribute("fill", "none");
+                                                        tooth.setAttribute("stroke", "black");
+                                                        tooth.setAttribute("stroke-width", strokeWidth);
+                                                        tooth.setAttribute("stroke-linecap", "round");
+                                                        tooth.setAttribute("stroke-linejoin", "round");
+                                                        // Randomly break tooth lines
+                                                        if (Math.random() > 0.2) tooth.setAttribute("stroke-dasharray", "40 10 30 5");
+                                                        gearGroup.appendChild(tooth);
+
+                                                        // Arc between teeth
+                                                        const nextAngle = (i + 1) * step + rotationOffset;
+                                                        const x5 = cx + Math.cos(nextAngle - 0.2) * r;
+                                                        const y5 = cy + Math.sin(nextAngle - 0.2) * r;
+                                                        
+                                                        const arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                                                        arc.setAttribute("d", `M ${x4} ${y4} A ${r} ${r} 0 0 1 ${x5} ${y5}`);
+                                                        arc.setAttribute("fill", "none");
+                                                        arc.setAttribute("stroke", "black");
+                                                        arc.setAttribute("stroke-width", strokeWidth);
+                                                        arc.setAttribute("stroke-linecap", "round");
+                                                        arc.setAttribute("stroke-dasharray", dashPattern);
+                                                        gearGroup.appendChild(arc);
+                                                    }
+                                                    g.appendChild(gearGroup);
+                                                }
+
+                                                // Execute drawing
+                                                drawSketchyGear("chp_gear1", 265, 261, 135, 8, 50, 40, 0.4, "100 30 60 20");
+                                                drawSketchyGear("chp_gear2", 685, 495, 120, 8, 45, 35, 0.8, "80 25 50 15");
+                                                drawSketchyGear("chp_gear3", 354, 731, 100, 8, 40, 30, 0.2, "70 20 40 10");
+                                            })();
+                                            // ]]>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 chp-reveal delay-2">
+                                <h2 class="display-5 fw-bold mb-4" style="color: var(--cp);">
+                                    Ne restez pas spectateur de la <span style="color: var(--ca);">transformation</span>, devenez-en le moteur!
+                                </h2>
+                                <p class="lead mb-4 text-muted">
+                                    Remplissez simplement ce formulaire pour initier votre adhésion et ouvrir la porte à de nouvelles opportunités de croissance et d'excellence.
+                                </p>
+                                <a href="/web/signup" class="btn chp-btn-amber chp-btn-lg">
+                                    S'Inscrire Maintenant <i class="fa fa-arrow-right ms-2"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 4. Au Cœur de Notre Action (Pillars) -->
+                <section class="chp-section">
+                    <div class="chp-container">
+                        <div class="chp-section-title">
+                            <h2 class="chp-reveal">Au Cœur de Notre Action</h2>
+                            <p class="chp-reveal delay-2">Trois piliers stratégiques pour une excellence opérationnelle sans compromis.</p>
+                        </div>
+                        <div class="row g-4 mb-5">
+                            <div class="col-md-4 chp-reveal">
+                                <div class="chp-action-card">
+                                    <div class="chp-card-accent"></div>
+                                    <div class="chp-action-icon">
+                                        <i class="fa fa-university"></i>
+                                    </div>
+                                    <h3 class="mb-2">ACEO</h3>
+                                    <p class="chp-card-subtitle">Association Compétences Excellence Opérationnelle</p>
+                                    <div class="chp-card-divider"></div>
+                                    <ul class="chp-card-list">
+                                        <li><i class="fa fa-check-circle"></i> Certification OPEX</li>
+                                        <li><i class="fa fa-check-circle"></i> Label "OpexChampion"</li>
+                                        <li><i class="fa fa-check-circle"></i> Référentiel Compétences</li>
+                                    </ul>
+                                    <a href="/contactus" class="btn chp-btn-primary mt-4 w-100">Découvrir</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 chp-reveal delay-2">
+                                <div class="chp-action-card">
+                                    <div class="chp-card-accent"></div>
+                                    <div class="chp-action-icon">
+                                        <i class="fa fa-graduation-cap"></i>
+                                    </div>
+                                    <h3 class="mb-2">ORA</h3>
+                                    <p class="chp-card-subtitle">Opex Reengineering Academy</p>
+                                    <div class="chp-card-divider"></div>
+                                    <ul class="chp-card-list">
+                                        <li><i class="fa fa-check-circle"></i> Développement Agile</li>
+                                        <li><i class="fa fa-check-circle"></i> Transformation Managériale</li>
+                                        <li><i class="fa fa-check-circle"></i> Ponts Univ-Entreprise</li>
+                                    </ul>
+                                    <a href="/contactus" class="btn chp-btn-primary mt-4 w-100">Participer</a>
+                                </div>
+                            </div>
+                            <div class="col-md-4 chp-reveal delay-3">
+                                <div class="chp-action-card">
+                                    <div class="chp-card-accent"></div>
+                                    <div class="chp-action-icon">
+                                        <i class="fa fa-road"></i>
+                                    </div>
+                                    <h3 class="mb-2">ORS</h3>
+                                    <p class="chp-card-subtitle">Opex Road Show</p>
+                                    <div class="chp-card-divider"></div>
+                                    <ul class="chp-card-list">
+                                        <li><i class="fa fa-check-circle"></i> Caravane OPEX.IA</li>
+                                        <li><i class="fa fa-check-circle"></i> Mobilisation Régionale</li>
+                                        <li><i class="fa fa-check-circle"></i> Promotion Export</li>
+                                    </ul>
+                                    <a href="/contactus" class="btn chp-btn-primary mt-4 w-100">Rejoindre</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Moyens de Réussir -->
+                <section class="chp-section chp-section-alt">
+                    <div class="chp-container">
+                        <div class="chp-section-title">
+                            <h2 class="chp-reveal">Donner les Moyens de Réussir</h2>
+                        </div>
+                        <div class="chp-feature-grid">
+                            <div class="chp-feature-tile chp-reveal">
+                                <div class="chp-tile-icon"><i class="fa fa-book"></i></div>
+                                <div>
+                                    <h4>Formation Continue</h4>
+                                    <p>Accédez à des certifications reconnues et des master classes avec des experts internationaux.</p>
+                                </div>
+                            </div>
+                            <div class="chp-feature-tile chp-reveal delay-2">
+                                <div class="chp-tile-icon"><i class="fa fa-users"></i></div>
+                                <div>
+                                    <h4>Networking Global</h4>
+                                    <p>Rejoignez une communauté d'experts et participez à des évènements exclusifs.</p>
+                                </div>
+                            </div>
+                            <div class="chp-feature-tile chp-reveal delay-2">
+                                <div class="chp-tile-icon"><i class="fa fa-leaf"></i></div>
+                                <div>
+                                    <h4>Transformation Durable</h4>
+                                    <p>Intégrez la RSE et les pratiques durables au cœur de votre excellence opérationnelle.</p>
+                                </div>
+                            </div>
+                            <div class="chp-feature-tile chp-reveal delay-3">
+                                <div class="chp-tile-icon"><i class="fa fa-laptop"></i></div>
+                                <div>
+                                    <h4>Innovation Technologique</h4>
+                                    <p>Exploitez l'IA, le Big Data, l'IoT et l'automatisation pour optimiser vos processus.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Quote & Appointment -->
+                <section class="chp-section chp-appointment-section">
+                    <div class="chp-container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 chp-reveal">
+                                <h2 class="mb-4">Réserver votre consultation stratégique</h2>
+                                <p class="lead mb-4">Votre partenaire pour l'Excellence Opérationnelle vous révélera les leviers <strong>HODA</strong> clés pour maximiser immédiatement votre efficacité.</p>
+                                <a href="/my/appointment/book" class="chp-btn chp-btn-amber">
+                                    DEMANDER UN RENDEZ-VOUS <i class="fa fa-calendar-check-o ms-2"></i>
+                                </a>
+                            </div>
+                            <div class="col-lg-6 mt-5 mt-lg-0 chp-reveal delay-2">
+                                <div class="chp-quote-box">
+                                    <i class="fa fa-quote-left chp-quote-icon"></i>
+                                    <p>"L'excellence n'est pas une destination, c'est un voyage continu. Chez Deltalog, nous vous accompagnons à chaque étape de votre transformation opérationnelle."</p>
+                                    <div class="chp-quote-author">— Direction Générale, Deltalog</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Quiz Section (Dark Theme) -->
+                <section class="chp-quiz-section chp-reveal">
+                    <div class="chp-container text-center">
+                        <div class="chp-quiz-box">
+                            <span class="badge bg-amber mb-3" style="background: var(--ca); color: var(--cp); font-weight: 700;">ÉVALUATION GRATUITE</span>
+                            <h2 class="fw-bold mb-4 text-white">Êtes-vous prêt pour l'Excellence Opérationnelle ?</h2>
+                            <p class="lead mb-5 text-white-50">
+                                Répondez à quelques questions pour évaluer le niveau de maturité de votre organisation et recevez des recommandations personnalisées.
+                            </p>
+                            <a href="https://ceo.deltalog.dz/survey/start/9493d01d-0228-4ffa-b583-59b2c24affd6" class="chp-btn chp-btn-amber chp-btn-lg px-5">
+                                Commencer le Quiz <i class="fa fa-bolt ms-2"></i>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 8. Partners -->
+                <section class="chp-section chp-section-altt">
+                    <div class="chp-container">
+                        <div class="text-center mb-5 chp-reveal">
+                            <h2 class="fw-bold mb-2" style="color: var(--cp);">Nos Partenaires de Confiance</h2>
+                            <div class="chp-title-line mx-auto"></div>
+                        </div>
+                        <div class="chp-logo-slider chp-reveal delay-2">
+                            <div class="chp-logo-track">
+                                <!-- Actual logos -->
+                                <t t-set="partners" t-value="[
+                                    {'src': '/ceo_homepage/static/src/img/Picture8.png', 'name': 'Deltalog'},
+                                    {'src': '/ceo_homepage/static/src/img/uveds_logo.PNG', 'name': 'Uveds'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture3.png', 'name': 'وزارة التعليم العالي والبحث العلمي'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture2.png', 'name': 'وزارة الصناعة'},
+                                    {'src': '/ceo_homepage/static/src/img/bastp_logo.PNG', 'name': 'Bourse Algérienne de Sous-Traitance'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture1.png', 'name': 'Ministère de l\'Économie de la connaissance'},
+                                    {'src': '/ceo_homepage/static/src/img/miniros_logo.PNG', 'name': 'Miniros'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture4.jpg', 'name': 'Bleu'},
+                                    {'src': '/ceo_homepage/static/src/img/Capturekkkk.PNG', 'name': 'CATI - UDL SBA'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture5.jpg', 'name': 'Start\'Dz'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture7.jpg', 'name': 'دار ذكاء اصطناعي'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture9.png', 'name': 'Inkidia'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture10.png', 'name': 'GSH'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture11.jpg', 'name': 'FALMI'},
+                                    {'src': '/ceo_homepage/static/src/img/Picture6.jpg', 'name': 'CDE'}
+                                ]"/>
+                                
+                                <!-- Render logos twice for seamless infinite scroll -->
+                                <t t-foreach="partners + partners" t-as="p">
+                                    <div class="chp-flip-card">
+                                        <div class="chp-flip-inner">
+                                            <div class="chp-flip-front">
+                                                <div class="chp-logo-wrapper">
+                                                    <img t-att-src="p['src']" t-att-alt="p['name']"/>
+                                                </div>
+                                            </div>
+                                            <div class="chp-flip-back">
+                                                <div class="chp-logo-info">
+                                                    <span t-esc="p['name']"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </xpath>
+    </template>
+</odoo>

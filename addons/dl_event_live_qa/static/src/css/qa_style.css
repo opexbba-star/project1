@@ -1,0 +1,680 @@
+/*
+ * Event Live Q&A — public page styles
+ * Modern, mobile-first design inspired by Slido / Mentimeter.
+ */
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+.o_qa_page {
+    /* Palette CEO Roadshow : bleu nuit + jaune doré */
+    --qa-primary: #1a1654;          /* Bleu nuit principal */
+    --qa-primary-dark: #100c3a;     /* Bleu nuit foncé */
+    --qa-primary-light: #e8e6f5;    /* Bleu très clair pour fonds */
+    --qa-accent: #f5a623;           /* Jaune doré accent */
+    --qa-accent-dark: #d68910;      /* Jaune foncé */
+    --qa-text: #1f2937;
+    --qa-text-muted: #6b7280;
+    --qa-text-light: #9ca3af;
+    --qa-bg: #f9fafb;
+    --qa-surface: #ffffff;
+    --qa-border: #e5e7eb;
+    --qa-success: #10b981;
+    --qa-danger: #ef4444;
+    --qa-radius: 16px;
+    --qa-radius-sm: 10px;
+    --qa-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --qa-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --qa-shadow-lg: 0 12px 32px rgba(26, 22, 84, 0.18);
+    --qa-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.08);
+    background: var(--qa-bg);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--qa-text);
+}
+
+/* ============================================================
+   HERO HEADER
+   ============================================================ */
+.o_qa_page .o_qa_hero {
+    background: linear-gradient(135deg, var(--qa-primary-dark) 0%, var(--qa-primary) 100%);
+    color: #ffffff;
+    padding: 3rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.o_qa_page .o_qa_hero::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(245, 166, 35, 0.18) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.o_qa_page .o_qa_hero_inner {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.o_qa_page .o_qa_event_meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.o_qa_page .o_qa_hero_title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0 0 1.25rem;
+    color: var(--qa-accent);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.o_qa_page .o_qa_hero_status {
+    margin-top: 1rem;
+}
+
+.o_qa_page .o_qa_status_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.o_qa_page .o_qa_status_live {
+    background: var(--qa-accent);
+    color: var(--qa-primary-dark);
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.4);
+}
+
+.o_qa_page .o_qa_status_closed {
+    background: rgba(0, 0, 0, 0.3);
+    color: #ffffff;
+}
+
+.o_qa_page .o_qa_status_pending {
+    background: rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+/* Pulsing live dot */
+.o_qa_page .o_qa_pulse_dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--qa-danger);
+    position: relative;
+    display: inline-block;
+}
+
+.o_qa_page .o_qa_pulse_dot::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--qa-danger);
+    animation: o_qa_pulse 1.5s ease-out infinite;
+}
+
+@keyframes o_qa_pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ============================================================
+   MAIN CONTENT
+   ============================================================ */
+.o_qa_page .o_qa_main {
+    margin-top: -2.5rem;
+    padding-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================================
+   SUBMIT CARD
+   ============================================================ */
+.o_qa_page .o_qa_submit_wrapper {
+    max-width: 700px;
+    margin: 0 auto 2.5rem;
+}
+
+.o_qa_page .o_qa_submit_card {
+    background: var(--qa-surface);
+    border-radius: var(--qa-radius);
+    padding: 2rem;
+    box-shadow: var(--qa-shadow-lg);
+    border: 1px solid var(--qa-border);
+}
+
+.o_qa_page .o_qa_submit_header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.o_qa_page .o_qa_submit_icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--qa-primary);
+    color: var(--qa-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.o_qa_page .o_qa_submit_header h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--qa-text);
+}
+
+.o_qa_page .o_qa_submit_header p {
+    margin: 0;
+    color: var(--qa-text-muted);
+    font-size: 0.9rem;
+}
+
+.o_qa_page .o_qa_field {
+    margin-bottom: 1rem;
+}
+
+.o_qa_page .o_qa_field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--qa-text);
+    margin-bottom: 0.4rem;
+}
+
+.o_qa_page .o_qa_optional {
+    color: var(--qa-text-light);
+    font-weight: 400;
+}
+
+.o_qa_page .o_qa_input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--qa-border);
+    border-radius: var(--qa-radius-sm);
+    font-size: 1rem;
+    background: #ffffff;
+    color: var(--qa-text);
+    transition: border-color 0.15s, box-shadow 0.15s;
+    font-family: inherit;
+}
+
+.o_qa_page .o_qa_input:focus {
+    outline: none;
+    border-color: var(--qa-primary);
+    box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.o_qa_page .o_qa_textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.o_qa_page .o_qa_submit_footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    flex-wrap: wrap;
+}
+
+.o_qa_page .o_qa_btn_submit {
+    background: linear-gradient(135deg, var(--qa-accent), var(--qa-accent-dark));
+    color: var(--qa-primary-dark);
+    border: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--qa-radius-sm);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.1s, box-shadow 0.15s;
+    box-shadow: 0 4px 12px rgba(245, 166, 35, 0.4);
+}
+
+.o_qa_page .o_qa_btn_submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(245, 166, 35, 0.5);
+}
+
+.o_qa_page .o_qa_btn_submit:active {
+    transform: translateY(0);
+}
+
+.o_qa_page .o_qa_submit_feedback {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.o_qa_page .o_qa_submit_feedback.text-success {
+    color: var(--qa-success) !important;
+}
+
+.o_qa_page .o_qa_submit_feedback.text-danger {
+    color: var(--qa-danger) !important;
+}
+
+/* ============================================================
+   QUESTIONS LIST
+   ============================================================ */
+.o_qa_page .o_qa_questions_section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.o_qa_page .o_qa_section_title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    padding: 0 0.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.o_qa_page .o_qa_section_title h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--qa-text);
+}
+
+.o_qa_page .o_qa_section_hint {
+    font-size: 0.875rem;
+    color: var(--qa-text-muted);
+}
+
+.o_qa_page .o_qa_loading {
+    text-align: center;
+    color: var(--qa-text-muted);
+    padding: 2rem;
+}
+
+.o_qa_page .o_qa_empty {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: var(--qa-surface);
+    border-radius: var(--qa-radius);
+    border: 2px dashed var(--qa-border);
+    color: var(--qa-text-muted);
+}
+
+/* Individual question card */
+.o_qa_page .o_qa_question_card {
+    background: var(--qa-surface);
+    border-radius: var(--qa-radius);
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--qa-border);
+    box-shadow: var(--qa-shadow-sm);
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    animation: o_qa_fade_in 0.3s ease-out;
+    overflow: hidden;
+}
+
+@keyframes o_qa_fade_in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.o_qa_page .o_qa_question_card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--qa-shadow-hover);
+    border-color: var(--qa-primary-light);
+}
+
+.o_qa_page .o_qa_question_card .card-body {
+    display: flex;
+    gap: 1rem;
+    padding: 1.25rem;
+}
+
+.o_qa_page .o_qa_vote_section {
+    flex-shrink: 0;
+    width: 56px;
+    text-align: center;
+}
+
+.o_qa_page .o_qa_vote_btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    background: var(--qa-surface);
+    border: 2px solid var(--qa-border);
+    color: var(--qa-text-muted);
+    font-size: 1.25rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.o_qa_page .o_qa_vote_btn:hover:not(:disabled) {
+    border-color: var(--qa-primary);
+    color: var(--qa-primary);
+    background: var(--qa-primary-light);
+    transform: scale(1.05);
+}
+
+.o_qa_page .o_qa_vote_btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.o_qa_page .o_qa_vote_btn:disabled {
+    background: var(--qa-accent);
+    color: var(--qa-primary-dark);
+    border-color: var(--qa-accent);
+    cursor: default;
+    opacity: 1;
+}
+
+.o_qa_page .o_qa_vote_count {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-top: 6px;
+    color: var(--qa-text);
+}
+
+.o_qa_page .o_qa_question_body {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.o_qa_page .o_qa_question_text {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--qa-text);
+    margin: 0 0 0.5rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.o_qa_page .o_qa_question_body small {
+    color: var(--qa-text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.o_qa_page .o_qa_question_card .badge {
+    margin-left: 0.5rem;
+    font-size: 0.7rem;
+    padding: 0.3em 0.6em;
+    border-radius: 6px;
+}
+
+/* ============================================================
+   NOTICE (closed / draft)
+   ============================================================ */
+.o_qa_page .o_qa_notice {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    text-align: center;
+    background: var(--qa-surface);
+    border-radius: var(--qa-radius);
+    padding: 3rem 2rem;
+    box-shadow: var(--qa-shadow);
+    border: 1px solid var(--qa-border);
+}
+
+.o_qa_page .o_qa_notice_icon {
+    font-size: 3rem;
+    color: var(--qa-primary);
+    margin-bottom: 1rem;
+}
+
+.o_qa_page .o_qa_notice h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--qa-text);
+}
+
+.o_qa_page .o_qa_notice p {
+    color: var(--qa-text-muted);
+    margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE — mobile-first, tighten for small screens
+   ============================================================ */
+@media (max-width: 768px) {
+    .o_qa_page .o_qa_hero {
+        padding: 2rem 0 3rem;
+    }
+
+    .o_qa_page .o_qa_hero_title {
+        font-size: 1.75rem;
+    }
+
+    .o_qa_page .o_qa_main {
+        margin-top: -2rem;
+        padding-bottom: 2rem;
+    }
+
+    .o_qa_page .o_qa_submit_card {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .o_qa_page .o_qa_submit_header {
+        gap: 0.75rem;
+    }
+
+    .o_qa_page .o_qa_submit_icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .o_qa_page .o_qa_submit_header h3 {
+        font-size: 1.1rem;
+    }
+
+    .o_qa_page .o_qa_question_card .card-body {
+        padding: 1rem;
+        gap: 0.75rem;
+    }
+
+    .o_qa_page .o_qa_vote_section {
+        width: 48px;
+    }
+
+    .o_qa_page .o_qa_vote_btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+        border-radius: 12px;
+    }
+
+    .o_qa_page .o_qa_vote_count {
+        font-size: 1rem;
+    }
+
+    .o_qa_page .o_qa_question_text {
+        font-size: 0.95rem;
+    }
+
+    .o_qa_page .o_qa_btn_submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .o_qa_page .o_qa_section_title h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* ============================================================
+   PRESENTER VIEW (dark theme, projection)
+   ============================================================ */
+body:has(.o_qa_presenter) #wrapwrap > header,
+body:has(.o_qa_presenter) #wrapwrap > footer,
+body:has(.o_qa_presenter) .o_main_navbar,
+body:has(.o_qa_presenter) #oe_main_menu_navbar {
+    display: none !important;
+}
+
+body:has(.o_qa_presenter) {
+    background: #0f1020;
+}
+
+.o_qa_presenter {
+    min-height: 100vh;
+    padding: 2rem 3rem;
+    background: linear-gradient(135deg, #0f1020 0%, #1a1a3a 100%);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.o_qa_presenter_header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.o_qa_presenter_header h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+}
+
+.o_qa_presenter_header h3 {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+.o_qa_presenter_main {
+    flex-grow: 1;
+}
+
+.o_qa_presenter .o_qa_question_card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    margin-bottom: 1rem;
+    border-radius: 16px;
+    animation: o_qa_fade_in 0.3s ease-out;
+}
+
+.o_qa_presenter .o_qa_question_card:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: none;
+}
+
+.o_qa_presenter .o_qa_question_card .card-body {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+.o_qa_presenter .o_qa_vote_section {
+    width: 80px;
+    text-align: center;
+}
+
+.o_qa_presenter .o_qa_question_text {
+    font-size: 1.6rem;
+    line-height: 1.4;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.o_qa_presenter .o_qa_question_body small {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 1rem;
+}
+
+.o_qa_presenter .o_qa_vote_btn {
+    pointer-events: none;
+    background: rgba(76, 201, 240, 0.15);
+    border: 2px solid rgba(76, 201, 240, 0.4);
+    color: #4cc9f0;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
+    font-size: 1.5rem;
+}
+
+.o_qa_presenter .o_qa_vote_count {
+    font-size: 2rem;
+    color: #4cc9f0;
+    font-weight: 700;
+}
+
+.o_qa_presenter_footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+}
+
+.o_qa_presenter_loading {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    padding: 3rem;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .o_qa_presenter {
+        padding: 1rem;
+    }
+
+    .o_qa_presenter_header h1 {
+        font-size: 1.6rem;
+    }
+
+    .o_qa_presenter_header h3 {
+        font-size: 1rem;
+    }
+
+    .o_qa_presenter .o_qa_question_text {
+        font-size: 1.1rem;
+    }
+
+    .o_qa_presenter .o_qa_vote_count {
+        font-size: 1.3rem;
+    }
+}

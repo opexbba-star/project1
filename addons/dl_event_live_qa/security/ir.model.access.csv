@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_event_qa_question_user,Utilisateur question Q&A,model_event_qa_question,event.group_event_user,1,1,1,0
+access_event_qa_question_manager,Manager question Q&A,model_event_qa_question,event.group_event_manager,1,1,1,1

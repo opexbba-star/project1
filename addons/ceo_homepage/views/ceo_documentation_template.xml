@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="ceo_documentation_page" name="Documentation OpEx Page">
+        <t t-call="website.layout">
+            <div id="wrap" class="oe_structure">
+                <!-- ═══ HERO SECTION ═══ -->
+                <section class="doc-hero">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <span class="doc-badge">Centre de Connaissances</span>
+                                <h1 class="doc-title">L'Excellence Opérationnelle (OpEx)</h1>
+                                <p class="doc-lead">
+                                    Découvrez les méthodologies et outils qui transforment les entreprises en leaders de performance.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ═══ INTRO SECTION ═══ -->
+                <section class="doc-section">
+                    <div class="container">
+                        <div class="doc-card main-intro">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h2>Qu'est-ce que l'Excellence Opérationnelle ?</h2>
+                                    <p>
+                                        L'Excellence Opérationnelle est une démarche systématique qui vise à améliorer la performance d'une organisation en termes de productivité, de qualité des produits, de coûts et de délais.
+                                    </p>
+                                    <p>
+                                        Elle ne se limite pas à l'utilisation d'outils, mais constitue une véritable culture d'entreprise centrée sur la création de valeur pour le client et l'élimination des gaspillages.
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="doc-pillars">
+                                        <div class="pillar-item">
+                                            <strong>Le modèle HODA</strong>
+                                            <p>Humaine, Opérationnelle, Digitale, Agile.</p>
+                                        </div>
+                                        <div class="pillar-item">
+                                            <strong>Lean Six Sigma</strong>
+                                            <p>Fluidité des flux et réduction de la variabilité.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ═══ RESOURCES GRID ═══ -->
+                <section class="doc-section doc-bg-alt">
+                    <div class="container">
+                        <div class="doc-header">
+                            <h2>Ressources &amp; Documentation</h2>
+                            <p>Une sélection de guides et outils fiables pour votre montée en compétences.</p>
+                        </div>
+                        <div class="doc-grid">
+                            <!-- Resource 1 -->
+                            <div class="doc-item-card">
+                                <div class="doc-item-icon">📚</div>
+                                <h3>Guide Lean Six Sigma</h3>
+                                <p>Un manuel complet couvrant les principes, outils et techniques du Lean et du Six Sigma.</p>
+                                <a href="https://open.umn.edu/opentextbooks/textbooks/1179" target="_blank" class="doc-link">Consulter le manuel →</a>
+                            </div>
+                            <!-- Resource 2 -->
+                            <div class="doc-item-card">
+                                <div class="doc-item-icon">🛠️</div>
+                                <h3>Modèles &amp; Templates</h3>
+                                <p>Accédez à des outils prêts à l'emploi (5S, Ishikawa, Pareto, Plan d'actions).</p>
+                                <a href="https://www.leanenligne.com/" target="_blank" class="doc-link">Accéder aux outils →</a>
+                            </div>
+                            <!-- Resource 3 -->
+                            <div class="doc-item-card">
+                                <div class="doc-item-icon">🔬</div>
+                                <h3>Méthodologie DMAIC</h3>
+                                <p>Le standard pour la résolution de problèmes complexes basée sur les données.</p>
+                                <a href="https://www.leansixsigma.org/lean-six-sigma-dmaic/" target="_blank" class="doc-link">Découvrir le DMAIC →</a>
+                            </div>
+                            <!-- Resource 4 -->
+                            <div class="doc-item-card">
+                                <div class="doc-item-icon">📈</div>
+                                <h3>Kaizen &amp; Amélioration Continue</h3>
+                                <p>Comprendre l'approche Kaizen pour une efficacité opérationnelle durable.</p>
+                                <a href="https://www.kaizen.com/" target="_blank" class="doc-link">Explorer Kaizen.com →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ═══ STYLE ═══ -->
+                <style>
+                    :root {
+                        --doc-primary: #1a1440;
+                        --doc-accent: #fbb034;
+                        --doc-bg: #ffffff;
+                        --doc-bg-alt: #f8fafc;
+                        --doc-text: #334155;
+                        --doc-text-light: #64748b;
+                    }
+
+                    .doc-hero {
+                        background: linear-gradient(135deg, var(--doc-primary) 0%, #2d1b69 100%);
+                        padding: 100px 0 80px;
+                        color: white;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .doc-badge {
+                        display: inline-block;
+                        padding: 6px 16px;
+                        background: rgba(251, 176, 52, 0.15);
+                        border: 1px solid rgba(251, 176, 52, 0.3);
+                        border-radius: 50px;
+                        color: var(--doc-accent);
+                        font-size: 12px;
+                        font-weight: 700;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        margin-bottom: 24px;
+                    }
+
+                    .doc-title {
+                        font-size: 48px;
+                        font-weight: 900;
+                        margin-bottom: 20px;
+                        line-height: 1.1;
+                    }
+
+                    .doc-lead {
+                        font-size: 20px;
+                        color: rgba(255,255,255,0.8);
+                        max-width: 600px;
+                        margin-bottom: 0;
+                    }
+
+                    .doc-section {
+                        padding: 80px 0;
+                    }
+
+                    .doc-bg-alt {
+                        background-color: var(--doc-bg-alt);
+                    }
+
+                    .doc-card {
+                        background: white;
+                        border-radius: 24px;
+                        padding: 48px;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+                        border: 1px solid rgba(0,0,0,0.05);
+                    }
+
+                    .doc-card h2 {
+                        color: var(--doc-primary);
+                        font-weight: 800;
+                        margin-bottom: 24px;
+                    }
+
+                    .doc-card p {
+                        color: var(--doc-text);
+                        line-height: 1.7;
+                        font-size: 16px;
+                    }
+
+                    .doc-pillars {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px;
+                        padding-left: 20px;
+                        border-left: 3px solid var(--doc-accent);
+                    }
+
+                    .pillar-item strong {
+                        display: block;
+                        color: var(--doc-primary);
+                        font-size: 18px;
+                        margin-bottom: 5px;
+                    }
+
+                    .pillar-item p {
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        color: var(--doc-text-light);
+                    }
+
+                    .doc-header {
+                        text-align: center;
+                        margin-bottom: 60px;
+                    }
+
+                    .doc-header h2 {
+                        font-size: 36px;
+                        font-weight: 800;
+                        color: var(--doc-primary);
+                        margin-bottom: 16px;
+                    }
+
+                    .doc-grid {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                        gap: 30px;
+                    }
+
+                    .doc-item-card {
+                        background: white;
+                        padding: 40px;
+                        border-radius: 20px;
+                        border: 1px solid rgba(0,0,0,0.05);
+                        transition: all 0.3s ease;
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    .doc-item-card:hover {
+                        transform: translateY(-10px);
+                        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+                        border-color: var(--doc-accent);
+                    }
+
+                    .doc-item-icon {
+                        font-size: 40px;
+                        margin-bottom: 24px;
+                    }
+
+                    .doc-item-card h3 {
+                        font-size: 20px;
+                        font-weight: 700;
+                        color: var(--doc-primary);
+                        margin-bottom: 16px;
+                    }
+
+                    .doc-item-card p {
+                        color: var(--doc-text-light);
+                        font-size: 15px;
+                        line-height: 1.6;
+                        margin-bottom: 24px;
+                        flex-grow: 1;
+                    }
+
+                    .doc-link {
+                        color: var(--doc-accent);
+                        font-weight: 700;
+                        text-decoration: none;
+                        font-size: 14px;
+                        transition: color 0.2s;
+                    }
+
+                    .doc-link:hover {
+                        color: var(--doc-primary);
+                    }
+
+                    @media (max-width: 768px) {
+                        .doc-title { font-size: 32px; }
+                        .doc-card { padding: 30px; }
+                        .doc-hero { padding: 60px 0; }
+                    }
+                </style>
+            </div>
+        </t>
+    </template>
+</odoo>

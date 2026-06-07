@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ceo_membership_plan_user,ceo.membership.plan.user,model_ceo_membership_plan,ceo_membership.group_ceo_membership_user,1,0,0,0
+access_ceo_membership_plan_manager,ceo.membership.plan.manager,model_ceo_membership_plan,ceo_membership.group_ceo_membership_manager,1,1,1,1
+access_ceo_membership_application_user,ceo.membership.application.user,model_ceo_membership_application,ceo_membership.group_ceo_membership_user,1,1,1,0
+access_ceo_membership_application_manager,ceo.membership.application.manager,model_ceo_membership_application,ceo_membership.group_ceo_membership_manager,1,1,1,1
+access_ceo_membership_member_user,ceo.membership.member.user,model_ceo_membership_member,ceo_membership.group_ceo_membership_user,1,0,0,0
+access_ceo_membership_member_manager,ceo.membership.member.manager,model_ceo_membership_member,ceo_membership.group_ceo_membership_manager,1,1,1,1
+access_ceo_membership_plan_admin,ceo.membership.plan.admin,model_ceo_membership_plan,base.group_user,1,1,1,1
+access_ceo_membership_application_admin,ceo.membership.application.admin,model_ceo_membership_application,base.group_user,1,1,1,1
+access_ceo_membership_member_admin,ceo.membership.member.admin,model_ceo_membership_member,base.group_user,1,1,1,1

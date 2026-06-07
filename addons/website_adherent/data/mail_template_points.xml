@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="mail_template_approve_points" model="mail.template">
+        <field name="name">Points Request Approval</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="subject">Your Points Request Has Been Approved</field>
+
+        <!-- Sender (Jinja2 format) -->
+        <field name="email_from">{{ user.email_formatted if user else 'noreply@example.com' }}</field>
+
+        <!-- Recipient -->
+        <field name="email_to">{{ object.email }}</field>
+
+        <!-- Email body -->
+        <field name="body_html">
+            <![CDATA[
+            <p>Bonjour,</p>
+
+            <p>Votre demande d’ajout de points a été <strong>approuvée</strong> 🎉</p>
+
+            <p>Vous pouvez désormais consulter vos points mis à jour depuis votre espace.</p>
+
+            <p>Merci d’être adhérent 🙌</p>
+            ]]>
+        </field>
+    </record>
+</odoo>

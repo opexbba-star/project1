@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--
+        Vue Présentateur : destinée à la projection.
+        Utilise website.layout pour charger tous les assets/JS, mais le CSS
+        de qa_style.css masque la navbar/footer lorsque `.o_qa_presenter`
+        est présent, donnant un effet quasi plein écran.
+        Le flag `data-presenter="1"` indique au JS de désactiver les votes.
+    -->
+    <template id="qa_presenter_view" name="Vue Présentateur Q&amp;A">
+        <t t-call="website.layout">
+            <div class="o_qa_presenter o_event_qa_live"
+                 t-att-data-token="track.qa_access_token"
+                 data-presenter="1">
+
+                <header class="o_qa_presenter_header">
+                    <h1 t-esc="track.name"/>
+                    <h3 t-esc="track.event_id.name"/>
+                    <div class="o_qa_presenter_state">
+                        <t t-if="track.qa_state == 'active'">
+                            <span class="badge text-bg-success">
+                                <i class="fa fa-circle me-1"/>EN DIRECT
+                            </span>
+                        </t>
+                        <t t-elif="track.qa_state == 'done'">
+                            <span class="badge text-bg-secondary">Clôturé</span>
+                        </t>
+                        <t t-else="">
+                            <span class="badge text-bg-light">Pas commencé</span>
+                        </t>
+                    </div>
+                </header>
+
+                <main class="o_qa_presenter_main">
+                    <div class="o_qa_questions_list">
+                        <p class="o_qa_presenter_loading">Chargement des questions…</p>
+                    </div>
+                </main>
+
+                <footer class="o_qa_presenter_footer">
+                    <small>
+                        Posez votre question sur
+                        <strong>
+                            <t t-esc="request.httprequest.host_url.rstrip('/')"/>/event/qa/<t t-esc="track.qa_access_token"/>
+                        </strong>
+                    </small>
+                </footer>
+            </div>
+        </t>
+    </template>
+
+</odoo>
