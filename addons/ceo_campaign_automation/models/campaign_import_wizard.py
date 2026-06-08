@@ -237,44 +237,66 @@ Pour un nouveau champ :
         return field_name
 
     def _update_partner_form_view(self, field_name=None):
-        """Inject the new <field/> tags into a purely dynamic inherited view."""
+        """
+        Inject ALL existing manual x_* fields into a single sibling dynamic
+        view that inherits directly from base.view_partner_form (same parent
+        as the static CEO tab view).  This avoids the triple-inheritance chain
+        that Odoo 19 rejects, and overwrites the arch each time so there are
+        never duplicate <field/> tags.
+        """
         View = self.env['ir.ui.view']
-        
+
+        # Collect every manual x_* field on res.partner
         partner_model = self.env['ir.model']._get('res.partner')
         custom_fields = self.env['ir.model.fields'].search([
             ('model_id', '=', partner_model.id),
             ('name', '=like', 'x_%'),
             ('state', '=', 'manual'),
-        ])
+        ], order='name')
         if not custom_fields:
             return
 
-        dynamic_view = View.search([('name', '=', 'res.partner.dynamic.ai.fields')], limit=1)
-        
-        arch_body = ""
-        for cfield in custom_fields:
-            arch_body += f'<field name="{cfield.name}"/>\n'
-            
-        arch = f'''<xpath expr="//page[@name='ai_imported_fields']/group[@name='dynamic_fields_group']" position="inside">
-            {arch_body}
-        </xpath>'''
-        
-        parent_view = self.env.ref('ceo_campaign_automation.view_partner_form_dynamic_fields', raise_if_not_found=False)
-        if not parent_view:
+        # Build ONE xpath that replaces the entire group content each time
+        # The target page/group already exist in the merged arch thanks to the
+        # static view (view_partner_form_dynamic_fields), which runs first at
+        # its default priority.  Our sibling view runs at priority=99 (after).
+        fields_xml = '\n                '.join(
+            f'<field name="{cf.name}" string="{cf.field_description}"/>'
+            for cf in custom_fields
+        )
+        arch = (
+            "<data>"
+            "<xpath expr=\"//page[@name='ai_imported_fields']"
+            "/group[@name='dynamic_fields_group']\" position=\"replace\">\n"
+            "            <group name=\"dynamic_fields_group\" "
+            "string=\"Champs personnalisés\" col=\"4\">\n"
+            f"                {fields_xml}\n"
+            "            </group>\n"
+            "        </xpath></data>"
+        )
+
+        # The base form view is the root ancestor — inherit from it directly
+        base_form = self.env.ref('base.view_partner_form', raise_if_not_found=False)
+        if not base_form:
             return
-            
+
+        DYNAMIC_VIEW_NAME = 'res.partner.ceo.dynamic.fields'
+        dynamic_view = View.search([('name', '=', DYNAMIC_VIEW_NAME)], limit=1)
         if dynamic_view:
+            # Overwrite — idempotent, no duplicates
             dynamic_view.write({'arch': arch})
         else:
             View.create({
-                'name': 'res.partner.dynamic.ai.fields',
+                'name': DYNAMIC_VIEW_NAME,
                 'type': 'form',
                 'model': 'res.partner',
-                'inherit_id': parent_view.id,
+                'inherit_id': base_form.id,
+                'priority': 99,   # run after the static CEO tab view
                 'arch': arch,
             })
-            
+
         self.env.registry.clear_cache()
+        self.env.invalidate_all()
 
     # ------------------------------------------------------------------ #
     # File parsing
@@ -452,11 +474,12 @@ Pour un nouveau champ :
             else:
                 column_map[line.header] = line.suggested_field
 
-        # Create partners
+        # Create / update partners (upsert by email then name)
         Partner = self.env['res.partner']
         partner_fields = Partner.fields_get(attributes=['type', 'relation', 'selection'])
 
         created = 0
+        updated = 0
         ignored = 0
         errors = []
         for row in rows:
@@ -475,7 +498,8 @@ Pour un nouveau champ :
                 if ftype == 'many2one':
                     relation = partner_fields[fname].get('relation')
                     if relation:
-                        record = self.env[relation].search([('name', 'ilike', str(value).strip())], limit=1)
+                        record = self.env[relation].search(
+                            [('name', 'ilike', str(value).strip())], limit=1)
                         if record:
                             vals[fname] = record.id
                         else:
@@ -498,15 +522,14 @@ Pour un nouveau champ :
                                 tag_ids.append(tag.id)
                         vals[fname] = [(6, 0, tag_ids)]
                 elif ftype == 'boolean':
-                    vals[fname] = str(value).strip().lower() in ('true', '1', 'oui', 'yes', 'vrai')
+                    vals[fname] = str(value).strip().lower() in (
+                        'true', '1', 'oui', 'yes', 'vrai')
                 elif ftype == 'selection':
                     val_lower = str(value).strip().lower()
                     matched_key = value
-                    
-                    # Fallbacks for the template's hardcoded English options
                     hardcoded_map = {
                         'type': {
-                            'contact': 'contact', 'invoice address': 'invoice', 
+                            'contact': 'contact', 'invoice address': 'invoice',
                             'delivery address': 'delivery', 'other address': 'other',
                             'private address': 'private'
                         },
@@ -520,7 +543,8 @@ Pour un nouveau champ :
                         sel_options = partner_fields[fname].get('selection')
                         if sel_options and isinstance(sel_options, list):
                             for k, s in sel_options:
-                                if str(s).strip().lower() == val_lower or str(k).strip().lower() == val_lower:
+                                if (str(s).strip().lower() == val_lower
+                                        or str(k).strip().lower() == val_lower):
                                     matched_key = k
                                     break
                     vals[fname] = matched_key
@@ -530,17 +554,33 @@ Pour un nouveau champ :
             if notes:
                 existing_comment = vals.get('comment', '')
                 notes_text = "\n".join(notes)
-                if existing_comment:
-                    vals['comment'] = f"{existing_comment}\n\n---\nInformations Importées:\n{notes_text}"
-                else:
-                    vals['comment'] = f"Informations Importées:\n{notes_text}"
+                vals['comment'] = (
+                    f"{existing_comment}\n\n---\nInformations Importées:\n{notes_text}"
+                    if existing_comment
+                    else f"Informations Importées:\n{notes_text}"
+                )
 
             if not vals.get('name'):
                 ignored += 1
                 continue
+
             try:
-                Partner.create(vals)
-                created += 1
+                # ── Upsert: match by email first, then by exact name ──────
+                existing = None
+                email_val = vals.get('email', '').strip().lower()
+                if email_val:
+                    existing = Partner.search(
+                        [('email', '=ilike', email_val)], limit=1)
+                if not existing:
+                    existing = Partner.search(
+                        [('name', '=', vals.get('name', ''))], limit=1)
+
+                if existing:
+                    existing.write(vals)
+                    updated += 1
+                else:
+                    Partner.create(vals)
+                    created += 1
             except Exception as e:
                 ignored += 1
                 if len(errors) < 10:
@@ -551,6 +591,7 @@ Pour un nouveau champ :
             _("Source : %s") % dict(self._fields['source_tag'].selection).get(self.source_tag),
             _("Lignes traitées : %d") % len(rows),
             _("Contacts créés : %d") % created,
+            _("Contacts mis à jour : %d") % updated,
             _("Lignes ignorées : %d") % ignored,
             _("Colonnes importées : %d / %d") % (
                 len(column_map), len(self.column_line_ids)),
