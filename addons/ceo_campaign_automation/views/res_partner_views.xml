@@ -7,11 +7,51 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//notebook" position="inside">
+                <page string="Qualification" name="qualification">
+                    <group>
+                        <group name="qualification_scoring" string="Scoring">
+                            <field name="email_valid" widget="boolean_toggle"/>
+                            <field name="phone_valid" widget="boolean_toggle"/>
+                            <field name="qualification_score"/>
+                        </group>
+                    </group>
+                </page>
                 <page string="Champs IA Importés" name="ai_imported_fields">
                     <group name="dynamic_fields_group" string="Champs personnalisés" col="4">
                         <!-- Les champs créés dynamiquement par l'IA lors des imports de fichiers seront insérés ici automatiquement -->
                     </group>
                 </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vue Héritée Recherche : res.partner pour filtrer sur la qualification -->
+    <record id="view_res_partner_filter_qualification" model="ir.ui.view">
+        <field name="name">res.partner.select.qualification</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <separator/>
+                <filter string="Email Valide" name="filter_email_valid" domain="[('email_valid', '=', True)]"/>
+                <filter string="Téléphone Valide" name="filter_phone_valid" domain="[('phone_valid', '=', True)]"/>
+                <separator/>
+                <filter string="Score &gt; 0" name="filter_score_positive" domain="[('qualification_score', '&gt;', 0)]"/>
+                <filter string="Score = 2 (Top)" name="filter_score_max" domain="[('qualification_score', '=', 2)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vue Héritée Liste : res.partner pour afficher le score -->
+    <record id="view_partner_tree_qualification" model="ir.ui.view">
+        <field name="name">res.partner.tree.qualification</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="qualification_score" optional="show"/>
+                <field name="email_valid" optional="hide"/>
+                <field name="phone_valid" optional="hide"/>
             </xpath>
         </field>
     </record>

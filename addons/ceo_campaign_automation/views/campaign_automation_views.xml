@@ -94,7 +94,7 @@
                                 </group>
                                 <div class="oe_grey" colspan="2">
                                     <p>
-                                        <i class="fa fa-info-circle"/> <em>Note :</em> Les informations saisies ici sont automatiquement mémorisées dans les paramètres système pour vous éviter de les retaper lors de la création de votre prochaine campagne !
+                                        <i class="fa fa-info-circle" title="Information"/> <em>Note :</em> Les informations saisies ici sont automatiquement mémorisées dans les paramètres système pour vous éviter de les retaper lors de la création de votre prochaine campagne !
                                     </p>
                                 </div>
                             </group>
