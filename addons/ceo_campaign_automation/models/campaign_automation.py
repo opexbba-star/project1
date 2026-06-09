@@ -48,7 +48,7 @@ class CampaignAutomation(models.Model):
 
     # Contenu unique de l'email pour tout l'échantillon
     generated_subject = fields.Char(string="Objet de l'email", tracking=True)
-    generated_body = fields.Html(string="Corps de l'email (IA)", tracking=True)
+    generated_body = fields.Html(string="Corps de l'email (IA)")
     rephrase_prompt = fields.Char(string="Instruction de reformulation IA", help="Ex: Rends le texte plus formel, raccourcis le texte, ajoute un PS, etc.")
 
     # Variables de connexion et d'API saisies directement dans l'interface par l'utilisateur
@@ -216,6 +216,18 @@ Applique l'instruction et renvoie le nouvel e-mail DIRECTEMENT en HTML propre (s
 
         except Exception as e:
             raise UserError(_("Erreur lors de la reformulation IA : %s") % str(e))
+
+    def action_use_manual_email(self):
+        """
+        Permet à l'utilisateur d'utiliser son propre contenu (objet + corps rédigés/collés à la main)
+        sans passer par la génération IA.
+        """
+        self.ensure_one()
+        if not self.generated_body:
+            raise UserError(_("Veuillez saisir le corps de l'e-mail dans l'onglet 'Contenu de l'E-mail' avant de continuer."))
+        if not self.generated_subject:
+            self.generated_subject = self.name
+        self.state = 'ai_generated'
 
     def action_confirm_campaign(self):
         self.state = 'ready'

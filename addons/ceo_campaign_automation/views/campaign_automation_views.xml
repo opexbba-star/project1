@@ -9,6 +9,7 @@
                 <header>
                     <button name="action_fetch_sample_contacts" string="1. Extraire Échantillon Contacts" type="object" class="oe_highlight" invisible="state not in ('draft', 'contacts_fetched')"/>
                     <button name="action_generate_ai_emails" string="2. Générer Email par IA" type="object" class="oe_highlight" invisible="state not in ('contacts_fetched', 'ai_generated')"/>
+                    <button name="action_use_manual_email" string="2b. Utiliser mon propre email" type="object" invisible="state not in ('contacts_fetched', 'ai_generated')"/>
                     <button name="action_confirm_campaign" string="3. Valider la campagne" type="object" class="oe_highlight" invisible="state != 'ai_generated'"/>
                     <button name="action_send_campaign" string="4. Envoyer la campagne" type="object" class="oe_highlight" invisible="state != 'ready'" confirm="Êtes-vous sûr de vouloir envoyer cet e-mail à tous les contacts de l'échantillon ?"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,contacts_fetched,ai_generated,ready,done"/>
