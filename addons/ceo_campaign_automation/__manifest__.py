@@ -1,13 +1,13 @@
 {
     'name': 'CEO AI Campaign Automation',
     'version': '19.0.1.0.0',
-    'summary': 'Automatisation de campagnes marketing propulsée par l\'IA (Gemini Flash) et connecteur multi-DB',
+    'summary': 'Automatisation de campagnes marketing propulsée par l\'IA (Gemini Flash)',
     'description': """
 CEO AI Campaign Automation
 ==========================
 Ce module gère l'automatisation de campagnes marketing intelligentes :
 - Définition du thème, titre, description et critères de ciblage (région, domaine d'activité).
-- Connecteur XML-RPC pour extraire un échantillon de contacts depuis une autre base de données Odoo.
+- Extraction d'un échantillon de contacts directement depuis la base de données locale (res.partner).
 - Génération personnalisée du corps des e-mails via l'IA Google Gemini 1.5 Flash.
 - Édition manuelle et reformulation assistée par l'IA avant envoi.
 - Importation intelligente et automatique Excel/CSV de contacts avec mapping heuristique et IA.

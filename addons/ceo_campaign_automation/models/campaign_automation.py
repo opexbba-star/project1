@@ -1,4 +1,3 @@
-import xmlrpc.client
 import requests
 import json
 from odoo import api, fields, models, _
@@ -53,80 +52,48 @@ class CampaignAutomation(models.Model):
     rephrase_prompt = fields.Char(string="Instruction de reformulation IA", help="Ex: Rends le texte plus formel, raccourcis le texte, ajoute un PS, etc.")
 
     # Variables de connexion et d'API saisies directement dans l'interface par l'utilisateur
-    external_odoo_url = fields.Char(string="URL Odoo Externe", default=lambda self: self.env['ir.config_parameter'].sudo().get_param('ceo_campaign_automation.external_odoo_url', ''), tracking=True)
-    external_odoo_db = fields.Char(string="Base de données", default=lambda self: self.env['ir.config_parameter'].sudo().get_param('ceo_campaign_automation.external_odoo_db', ''), tracking=True)
-    external_odoo_user = fields.Char(string="Utilisateur / Email", default=lambda self: self.env['ir.config_parameter'].sudo().get_param('ceo_campaign_automation.external_odoo_user', ''), tracking=True)
-    external_odoo_password = fields.Char(string="Mot de passe / Clé API", default=lambda self: self.env['ir.config_parameter'].sudo().get_param('ceo_campaign_automation.external_odoo_password', ''))
-    
     gemini_api_key = fields.Char(string="Clé API Google Gemini", default=lambda self: self.env['ir.config_parameter'].sudo().get_param('ceo_campaign_automation.gemini_api_key', ''))
 
     def _save_connection_params(self):
         """Sauvegarde automatique des paramètres saisis pour les réutiliser dans les futures campagnes."""
         set_param = self.env['ir.config_parameter'].sudo().set_param
-        if self.external_odoo_url:
-            set_param('ceo_campaign_automation.external_odoo_url', self.external_odoo_url)
-        if self.external_odoo_db:
-            set_param('ceo_campaign_automation.external_odoo_db', self.external_odoo_db)
-        if self.external_odoo_user:
-            set_param('ceo_campaign_automation.external_odoo_user', self.external_odoo_user)
-        if self.external_odoo_password:
-            set_param('ceo_campaign_automation.external_odoo_password', self.external_odoo_password)
         if self.gemini_api_key:
             set_param('ceo_campaign_automation.gemini_api_key', self.gemini_api_key)
 
     def action_fetch_sample_contacts(self):
         """
-        Connexion à la base Odoo distante via XML-RPC en utilisant les identifiants saisis dans l'interface.
+        Recherche des contacts dans la base de données locale (res.partner) selon les critères de ciblage.
         """
         self.ensure_one()
         self._save_connection_params()
 
-        url = self.external_odoo_url
-        db = self.external_odoo_db
-        user = self.external_odoo_user
-        password = self.external_odoo_password
-
-        if not (url and db and user and password):
-            raise UserError(_("Veuillez renseigner les 4 champs de connexion à l'Odoo externe dans l'onglet 'Connexion & API'."))
-
         try:
-            common = xmlrpc.client.ServerProxy('{}/xmlrpc/2/common'.format(url))
-            uid = common.authenticate(db, user, password, {})
-            if not uid:
-                raise UserError(_("Échec de l'authentification sur la base distante. Vérifiez les identifiants saisis."))
-
-            models_proxy = xmlrpc.client.ServerProxy('{}/xmlrpc/2/object'.format(url))
-            
             domain = []
             if self.target_region:
                 domain.append(('city', 'ilike', self.target_region))
             if self.target_activity_domain:
                 domain.append(('function', 'ilike', self.target_activity_domain))
 
-            contacts = models_proxy.execute_kw(db, uid, password,
-                'res.partner', 'search_read',
-                [domain],
-                {'fields': ['id', 'name', 'email', 'city', 'function', 'comment'], 'limit': self.sample_limit}
-            )
+            contacts = self.env['res.partner'].search(domain, limit=self.sample_limit)
 
             self.contact_line_ids.unlink()
 
             lines_data = []
             for c in contacts:
-                if not c.get('email'):
+                if not c.email:
                     continue
                 lines_data.append((0, 0, {
-                    'external_contact_id': c.get('id'),
-                    'partner_name': c.get('name'),
-                    'email': c.get('email'),
-                    'region': c.get('city') or self.target_region or '',
-                    'activity_domain': c.get('function') or self.target_activity_domain or '',
-                    'preferences': c.get('comment') or 'Aucune note spécifique.',
+                    'external_contact_id': c.id,
+                    'partner_name': c.name,
+                    'email': c.email,
+                    'region': c.city or self.target_region or '',
+                    'activity_domain': c.function or self.target_activity_domain or '',
+                    'preferences': c.comment or 'Aucune note spécifique.',
                     'state': 'draft'
                 }))
 
             if not lines_data:
-                raise UserError(_("Aucun contact trouvé avec ces critères sur la base distante."))
+                raise UserError(_("Aucun contact trouvé avec ces critères dans la base de données locale."))
 
             self.write({
                 'contact_line_ids': lines_data,
@@ -134,7 +101,7 @@ class CampaignAutomation(models.Model):
             })
 
         except Exception as e:
-            raise UserError(_("Erreur lors de la connexion à la base distante : %s") % str(e))
+            raise UserError(_("Erreur lors de la recherche locale : %s") % str(e))
 
     def action_generate_ai_emails(self):
         """

@@ -29,14 +29,14 @@
                     <notebook>
                         <page string="Ciblage &amp; Échantillon" name="targeting">
                             <group>
-                                <group string="Critères de sélection (Base distante)">
+                                <group string="Critères de sélection (Base locale)">
                                     <field name="target_region" placeholder="Ex: Alger, Oran..."/>
                                     <field name="target_activity_domain" placeholder="Ex: Informatique, Industrie..."/>
                                     <field name="sample_limit"/>
                                 </group>
                                 <div class="oe_grey" colspan="2">
                                     <p>
-                                        <em>Astuce :</em> Les contacts seront extraits depuis la base de données distante configurée dans l'onglet 'Connexion &amp; API' via XML-RPC (limité à 25 contacts par défaut pour cet échantillon).
+                                        <em>Astuce :</em> Les contacts seront extraits depuis la base de données locale selon les critères définis.
                                     </p>
                                 </div>
                             </group>
@@ -81,14 +81,8 @@
                                 </form>
                             </field>
                         </page>
-                        <page string="Connexion &amp; API" name="connection_api">
+                        <page string="Configuration API" name="connection_api">
                             <group>
-                                <group string="Connexion Odoo Distante (XML-RPC)">
-                                    <field name="external_odoo_url" placeholder="https://mon-odoo-distant.com"/>
-                                    <field name="external_odoo_db" placeholder="nom_de_la_base"/>
-                                    <field name="external_odoo_user" placeholder="identifiant_ou_email"/>
-                                    <field name="external_odoo_password" password="True" placeholder="Mot de passe ou Clé API"/>
-                                </group>
                                 <group string="Intelligence Artificielle (Google Gemini)">
                                     <field name="gemini_api_key" password="True" placeholder="Clé API Gemini Flash"/>
                                 </group>
@@ -135,7 +129,7 @@
                 Créez votre première campagne marketing automatisée par IA !
             </p>
             <p>
-                Définissez un thème, configurez l'accès à votre base externe et à Gemini dans l'onglet 'Connexion &amp; API', ciblez un échantillon de contacts, et laissez l'IA rédiger un e-mail unique et percutant pour tout le groupe.
+                Définissez un thème, configurez l'accès à Gemini dans l'onglet 'Configuration API', ciblez un échantillon de contacts locaux, et laissez l'IA rédiger un e-mail unique et percutant pour tout le groupe.
             </p>
         </field>
     </record>

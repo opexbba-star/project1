@@ -8,20 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//form" position="inside">
                 <app data-string="Campaign AI" string="Campagnes IA" name="ceo_campaign_automation" groups="base.group_system">
-                    <block title="Connexion Odoo Distante (XML-RPC)" name="external_odoo_setting_container">
-                        <setting string="URL de l'Odoo Externe" help="URL complète de l'instance Odoo distante (ex: https://mon-odoo.com)">
-                            <field name="external_odoo_url"/>
-                        </setting>
-                        <setting string="Nom de la base de données" help="Nom exact de la base de données distante">
-                            <field name="external_odoo_db"/>
-                        </setting>
-                        <setting string="Utilisateur / Email" help="Identifiant de connexion à la base distante">
-                            <field name="external_odoo_user"/>
-                        </setting>
-                        <setting string="Mot de passe / Clé API" help="Clé API (recommandé) ou mot de passe de l'utilisateur distant">
-                            <field name="external_odoo_password" password="True"/>
-                        </setting>
-                    </block>
+
                     <block title="Intelligence Artificielle (Google Gemini)" name="gemini_ai_setting_container">
                         <setting string="Clé API Google Gemini" help="Clé API pour Gemini 1.5 Flash (disponible sur Google AI Studio)">
                             <field name="gemini_api_key" password="True"/>
