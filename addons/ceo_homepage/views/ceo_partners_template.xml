@@ -90,6 +90,273 @@
                     </div>
                 </section>
 
+                <!-- ============================================================ -->
+                <!-- 9. Spotlight Partenaire : SOMEPHARM Distribution              -->
+                <!-- ============================================================ -->
+                <section class="chp-section chp-partner-spotlight chp-reveal">
+                    <div class="chp-container">
+
+                        <!-- Header -->
+                        <div class="chp-section-title mb-5 text-center w-100">
+                            <h1 class="display-3 fw-bold mb-4">PARTENAIRE À LA UNE</h1>
+                            <div class="chp-title-line mx-auto mb-5"></div>
+                            <h2 class="chp-reveal">SOMEPHARM Distribution</h2>
+                            <p class="chp-reveal delay-2" style="font-style: italic; color: var(--ca);">
+                                L'innovation &amp; la transparence au service du Pharmacien
+                            </p>
+                        </div>
+
+                        <!-- Intro row : logo + présentation -->
+                        <div class="row align-items-center mb-5 g-4">
+                            <div class="col-lg-3 text-center chp-reveal">
+                                <div class="chp-spotlight-logo-wrap">
+                                    <img src="/ceo_homepage/static/src/img/logo_SOMEPHARM.PNG"
+                                            alt="SOMEPHARM Distribution"
+                                            class="chp-spotlight-logo img-fluid"/>
+                                    <img src="/ceo_homepage/static/src/img/Capture_soepharm.PNG"
+                                            alt="SOMEPHARM Distribution"
+                                            class="chp-spotlight-logo img-fluid"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-9 chp-reveal delay-2">
+                                <p class="lead">
+                                    Fondée en <strong>1992</strong>, SOMEPHARM Distribution est l'une des premières entreprises privées de distribution et de répartition de produits pharmaceutiques, parapharmaceutiques et dispositifs médicaux en Algérie. Filiale du groupe des laboratoires <strong>FRATER-RAZES</strong>, elle s'est imposée comme un acteur incontournable de la chaîne pharmaceutique nationale.
+                                </p>
+                                <p>
+                                    Aujourd'hui, SOMEPHARM Distribution opère depuis un site de distribution d'une capacité avoisinant les <strong>10 millions d'unités</strong>, avec plus de <strong>650 employés</strong>, servant plus de <strong>1 600 partenaires pharmaciens</strong> à travers <strong>45 wilayas</strong> et traitant plus de <strong>2 500 commandes par jour</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- 4 piliers qualité -->
+                        <div class="row g-4 mb-5">
+                            <div class="col-sm-6 col-lg-3 chp-reveal">
+                                <div class="chp-somepharm-pillar">
+                                    <div class="chp-pillar-icon"><i class="fa fa-thermometer-half"></i></div>
+                                    <h5>Chaîne du Froid</h5>
+                                    <p>Respect strict de la chaîne de froid et gestion rigoureuse des produits thermosensibles.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 chp-reveal delay-2">
+                                <div class="chp-somepharm-pillar">
+                                    <div class="chp-pillar-icon"><i class="fa fa-barcode"></i></div>
+                                    <h5>Traçabilité des Lots</h5>
+                                    <p>Gestion et traçabilité des lots avec facturation par ligne, garantissant une transparence totale.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 chp-reveal delay-2">
+                                <div class="chp-somepharm-pillar">
+                                    <div class="chp-pillar-icon"><i class="fa fa-lock"></i></div>
+                                    <h5>Produits Psychotropes</h5>
+                                    <p>Gestion indépendante, sécurisée et rigoureuse des produits à contrôle spécial.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3 chp-reveal delay-3">
+                                <div class="chp-somepharm-pillar">
+                                    <div class="chp-pillar-icon"><i class="fa fa-archive"></i></div>
+                                    <h5>Stockage aux Normes</h5>
+                                    <p>Infrastructure conforme aux bonnes pratiques de distribution pharmaceutique.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Proximité & Digital -->
+                        <div class="row align-items-center g-5 chp-reveal delay-2">
+                            <!-- Proximité -->
+                            <div class="col-lg-6">
+                                <h4 class="mb-3" style="color: var(--cp); font-weight: 700;">
+                                    <i class="fa fa-handshake-o me-2" style="color: var(--ca);"></i>Proximité avec les Pharmaciens
+                                </h4>
+                                <ul class="chp-somepharm-list">
+                                    <li>
+                                        <i class="fa fa-phone" style="color: var(--ca);"></i>
+                                        <div>
+                                            <strong>Call Center performant</strong> — commandes de 08h30 à 17h00 (service commercial) et de 17h00 à 20h00 (permanence).
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-headphones" style="color: var(--ca);"></i>
+                                        <div>
+                                            <strong>Service clients dédié</strong> — réponse à toutes vos attentes et prise en charge de vos réclamations.
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-truck" style="color: var(--ca);"></i>
+                                        <div>
+                                            <strong>Livraison digitalisée</strong> avec suivi en temps réel et démarcheurs formés.
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Application mobile -->
+                            <div class="col-lg-6">
+                                <div class="chp-somepharm-app-card">
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        <div class="chp-app-badge"><i class="fa fa-mobile fa-2x"></i></div>
+                                        <div>
+                                            <h5 class="mb-0" style="color: var(--cp); font-weight: 700;">Application Mobile</h5>
+                                            <small style="color: var(--ca);">Disponible depuis Février 2021 · AppStore &amp; Google Play</small>
+                                        </div>
+                                    </div>
+                                    <p class="mb-3">Une véritable <strong>pharmacie en poche</strong>, opérationnelle <strong>24h/24 et 7j/7</strong> :</p>
+                                    <ul class="chp-app-features">
+                                        <li><i class="fa fa-check" style="color: var(--ca);"></i> Consultation de la disponibilité des médicaments</li>
+                                        <li><i class="fa fa-check" style="color: var(--ca);"></i> Commandes en ligne</li>
+                                        <li><i class="fa fa-check" style="color: var(--ca);"></i> Suivi des commandes en temps réel</li>
+                                        <li><i class="fa fa-check" style="color: var(--ca);"></i> Réclamations en ligne</li>
+                                        <li><i class="fa fa-check" style="color: var(--ca);"></i> Consultation, téléchargement et impression des rapports et factures</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- CSS for SOMEPHARM Spotlight Section -->
+                <style>
+                    /* ---- Partner Spotlight ---- */
+                    .chp-partner-spotlight {
+                        background: #fff;
+                        border-top: 4px solid var(--ca);
+                    }
+                    .chp-partner-eyebrow {
+                        display: inline-block;
+                        background: var(--ca);
+                        color: var(--cp);
+                        font-size: 0.75rem;
+                        font-weight: 800;
+                        letter-spacing: 0.15em;
+                        padding: 4px 14px;
+                        border-radius: 20px;
+                        margin-bottom: 12px;
+                        text-transform: uppercase;
+                    }
+                    .chp-spotlight-logo-wrap {
+                        background: #f8f9fa;
+                        border-radius: 16px;
+                        padding: 24px;
+                        border: 2px solid #e9ecef;
+                    }
+                    .chp-spotlight-logo {
+                        max-height: 100px;
+                        object-fit: contain;
+                    }
+
+                    /* Piliers qualité */
+                    .chp-somepharm-pillar {
+                        background: #f8f9fa;
+                        border-radius: 12px;
+                        padding: 24px 20px;
+                        height: 100%;
+                        border-bottom: 3px solid var(--ca);
+                        transition: transform 0.3s, box-shadow 0.3s;
+                    }
+                    .chp-somepharm-pillar:hover {
+                        transform: translateY(-4px);
+                        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+                    }
+                    .chp-pillar-icon {
+                        width: 48px;
+                        height: 48px;
+                        background: var(--ca);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        margin-bottom: 14px;
+                        color: var(--cp);
+                        font-size: 1.2rem;
+                    }
+                    .chp-somepharm-pillar h5 {
+                        font-weight: 700;
+                        color: var(--cp);
+                        margin-bottom: 8px;
+                    }
+                    .chp-somepharm-pillar p {
+                        font-size: 0.9rem;
+                        color: #6c757d;
+                        margin-bottom: 0;
+                    }
+
+                    /* Proximité list */
+                    .chp-somepharm-list {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 16px;
+                    }
+                    .chp-somepharm-list li {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 14px;
+                    }
+                    .chp-somepharm-list li i {
+                        margin-top: 3px;
+                        font-size: 1.1rem;
+                        flex-shrink: 0;
+                    }
+
+                    /* App card */
+                    .chp-somepharm-app-card {
+                        background: var(--cp);
+                        color: #fff;
+                        border-radius: 16px;
+                        padding: 28px 28px 24px;
+                    }
+                    .chp-somepharm-app-card p,
+                    .chp-somepharm-app-card small {
+                        color: rgba(255,255,255,0.85);
+                    }
+                    .chp-app-badge {
+                        width: 52px;
+                        height: 52px;
+                        background: var(--ca);
+                        border-radius: 12px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: var(--cp);
+                        flex-shrink: 0;
+                    }
+                    .chp-app-features {
+                        list-style: none;
+                        padding: 0;
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+                        font-size: 0.9rem;
+                    }
+                    .chp-app-features li {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 10px;
+                        color: rgba(255,255,255,0.9);
+                    }
+                    .chp-app-features li i {
+                        margin-top: 3px;
+                        flex-shrink: 0;
+                    }
+                    .chp-partner-spotlight .chp-section-title {
+                        text-align: center !important;
+                        width: 100%;
+                        display: block;
+                    }
+
+                    .chp-partner-spotlight .chp-section-title h1,
+                    .chp-partner-spotlight .chp-section-title h2,
+                    .chp-partner-spotlight .chp-section-title p,
+                    .chp-partner-spotlight .chp-section-title span {
+                        text-align: center !important;
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
+                </style>
+
                 <!-- 5. CTA Section -->
                 <section class="chp-section chp-cta-section text-center">
                     <div class="chp-container chp-reveal">

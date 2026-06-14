@@ -20,12 +20,9 @@ class CeoPartners(http.Controller):
                 {'src': '/ceo_homepage/static/src/img/Picture8.png', 'name': 'Deltalog'},
                 {'src': '/ceo_homepage/static/src/img/uveds_logo.PNG', 'name': 'Uveds'},
                 {'src': '/ceo_homepage/static/src/img/miniros_logo.PNG', 'name': 'Miniros'},
-                {'src': '/ceo_homepage/static/src/img/Picture4.jpg', 'name': 'Bleu'},
-                {'src': '/ceo_homepage/static/src/img/Picture5.jpg', 'name': 'Start\'Dz'},
-                {'src': '/ceo_homepage/static/src/img/Picture7.jpg', 'name': 'دار ذكاء اصطناعي'},
                 {'src': '/ceo_homepage/static/src/img/Picture9.png', 'name': 'Inkidia'},
-                {'src': '/ceo_homepage/static/src/img/Picture10.png', 'name': 'GSH'},
-                {'src': '/ceo_homepage/static/src/img/Picture11.jpg', 'name': 'FALMI'}
+                {'src': '/ceo_homepage/static/src/img/logo_SOMEPHARM.PNG', 'name': 'SOMEPHARM'},
+                {'src': '/ceo_homepage/static/src/img/Capture_soepharm.PNG', 'name': 'SOMEPHARM'},
             ]
         }
         return request.render('ceo_homepage.ceo_partners_page', partners_data)

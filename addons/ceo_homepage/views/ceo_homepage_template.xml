@@ -71,7 +71,7 @@
                     </div>
                 </section>
 
-                <!-- 3. Transformation CTA (The Requested Section) -->
+                <!-- 3. Transformation CTA -->
                 <section class="chp-section chp-cta-section">
                     <div class="chp-container">
                         <div class="row align-items-center">
@@ -79,13 +79,8 @@
                                 <div class="chp-cta-visual-wrap">
                                     <div class="chp-gears-container">
                                         <svg viewBox="0 0 921 923" xmlns="http://www.w3.org/2000/svg" class="chp-sketchy-gears">
-                                            <!-- Large Gear (Top Left) -->
                                             <g id="chp_gear1" class="gear" style="transform-origin: 265px 261px; animation-duration: 15s;"></g>
-                                            
-                                            <!-- Medium Gear (Right) -->
                                             <g id="chp_gear2" class="gear gear-ccw" style="transform-origin: 685px 495px; animation-duration: 15s;"></g>
-                                            
-                                            <!-- Small Gear (Bottom) -->
                                             <g id="chp_gear3" class="gear gear-ccw" style="transform-origin: 354px 731px; animation-duration: 15s;"></g>
                                         </svg>
                                         <script>
@@ -95,8 +90,6 @@
                                                     const g = document.getElementById(id);
                                                     if (!g) return;
                                                     const strokeWidth = 16;
-                                                    
-                                                    // 1. Inner Hole (Sketchy Circle)
                                                     const holeR = r * 0.45;
                                                     const hole = document.createElementNS("http://www.w3.org/2000/svg", "circle");
                                                     hole.setAttribute("cx", cx);
@@ -108,15 +101,10 @@
                                                     hole.setAttribute("stroke-linecap", "round");
                                                     hole.setAttribute("stroke-dasharray", "120 40 80 30");
                                                     g.appendChild(hole);
-
-                                                    // 2. Main Body and Teeth
                                                     const step = (Math.PI * 2) / teeth;
                                                     const gearGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                                                    
                                                     for (let i = 0; i < teeth; i++) {
                                                         const angle = i * step + rotationOffset;
-                                                        
-                                                        // Tooth points
                                                         const x1 = cx + Math.cos(angle - 0.2) * r;
                                                         const y1 = cy + Math.sin(angle - 0.2) * r;
                                                         const x2 = cx + Math.cos(angle - 0.25) * (r + toothH);
@@ -125,8 +113,6 @@
                                                         const y3 = cy + Math.sin(angle + 0.25) * (r + toothH);
                                                         const x4 = cx + Math.cos(angle + 0.2) * r;
                                                         const y4 = cy + Math.sin(angle + 0.2) * r;
-
-                                                        // Tooth path
                                                         const tooth = document.createElementNS("http://www.w3.org/2000/svg", "path");
                                                         tooth.setAttribute("d", `M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3} L ${x4} ${y4}`);
                                                         tooth.setAttribute("fill", "none");
@@ -134,15 +120,11 @@
                                                         tooth.setAttribute("stroke-width", strokeWidth);
                                                         tooth.setAttribute("stroke-linecap", "round");
                                                         tooth.setAttribute("stroke-linejoin", "round");
-                                                        // Randomly break tooth lines
                                                         if (Math.random() > 0.2) tooth.setAttribute("stroke-dasharray", "40 10 30 5");
                                                         gearGroup.appendChild(tooth);
-
-                                                        // Arc between teeth
                                                         const nextAngle = (i + 1) * step + rotationOffset;
                                                         const x5 = cx + Math.cos(nextAngle - 0.2) * r;
                                                         const y5 = cy + Math.sin(nextAngle - 0.2) * r;
-                                                        
                                                         const arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
                                                         arc.setAttribute("d", `M ${x4} ${y4} A ${r} ${r} 0 0 1 ${x5} ${y5}`);
                                                         arc.setAttribute("fill", "none");
@@ -154,8 +136,6 @@
                                                     }
                                                     g.appendChild(gearGroup);
                                                 }
-
-                                                // Execute drawing
                                                 drawSketchyGear("chp_gear1", 265, 261, 135, 8, 50, 40, 0.4, "100 30 60 20");
                                                 drawSketchyGear("chp_gear2", 685, 495, 120, 8, 45, 35, 0.8, "80 25 50 15");
                                                 drawSketchyGear("chp_gear3", 354, 731, 100, 8, 40, 30, 0.2, "70 20 40 10");
@@ -191,9 +171,7 @@
                             <div class="col-md-4 chp-reveal">
                                 <div class="chp-action-card">
                                     <div class="chp-card-accent"></div>
-                                    <div class="chp-action-icon">
-                                        <i class="fa fa-university"></i>
-                                    </div>
+                                    <div class="chp-action-icon"><i class="fa fa-university"></i></div>
                                     <h3 class="mb-2">ACEO</h3>
                                     <p class="chp-card-subtitle">Association Compétences Excellence Opérationnelle</p>
                                     <div class="chp-card-divider"></div>
@@ -208,9 +186,7 @@
                             <div class="col-md-4 chp-reveal delay-2">
                                 <div class="chp-action-card">
                                     <div class="chp-card-accent"></div>
-                                    <div class="chp-action-icon">
-                                        <i class="fa fa-graduation-cap"></i>
-                                    </div>
+                                    <div class="chp-action-icon"><i class="fa fa-graduation-cap"></i></div>
                                     <h3 class="mb-2">ORA</h3>
                                     <p class="chp-card-subtitle">Opex Reengineering Academy</p>
                                     <div class="chp-card-divider"></div>
@@ -225,9 +201,7 @@
                             <div class="col-md-4 chp-reveal delay-3">
                                 <div class="chp-action-card">
                                     <div class="chp-card-accent"></div>
-                                    <div class="chp-action-icon">
-                                        <i class="fa fa-road"></i>
-                                    </div>
+                                    <div class="chp-action-icon"><i class="fa fa-road"></i></div>
                                     <h3 class="mb-2">ORS</h3>
                                     <p class="chp-card-subtitle">Opex Road Show</p>
                                     <div class="chp-card-divider"></div>
@@ -282,7 +256,7 @@
                     </div>
                 </section>
 
-                <!-- 6. Quote & Appointment -->
+                <!-- 6. Quote &amp; Appointment -->
                 <section class="chp-section chp-appointment-section">
                     <div class="chp-container">
                         <div class="row align-items-center">
@@ -329,7 +303,6 @@
                         </div>
                         <div class="chp-logo-slider chp-reveal delay-2">
                             <div class="chp-logo-track">
-                                <!-- Actual logos -->
                                 <t t-set="partners" t-value="[
                                     {'src': '/ceo_homepage/static/src/img/Picture8.png', 'name': 'Deltalog'},
                                     {'src': '/ceo_homepage/static/src/img/uveds_logo.PNG', 'name': 'Uveds'},
@@ -338,16 +311,14 @@
                                     {'src': '/ceo_homepage/static/src/img/bastp_logo.PNG', 'name': 'Bourse Algérienne de Sous-Traitance'},
                                     {'src': '/ceo_homepage/static/src/img/Picture1.png', 'name': 'Ministère de l\'Économie de la connaissance'},
                                     {'src': '/ceo_homepage/static/src/img/miniros_logo.PNG', 'name': 'Miniros'},
-                                    {'src': '/ceo_homepage/static/src/img/Picture4.jpg', 'name': 'Bleu'},
                                     {'src': '/ceo_homepage/static/src/img/Capturekkkk.PNG', 'name': 'CATI - UDL SBA'},
-                                    {'src': '/ceo_homepage/static/src/img/Picture5.jpg', 'name': 'Start\'Dz'},
                                     {'src': '/ceo_homepage/static/src/img/Picture7.jpg', 'name': 'دار ذكاء اصطناعي'},
                                     {'src': '/ceo_homepage/static/src/img/Picture9.png', 'name': 'Inkidia'},
-                                    {'src': '/ceo_homepage/static/src/img/Picture10.png', 'name': 'GSH'},
-                                    {'src': '/ceo_homepage/static/src/img/Picture11.jpg', 'name': 'FALMI'},
-                                    {'src': '/ceo_homepage/static/src/img/Picture6.jpg', 'name': 'CDE'}
+                                    {'src': '/ceo_homepage/static/src/img/Picture6.jpg', 'name': 'CDE'},
+                                    {'src': '/ceo_homepage/static/src/img/logo_SOMEPHARM.PNG', 'name': 'SOMEPHARM'},
+                                    {'src': '/ceo_homepage/static/src/img/Capture_soepharm.PNG', 'name': 'SOMEPHARM'}
                                 ]"/>
-                                
+
                                 <!-- Render logos twice for seamless infinite scroll -->
                                 <t t-foreach="partners + partners" t-as="p">
                                     <div class="chp-flip-card">
